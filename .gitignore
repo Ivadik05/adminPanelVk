@@ -1,0 +1,14 @@
+### IDE Files ###
+.idea
+*.iml
+.vscode
+
+### Build artifacts ###
+/public/dist
+
+### NPM files ###
+/node_modules
+npm-debug.log
+
+### Settings ###
+/src/settings.ts
