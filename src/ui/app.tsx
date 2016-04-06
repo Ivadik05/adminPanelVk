@@ -11,8 +11,7 @@ export interface IProps extends React.Props<App> {
 
 export default class App extends React.Component<IProps, void> {
     public render() {
-      console.error('lffffffffffffff');
-      let { app } = this.props.state;
-      return <div className='div'></div>;
+      let { event } = this.props.state;
+      return <div className='div'>{event.type}</div>;
     }
 };

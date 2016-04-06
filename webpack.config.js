@@ -6,7 +6,7 @@ if(typeof Promise === 'undefined') {
   require('es6-promise').polyfill();
 }
 
-var DEV = JSON.parse(process.env.BUILD_DEV || false);
+var DEV = JSON.parse(process.env.BUILD_DEV || true);
 
 
 var developFlag = new webpack.DefinePlugin({

@@ -3,8 +3,8 @@ import event from './event';
 import app from './app';
 
 const reducers = combineReducers({
-  event,
-  app
+  app,
+  event
 });
 
 export default reducers;
