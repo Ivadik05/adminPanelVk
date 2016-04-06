@@ -64,6 +64,10 @@ module.exports = {
 
   tslint: {
     emitErrors: false
+  },
+
+  devServer: {
+    hot: true
   }
 };
 

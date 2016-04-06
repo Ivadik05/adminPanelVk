@@ -1,5 +1,5 @@
-import store from './ui/store';
-import actors from './ui/actors';
+import store from './store';
+import actors from './actors';
 
 let acting: boolean = false;
 
@@ -12,4 +12,9 @@ store.subscribe(function() {
 
     acting = false;
   }
+});
+
+store.dispatch({
+  type: 'APPLICATION_STARTED',
+  payload: '123'
 });
