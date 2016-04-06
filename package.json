@@ -6,12 +6,10 @@
   "scripts": {
     "cpsettings": "cp ./src/settings.js ./public/dist",
     "build:dev": "npm run cpsettings && BUILD_DEV=1 ./node_modules/webpack/bin/webpack.js",
-    "build:dev-watch": "npm run cpsettings && BUILD_DEV=1 ./node_modules/webpack/bin/webpack.js --watch",
+    "build:dev-watch": "npm run BUILD_DEV=1 ./node_modules/webpack/bin/webpack.js --watch",
     "build:prod": "./node_modules/webpack/bin/webpack.js -p --define process.env.NODE_ENV='\"production\"'",
     "dev": "npm run cpsettings && BUILD_DEV=1 ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --hot --inline --content-base public",
     "test": "./node_modules/jest-cli/bin/jest.js",
-    "precommit": "npm test",
-    "postmerge": "npm install",
     "tsd:install": "./node_modules/tsd/build/cli.js install"
   },
   "files": [
@@ -49,7 +47,6 @@
     "tslint-loader": "^2.1.0",
     "typescript": "1.8.2",
     "url-loader": "^0.5.7",
-    "web-storage": "^0.0.6",
     "webpack": "^1.12.12",
     "webpack-dev-server": "^1.14.1"
   }
