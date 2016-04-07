@@ -1,5 +1,5 @@
-import {names} from './names';
 import store from '../../store';
+import { utils } from '../../utils';
 import {events} from '../../events';
 
 // import { LocalStorage } from 'web-storage';
@@ -10,7 +10,7 @@ import {events} from '../../events';
 // import { generateId } from '../../util';
 
 export default class Service {
-  // private transponder: Transponder = null;
+  public utils = utils;
   constructor(name) {
 
   }

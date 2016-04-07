@@ -1,4 +1,5 @@
 import Service from '../service';
+import Sender from '../../sender';
 import {names} from '../names';
 import {events} from '../../../events';
 
@@ -10,10 +11,10 @@ import {events} from '../../../events';
 // import { generateId } from '../../util';
 
 class Market extends Service {
-  // private transponder: Transponder = null;
+  private sender: Sender = null;
   constructor(sender) {
     super(names.services.MARKET);
-    
+    this.sender = sender;
     this.initListeners();
     this.initApiListeners();
   }
