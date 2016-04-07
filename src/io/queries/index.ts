@@ -1,3 +1,3 @@
 export const queries = {
-  'GET_MARKET': 'get.market'
+  'GET_MARKET': 'market.get'
 };

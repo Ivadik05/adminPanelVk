@@ -1,3 +1,10 @@
 export type marketType = {
-  id: string
+  id: string,
+  ownerId: string,
+  title: string,
+  description: string,
+  price: string,
+  category: Object,
+  date: Date,
+  photo: string
 }

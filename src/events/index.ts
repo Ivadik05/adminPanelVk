@@ -6,20 +6,7 @@ export module events {
     'APPLICATION_STARTED': 'application-started'
   };
 
-  export const errors = {
-    'AUTH_FAILED': 'auth-failed'
+  export const market = {
+    'DRAW_MARKETS': 'draw-markets'
   };
-
-  export function eventList(): Array<string> {
-    let arr = [];
-    [
-      system,
-      errors
-    ].forEach(function(list) {
-     Object.keys(list).forEach(function(i) {
-       arr.push(list[i]);
-     });
-    });
-    return arr;
-  }
 }

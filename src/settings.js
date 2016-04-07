@@ -1,3 +1,3 @@
 window['SETTINGS'] = {
-  'SERVER': '/connect.php'
+  'SERVER': '/dist/connect.php'
 };

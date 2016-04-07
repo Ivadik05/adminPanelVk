@@ -3,7 +3,7 @@ import { IRequest, IAbstractRequest, types, IConfig } from './interfaces';
 import { utils } from '../utils';
 import {IResponse} from "./interfaces/IResponse";
 import {queries} from './queries/index';
-import { resolveMarket } from './response/get-market';
+import { prepareMarket } from './response';
 export * from './request';
 
 export class Io {
@@ -40,25 +40,28 @@ export class Io {
   }
 
 
-  private handleResponse(typeResponse: string, callback: Function) {
+  private handleResponse(nameResponse: string, callback: Function) {
     return (data: string) => {
-      let response = utils.decodeJsonData('{"response":[2,{"id":156554,"owner_id":-61279456,"title":"Парам","description":"ПАрам парам","price":{"amount":"10000","currency":{"id":643,"name":"RUB"},"text":"100 руб."},"category":{"id":1,"name":"Женская одежда","section":{"id":0,"name":"Гардероб"}},"date":1460046983,"thumb_photo":"http:\/\/cs629100.vk.me\/v629100541\/3d796\/IMMoxxaJKfo.jpg","availability":0},{"id":152953,"owner_id":-61279456,"title":"Шляпа широкополая","description":"Вот такая вот шляпа","price":{"amount":"250000","currency":{"id":643,"name":"RUB"},"text":"2 500 руб."},"category":{"id":1,"name":"Женская одежда","section":{"id":0,"name":"Гардероб"}},"date":1459714627,"thumb_photo":"http:\/\/cs630925.vk.me\/v630925541\/228e2\/0RCz4nrRZLE.jpg","availability":0}]}');
-      // let response = utils.decodeJsonData('{"error":{"error_code":113,"error_msg":"Invalid user id","request_params":[{"key":"oauth","value":"1"},{"key":"method","value":"users.get"},{"key":"user_ids","value":"chistokhvalova.viktoriy"}]}}');
-      if (response['response']) {
-        let lengthResponseArray: number = response['response'].splice(0, 1).join();
-        let resultResponse = this.prepareResponse(typeResponse, response['response']);
-        callback(resultResponse, lengthResponseArray, data);
-      } else if (response['error']) {
-        console.error(`response ${typeResponse} error`);
+      let response = utils.decodeJsonData(data);
+      if (response) {
+        if (response['response']) {
+          let lengthResponseArray: number = response['response'].splice(0, 1).join();
+          let resultResponse = this.prepareResponse(nameResponse, response['response']);
+          callback(resultResponse, lengthResponseArray, data);
+        } else if (response['error']) {
+          console.error(`response ${nameResponse} error`);
+        }
+      } else {
+        console.error(`response ${nameResponse} is not data`);
       }
     }
   }
 
-  private prepareResponse(type: string, response: Array<Object>): Array<Object> {
+  private prepareResponse(nameResponse: string, response: Array<Object>): Array<Object> {
     let result;
-    switch (type) {
+    switch (nameResponse) {
       case queries.GET_MARKET:
-        result = resolveMarket(response);
+        result = prepareMarket(response);
         break;
       default:
         result = response;

@@ -10,7 +10,7 @@ import {events} from '../../events';
 // import { generateId } from '../../util';
 
 export default class Service {
-  public utils = utils;
+  public utils: Object = utils;
   constructor(name) {
 
   }

@@ -1,4 +1,5 @@
-import { Io, GetMarket } from '../io';
+import { Io  } from '../io';
+import { IAbstractRequest } from '../io/interfaces';
 import { Storage, storageMarks } from '../storage';
 
 export default class Sender {
@@ -6,11 +7,12 @@ export default class Sender {
   private storage: Storage = null;
 
   constructor() {
-    console.error(window['SETTINGS']['SERVER']);
     this.io = new Io({server: window['SETTINGS']['SERVER']});
     this.storage = new Storage();
-    this.io.send(new GetMarket('61279456'), (response) => {
-      console.error('юху', response);
-    });
+  }
+
+  public send(request: IAbstractRequest, callback) {
+    let requestName = request.getRequest().getName();
+    this.io.send(request, callback);
   }
 }

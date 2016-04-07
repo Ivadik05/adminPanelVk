@@ -1,8 +1,5 @@
 import * as React from 'react';
-// import Panel from './containers/panel';
-// import Login from './containers/login';
-// import Preloader from './components/preloader';
-// import { uiState } from '../constants';
+import { marketType } from '../io/types';
 
 export interface IProps extends React.Props<App> {
   state: any;
@@ -11,7 +8,21 @@ export interface IProps extends React.Props<App> {
 
 export default class App extends React.Component<IProps, void> {
     public render() {
-      let { event } = this.props.state;
-      return <div className='div'>{event.type}</div>;
+      let { market } = this.props.state;
+      let marketItems = market.data.map((item: marketType, i) => {
+        return (
+            <div className='div' key={i}>
+              <div>Товар:</div>
+              <div>Название: {item.title}</div>
+              <div>Описание: {item.description}</div>
+
+              <div>Цена: {item.price}</div>
+              <div>Фото: <img style={{height: '50px'}} src={item.photo} alt=''/></div>
+            </div>
+        );
+      });
+      return <div>
+        {marketItems}
+      </div>;
     }
 };

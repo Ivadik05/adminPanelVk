@@ -1,6 +1,8 @@
 import Service from '../service';
 import Sender from '../../sender';
 import {names} from '../names';
+import { GetMarket } from '../../../io/request/get-market';
+import { marketType } from '../../../io/types';
 import {events} from '../../../events';
 
 // import { LocalStorage } from 'web-storage';
@@ -17,6 +19,9 @@ class Market extends Service {
     this.sender = sender;
     this.initListeners();
     this.initApiListeners();
+    this.sender.send(new GetMarket('-61279456', '', true), (response: Array<marketType>) => {
+      this.publishEvent(events.market.DRAW_MARKETS, response);
+    });
   }
 
   private initListeners() {
