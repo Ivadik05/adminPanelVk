@@ -17,7 +17,6 @@ export default function renderer(state , dispatch) {
     return false;
   }
   if (__DEV__) {
-    console.error('DEV');
     let renderInstance = render(state, dispatch);
     if (module['hot']) {
       require('react-hot-loader/Injection').RootInstanceProvider.injectProvider({
@@ -27,7 +26,6 @@ export default function renderer(state , dispatch) {
       });
     }
   } else {
-    console.error('НЕ DEV');
     render(state, dispatch);
   }
 };

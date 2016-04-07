@@ -1,4 +1,4 @@
-import { Io } from '../io';
+import { Io, GetMarket } from '../io';
 import { Storage, storageMarks } from '../storage';
 
 export default class Sender {
@@ -6,7 +6,11 @@ export default class Sender {
   private storage: Storage = null;
 
   constructor() {
-    this.io = new Io();
-    this.storage = new Storage()
+    console.error(window['SETTINGS']['SERVER']);
+    this.io = new Io({server: window['SETTINGS']['SERVER']});
+    this.storage = new Storage();
+    this.io.send(new GetMarket('61279456'), (response) => {
+      console.error('юху', response);
+    });
   }
 }
