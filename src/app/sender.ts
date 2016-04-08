@@ -12,6 +12,7 @@ export default class Sender {
   }
 
   public send(request: IAbstractRequest, callback) {
+    // TODO Проверять в стораже данные и заправшивать на сервере
     let requestName = request.getRequest().getName();
     this.io.send(request, callback);
   }

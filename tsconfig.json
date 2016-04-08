@@ -11,6 +11,9 @@
         "jsx": "react",
         "experimentalDecorators": true
      },
+    "files": [
+        "./typings/browser.d.ts"
+    ],
     "exclude": [
         "node_modules",
         "src/ui/actionsCreator/__tests__",
@@ -19,6 +22,8 @@
         "src/ui/reducers/__tests__",
         "src/ui/utils/__tests__",
         "src/ui/pipe/__tests__",
-        "src/application/__tests__"
+        "src/application/__tests__",
+        "typings/main.d.ts",
+        "typings/main"
     ]
 }

@@ -1,5 +1,6 @@
 export const uiState = {
-  LOGIN: 'login',
-  PANEL: 'panel',
-  PRELOADER: 'preloader'
+  MAIN: 'main',
+  ABOUT: 'main',
+  CONTACTS: 'main',
+  MARKET: 'main'
 };

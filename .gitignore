@@ -11,4 +11,4 @@
 npm-debug.log
 
 ### Settings ###
-/src/settings.ts
+/src/settings/settings.ts

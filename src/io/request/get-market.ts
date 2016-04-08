@@ -2,6 +2,13 @@ import {request} from './request';
 import {queries} from '../queries';
 import {error} from "util";
 
+type marketData = {
+  method: string;
+  owner_id: string;
+  album_id?: string;
+  extended?: number;
+}
+
 export class GetMarket extends request.VK {
   private ownerId: string;
   private albumId: string;
@@ -48,9 +55,9 @@ export class GetMarket extends request.VK {
   /**
    * @inheritDoc
    */
-  public getData() {
+  public getData(): marketData {
     let data = {
-      'query': this.getName(),
+      'method': this.getName(),
       'owner_id': this.getOwnerId()
     };
     if (this.getAlbumId()) {

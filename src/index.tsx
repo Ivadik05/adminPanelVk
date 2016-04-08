@@ -7,7 +7,6 @@ let acting: boolean = false;
 
 
 store.subscribe(function() {
-  console.error('subscribe', store.getState());
   if (!acting) {
     acting = true;
     for (let actor of actors) {

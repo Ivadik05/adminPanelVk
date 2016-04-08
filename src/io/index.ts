@@ -52,7 +52,7 @@ export class Io {
           console.error(`response ${nameResponse} error`);
         }
       } else {
-        console.error(`response ${nameResponse} is not data`);
+        console.error(`response ${nameResponse} is no data`);
       }
     }
   }

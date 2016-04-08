@@ -1,28 +1,24 @@
 import * as React from 'react';
 import { marketType } from '../io/types';
+import { uiState } from '../constants';
+import { Router, Route, browserHistory } from 'react-router'
+// import { syncHistory } from 'react-router-redux'
 
 export interface IProps extends React.Props<App> {
   state: any;
   dispatch: Function;
 }
 
+// const history = syncHistory(browserHistory);
 export default class App extends React.Component<IProps, void> {
     public render() {
-      let { market } = this.props.state;
-      let marketItems = market.data.map((item: marketType, i) => {
-        return (
-            <div className='div' key={i}>
-              <div>Товар:</div>
-              <div>Название: {item.title}</div>
-              <div>Описание: {item.description}</div>
-
-              <div>Цена: {item.price}</div>
-              <div>Фото: <img style={{height: '50px'}} src={item.photo} alt=''/></div>
-            </div>
-        );
-      });
-      return <div>
-        {marketItems}
-      </div>;
+      let { app } = this.props.state;
+      switch (app.uiState) {
+        case uiState.MAIN:
+          return (
+              <div></div>
+          );
+        default: return <div></div>;
+      }
     }
 };

@@ -10,7 +10,7 @@ export function prepareMarket(payload: Array<any>): Array<marketType> {
       price: item['price']['text'],
       category: item['category'],
       date: new Date(item['date']),
-      photo: item['photos'][0]['src_xbig']
+      photo: item['photos'] ? item['photos'][0]['src_xbig'] : ''
     };
   });
 }
