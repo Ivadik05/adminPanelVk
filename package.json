@@ -10,19 +10,21 @@
     "build:prod": "./node_modules/webpack/bin/webpack.js -p --define process.env.NODE_ENV='\"production\"'",
     "dev": "npm run cpsettings && BUILD_DEV=1 ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --hot --inline --content-base public",
     "test": "./node_modules/jest-cli/bin/jest.js",
-    "tsd:install": "./node_modules/tsd/build/cli.js install"
+    "tsd:install": "./node_modules/tsd/build/cli.js install",
+    "start": "node server.js"
   },
   "files": [
     "public/",
     "install.sh"
   ],
-  "author": "Interaction Team",
+  "author": "Vadim.ch",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer-loader": "^3.2.0",
     "classnames": "^2.2.3",
     "css-loader": "^0.23.1",
     "es6-promise": "^3.0.2",
+    "express": "^4.13.3",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
     "husky": "^0.10.2",
@@ -51,6 +53,8 @@
     "typings": "^0.7.12",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.12",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-dev-server": "^1.14.1",
+    "webpack-hot-middleware": "^2.10.0"
   }
 }

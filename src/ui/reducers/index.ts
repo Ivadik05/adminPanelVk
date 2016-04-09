@@ -2,12 +2,12 @@ import { combineReducers } from 'redux';
 import event from './event';
 import app from './app';
 import market from './market';
-import { routeReducer } from 'react-router-redux'
+import { routerReducer } from 'react-router-redux'
 const reducers = combineReducers({
   app,
   market,
   event,
-  routing: routeReducer
+  routing: routerReducer
 });
 
 export default reducers;

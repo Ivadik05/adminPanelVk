@@ -10,7 +10,7 @@ const APP_NODE = document.getElementById('app');
 let render = utils.debounce((state, dispatch) => {
   ReactDom.render(<App state={state} dispatch={dispatch}/>, APP_NODE);
 }, 80);
-
+let __DEV__ = true;
 export default function renderer(state , dispatch) {
   let {app} = state;
   if (!app.started) {

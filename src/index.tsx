@@ -4,8 +4,6 @@ import startServices from './app/start';
 
 let acting: boolean = false;
 
-
-
 store.subscribe(function() {
   if (!acting) {
     acting = true;
