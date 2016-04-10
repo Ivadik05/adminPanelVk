@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { marketType } from '../io/types';
 import { uiState } from '../constants';
-import { Router, Route, browserHistory } from 'react-router'
-// import { syncHistory } from 'react-router-redux'
+import { Link } from 'react-router'
 import store from '../store';
+import {error} from "util";
+import {} from 'react-document-title';
 
 export interface IProps extends React.Props<App> {
   state: any;
@@ -15,12 +16,18 @@ export default class App extends React.Component<IProps, void> {
     public render() {
       let state = store.getState();
       let dispatch = store.dispatch;
-      switch (state.app.uiState) {
-        case uiState.MAIN:
-          return (
-              <div>MAIN</div>
-          );
-        default: return <div></div>;
-      }
+      console.error(state.market);
+      return (
+          <div>
+            <div className='header'>
+              <button>
+                <Link to={`/welcome`}>to login</Link>
+              </button>
+            </div>
+            <div className="detail">
+              {this.props.children}
+            </div>
+          </div>
+      );
     }
 };

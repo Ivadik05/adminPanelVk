@@ -9,7 +9,6 @@ export interface IProps extends React.Props<Root> {
   history: any;
 }
 
-// const history = syncHistory(browserHistory);
 export default class Root extends React.Component<IProps, void> {
     public render() {
       let { store, history } = this.props;

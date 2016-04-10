@@ -30,4 +30,6 @@ export module utils {
     }
     return result;
   }
+
+  export let tsReturnTypeFix = (component) => component;
 }
