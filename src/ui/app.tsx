@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { marketType } from '../io/types';
 import { uiState } from '../constants';
-import { Link } from 'react-router'
+import { Link } from 'react-router';
 import store from '../store';
-import {error} from "util";
-import {} from 'react-document-title';
+import {error} from 'util';
 
 export interface IProps extends React.Props<App> {
   state: any;
@@ -24,7 +23,7 @@ export default class App extends React.Component<IProps, void> {
                 <Link to={`/welcome`}>to login</Link>
               </button>
             </div>
-            <div className="detail">
+            <div className='detail'>
               {this.props.children}
             </div>
           </div>

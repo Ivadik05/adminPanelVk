@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "cpsettings": "cp ./src/settings/settings.js ./public/dist",
-    "build:dev": "npm run cpsettings && BUILD_DEV=1 ./node_modules/webpack/bin/webpack.js",
-    "build:dev-watch": "npm run BUILD_DEV=1 ./node_modules/webpack/bin/webpack.js --watch",
+    "build:dev": "BUILD_DEV=1 ./node_modules/webpack/bin/webpack.js",
+    "build:dev-watch": "BUILD_DEV=1 ./node_modules/webpack/bin/webpack.js --watch",
     "build:prod": "./node_modules/webpack/bin/webpack.js -p --define process.env.NODE_ENV='\"production\"'",
     "dev": "npm run cpsettings && BUILD_DEV=1 ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --hot --inline --content-base public",
     "test": "./node_modules/jest-cli/bin/jest.js",
     "tsd:install": "./node_modules/tsd/build/cli.js install",
+    "buildserver": "",
     "start": "node server.js"
   },
   "files": [
@@ -32,6 +33,7 @@
     "js-md5": "^0.4.0",
     "js-sha256": "^0.3.0",
     "moment": "^2.11.2",
+    "node-jsx": "^0.13.3",
     "object-assign": "^4.0.1",
     "react": "^0.14.6",
     "react-addons-css-transition-group": "^0.14.7",

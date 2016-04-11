@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
 import App from '../ui/app';
-import Root from '../ui/root'
+import Root from '../ui/root';
 import { utils } from '../utils';
 import { browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';

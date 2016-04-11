@@ -21,12 +21,12 @@ import { utils } from '../utils';
 //     return (
 //         <div>
 //           <h1>Users </h1>
-//           <div className="master">
+//           <div className='master'>
 //             <ul>
 //               {/* use Link to route around the app */}
 //             </ul>
 //           </div>
-//           <div className="detail">
+//           <div className='detail'>
 //             {this.props.children}
 //           </div>
 //         </div>
@@ -36,13 +36,13 @@ import { utils } from '../utils';
 
 // <App state={store.getState()} dispatch={store.dispatch}/>
 export default (
-    <Route path="/" component={utils.tsReturnTypeFix(App)}>
+    <Route path='/' component={utils.tsReturnTypeFix(App)}>
       <IndexRoute component='INDEX'/>
-      <Redirect from="*.*" to="/" />
-      <Route path="/:login/:name"
+      <Redirect from='*.*' to='/' />
+      <Route path='/:login/:name'
              component={'loginName'} />
-      <Route path="/login"
+      <Route path='/login'
              component='login' />
-      <Route path="*" component='noFound'/>
+      <Route path='*' component='noFound'/>
     </Route>
 )

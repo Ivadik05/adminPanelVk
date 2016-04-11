@@ -28,7 +28,7 @@ module.exports = {
   entry: [
       path.resolve('src', 'index.tsx')
   ],
-  devtool: DEV && "inline-source-map",
+  devtool: DEV && 'inline-source-map',
   output: {
     path: path.resolve(__dirname, 'public', 'dist'),
     filename: 'index.js',
@@ -42,7 +42,7 @@ module.exports = {
     preLoaders: [
       {
         test: /\.ts$/,
-        loader: "tslint"
+        loader: 'tslint'
       }
     ],
     loaders: [
@@ -72,3 +72,31 @@ module.exports = {
 };
 
 
+module.exports = {
+  target: 'node',
+  entry: [
+    path.resolve('src', 'server.tsx')
+  ],
+  output: {
+    path: path.resolve(__dirname, 'public', 'dist'),
+    filename: 'server.js',
+    publicPath: '/dist/'
+  },
+  resolve: {
+    extensions: ['', '.webpack.js', '.web.js', '.tsx', '.js', '.ts', '.css']
+  },
+
+  module: {
+    loaders: [
+      {
+        test: /\.ts(x)?$/,
+        exclude: /(node_modules|__tests__)/,
+        loaders: ['ts-loader']
+      }
+    ]
+  },
+
+  tslint: {
+    emitErrors: false
+  }
+};
