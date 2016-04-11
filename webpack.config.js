@@ -8,7 +8,8 @@ if(typeof Promise === 'undefined') {
 
 var DEV = JSON.parse(process.env.BUILD_DEV || true);
 var developFlag = new webpack.DefinePlugin({
-  __DEV__: DEV
+  __DEV__: DEV,
+  'process.env.BUILD_DEV' : DEV
 });
 
 var listOfPlugins = [

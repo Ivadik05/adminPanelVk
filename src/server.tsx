@@ -24,10 +24,7 @@ http.createServer((req, res) => {
       write(data, 'text/javascript', res);
     });
   } else {
-    console.log('req.url', req.url);
     match(utils.tsReturnTypeFix({ routes, location: req.url }), (error, redirectLocation, renderProps) => {
-      console.error('!!!!!!!!!!!!!!!!!!!');
-      console.log('renderProps', renderProps);
       if (error) {
         writeError('ERROR!', res);
       } else if (redirectLocation) {
