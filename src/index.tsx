@@ -1,20 +1,24 @@
-import store from './store';
-import actors from './actors';
 import startServices from './app/start';
+import * as React from 'react';
+import { match, Router, browserHistory } from 'react-router';
+import { render } from 'react-dom';
+import { syncHistoryWithStore } from 'react-router-redux';
+import routes from './routes';
+import { utils } from './utils';
+import store from './store';
 
-let acting: boolean = false;
+const history = syncHistoryWithStore(browserHistory, store);
+const { pathname, search, hash } = window.location;
+const location = `${pathname}${search}${hash}`;
 
-store.subscribe(function() {
-  if (!acting) {
-    acting = true;
-    for (let actor of actors) {
-      actor(store.getState(), store.dispatch);
-    }
-
-    acting = false;
-  }
+// calling `match` is simply for side effects of
+// loading route/component code for the initial location
+match(utils.tsReturnTypeFix({ routes, location }), () => {
+  render(
+      <Router routes={routes} history={history} />,
+      document.getElementById('app')
+  )
 });
 
 startServices();
-
 

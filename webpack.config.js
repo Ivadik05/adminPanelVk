@@ -7,8 +7,6 @@ if(typeof Promise === 'undefined') {
 }
 
 var DEV = JSON.parse(process.env.BUILD_DEV || true);
-
-
 var developFlag = new webpack.DefinePlugin({
   __DEV__: DEV
 });
@@ -30,7 +28,7 @@ module.exports = {
   ],
   devtool: DEV && 'inline-source-map',
   output: {
-    path: path.resolve(__dirname, 'public', 'dist'),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
     publicPath: '/dist/'
   },
@@ -47,10 +45,17 @@ module.exports = {
     ],
     loaders: [
       {
+        // test: /\.ts(x)?$/,
         test: /\.ts(x)?$/,
         exclude: /(node_modules|__tests__)/,
         loaders: ['react-hot', 'ts-loader']
       },
+      // {
+      //   // test: /\.ts(x)?$/,
+      //   test: 'server.tsx',
+      //   exclude: /(node_modules|__tests__)/,
+      //   loaders: ['ts-loader']
+      // },
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!autoprefixer-loader')
@@ -72,31 +77,31 @@ module.exports = {
 };
 
 
-module.exports = {
-  target: 'node',
-  entry: [
-    path.resolve('src', 'server.tsx')
-  ],
-  output: {
-    path: path.resolve(__dirname, 'public', 'dist'),
-    filename: 'server.js',
-    publicPath: '/dist/'
-  },
-  resolve: {
-    extensions: ['', '.webpack.js', '.web.js', '.tsx', '.js', '.ts', '.css']
-  },
-
-  module: {
-    loaders: [
-      {
-        test: /\.ts(x)?$/,
-        exclude: /(node_modules|__tests__)/,
-        loaders: ['ts-loader']
-      }
-    ]
-  },
-
-  tslint: {
-    emitErrors: false
-  }
-};
+// module.exports = {
+//   target: 'node',
+//   entry: [
+//     path.resolve('src', 'server.tsx')
+//   ],
+//   output: {
+//     path: path.resolve(__dirname, 'public', 'dist'),
+//     filename: 'server.js',
+//     publicPath: '/dist/'
+//   },
+//   resolve: {
+//     extensions: ['', '.webpack.js', '.web.js', '.tsx', '.js', '.ts', '.css']
+//   },
+//
+//   module: {
+//     loaders: [
+//       {
+//         test: /\.ts(x)?$/,
+//         exclude: /(node_modules|__tests__)/,
+//         loaders: ['ts-loader']
+//       }
+//     ]
+//   },
+//
+//   tslint: {
+//     emitErrors: false
+//   }
+// };

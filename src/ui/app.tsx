@@ -10,7 +10,6 @@ export interface IProps extends React.Props<App> {
   dispatch: Function;
 }
 
-// const history = syncHistory(browserHistory);
 export default class App extends React.Component<IProps, void> {
     public render() {
       let state = store.getState();

@@ -5,14 +5,20 @@
   "main": "index.js",
   "scripts": {
     "cpsettings": "cp ./src/settings/settings.js ./public/dist",
-    "build:dev": "BUILD_DEV=1 ./node_modules/webpack/bin/webpack.js",
+
+    "build-client:dev": "BUILD_DEV=1 ./node_modules/webpack/bin/webpack.js",
+    "build-server:dev": "BUILD_DEV=1 ./node_modules/webpack/bin/webpack.js --config webpack.config.server.js",
+    "build:dev": "npm run build-client:dev && npm run build-server:dev",
+
     "build:dev-watch": "BUILD_DEV=1 ./node_modules/webpack/bin/webpack.js --watch",
     "build:prod": "./node_modules/webpack/bin/webpack.js -p --define process.env.NODE_ENV='\"production\"'",
-    "dev": "npm run cpsettings && BUILD_DEV=1 ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --hot --inline --content-base public",
-    "test": "./node_modules/jest-cli/bin/jest.js",
-    "tsd:install": "./node_modules/tsd/build/cli.js install",
-    "buildserver": "",
-    "start": "node server.js"
+
+    "dev-server": "BUILD_DEV=1 ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --hot --inline --content-base public",
+    "typings:install": "./node_modules/typings/dist/typings.js install",
+    "start": "node dist/server.js",
+    "build-start:dev": "npm run build:dev && npm run start",
+
+    "test": "./node_modules/jest-cli/bin/jest.js"
   },
   "files": [
     "public/",
