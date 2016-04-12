@@ -7,11 +7,11 @@ import { createPage, write, writeError, writeNotFound, redirect } from './utils/
 import routes from './routes';
 import { utils } from '../src/utils';
 
-const PORT = process.env.PORT || 5000;
+let PORT = process.env.PORT || 5000;
 
 function renderApp(props, res) {
-  const markup = renderToString(<RoutingContext {...props}/>);
-  const html = createPage(markup);
+  let markup = renderToString(<RoutingContext {...props}/>);
+  let html = createPage(markup);
   write(html, 'text/html', res);
 }
 

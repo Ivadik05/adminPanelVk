@@ -19,7 +19,7 @@ export default class App extends React.Component<IProps, void> {
           <div>
             <div className='header'>
               <button>
-                <Link to={`/welcome`}>to login</Link>
+                <Link to={`/about`}>to about</Link>
               </button>
             </div>
             <div className='detail'>

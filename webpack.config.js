@@ -6,10 +6,10 @@ if(typeof Promise === 'undefined') {
   require('es6-promise').polyfill();
 }
 
-var DEV = JSON.parse(process.env.BUILD_DEV || true);
+var NODE_ENV = JSON.stringify(process.env.NODE_ENV || 'development');
+var DEV = Boolean(NODE_ENV === '"development"');
 var developFlag = new webpack.DefinePlugin({
-  __DEV__: DEV,
-  'process.env.BUILD_DEV' : DEV
+  'process.env.NODE_ENV': NODE_ENV
 });
 
 var listOfPlugins = [
@@ -20,8 +20,14 @@ var listOfPlugins = [
 ];
 
 //uglify js if production build
-var uglifierOptions = {minimize: true, mangle: {except: ['exports', 'require']}};
-!DEV && listOfPlugins.push(new webpack.optimize.UglifyJsPlugin(uglifierOptions));
+var uglifierOptions = {
+  minimize: true, mangle: {
+    except: ['exports', 'require']
+  }
+};
+if (!DEV) {
+  listOfPlugins.push(new webpack.optimize.UglifyJsPlugin(uglifierOptions));
+}
 
 module.exports = {
   entry: [
