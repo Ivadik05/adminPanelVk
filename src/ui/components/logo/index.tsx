@@ -4,8 +4,8 @@ let styles = require('./style.css');
 
 type Props = {
   children?: any;
-  handler: Function;
   src: string;
+  link?: string;
 }
 
 type ButtonListProps = {
@@ -14,9 +14,10 @@ type ButtonListProps = {
 }
 
 export let Logo = (props: Props) => {
+  let link = props.link ? props.link : '/';
   return (
     <div className={styles.logo}>
-        <Link to={`/`}>
+        <Link to={link}>
           <img src={props.src} alt='logo'/>
         </Link>
     </div>

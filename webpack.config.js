@@ -52,17 +52,10 @@ module.exports = {
     ],
     loaders: [
       {
-        // test: /\.ts(x)?$/,
         test: /\.ts(x)?$/,
         exclude: /(node_modules|__tests__)/,
         loaders: ['react-hot', 'ts-loader']
       },
-      // {
-      //   // test: /\.ts(x)?$/,
-      //   test: 'server.tsx',
-      //   exclude: /(node_modules|__tests__)/,
-      //   loaders: ['ts-loader']
-      // },
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!autoprefixer-loader')

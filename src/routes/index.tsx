@@ -3,7 +3,7 @@ import { Route, IndexRoute, IndexRedirect, Redirect } from 'react-router'
 import { utils } from '../utils';
 
 import App from '../ui/app';
-import About from '../ui/containers/about';
+import About from '../ui/containers/wrapper/about';
 
 export default (
     <Route path='/' component={utils.tsReturnTypeFix(App)}>
