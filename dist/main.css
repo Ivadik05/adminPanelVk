@@ -17,12 +17,17 @@ body {
 button {
   cursor: pointer;
   font-family: inherit;
+  border: 0;
+  background: none;
+  text-decoration: none;
 }
 
 button:focus,
 input:focus,
 textarea:focus {
   outline: 0;
+  border: 0;
+  background: none;
 }
 
 input,
@@ -62,6 +67,13 @@ textarea {
   min-height: 10px; /*Prevent it from getting too small */
   border: 2px solid rgba(0, 0, 0, 0);
   transition: background .2 ease-in-out;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 30px;
+  position: relative;
 }
 
 a {

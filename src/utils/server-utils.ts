@@ -29,6 +29,14 @@ export function write(string, type, res) {
   });
 }
 
+export function getFileExtension(link: string) {
+  var dotIndex = link.lastIndexOf('.');
+  if (dotIndex === -1) {
+    return '';
+  }
+  return link.substr(dotIndex + 1);
+}
+
 export function createPage(html) {
   return `
   <!doctype html>
@@ -36,6 +44,9 @@ export function createPage(html) {
     <head>
       <meta charset="utf-8"/>
       <title>My Universal App</title>
+      <link rel='stylesheet' href='/dist/reset.css'>
+      <link rel='stylesheet' href='/dist/main.css'>
+      <link rel='stylesheet' href='/dist/app.css'>
     </head>
     <body>
       <div id="app">${html}</div>
