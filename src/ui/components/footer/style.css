@@ -1,9 +1,7 @@
 .footer {
+  background: lightgreen;
   padding: 40px 0;
-  border-top-width: 1px;
-  border-top-style: solid;
-  position: absolute;
+  border-bottom: solid 1px #e0e0e0;
   bottom: 0;
-  width: 100%;
   text-align: center;
 }

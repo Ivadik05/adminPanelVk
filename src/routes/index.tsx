@@ -6,12 +6,14 @@ import App from '../ui/app';
 import Main from '../ui/containers/wrapper/main';
 import About from '../ui/containers/wrapper/about';
 import Market from '../ui/containers/wrapper/market';
+import Contacts from '../ui/containers/wrapper/contacts';
 
 export default (
     <Route path='/' component={utils.tsReturnTypeFix(App)}>
       <IndexRoute component={utils.tsReturnTypeFix(Main)}/>
       <Route path='/about' component={utils.tsReturnTypeFix(About)} />
       <Route path='/market' component={utils.tsReturnTypeFix(Market)} />
+      <Route path='/contacts' component={utils.tsReturnTypeFix(Contacts)} />
       <Route path='*' component='noFound'/>
       <Redirect from='*.*' to='/' />
     </Route>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Header from '../../components/header';
+let styles = require('./style.css');
 
 export interface IProps extends React.Props<Wrapper> {
   state: any;
@@ -9,10 +9,9 @@ export interface IProps extends React.Props<Wrapper> {
 export default class Wrapper extends React.Component<IProps, void> {
   public render() {
     return (
-        <div>
-          <Header/>
+        <main className={styles.wrapper}>
           {this.props.children}
-        </div>
+        </main>
     );
   }
 };
