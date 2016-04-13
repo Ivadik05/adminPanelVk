@@ -18,8 +18,9 @@ export default class App extends React.Component<IProps, void> {
       return (
           <div>
             <Wrapper
-                {...state} {...dispatch}
-            />
+                {...state} {...dispatch}>
+              {this.props.children}
+            </Wrapper>
             <Footer/>
           </div>
       );

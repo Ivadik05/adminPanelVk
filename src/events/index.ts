@@ -7,6 +7,7 @@ export module events {
   };
 
   export const market = {
-    'DRAW_MARKETS': 'draw-markets'
+    'DRAW_MARKETS': 'draw-markets',
+    'GET_MARKET': 'get-market'
   };
 }

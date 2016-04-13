@@ -11,13 +11,13 @@ const history = syncHistoryWithStore(browserHistory, store);
 const { pathname, search, hash } = window.location;
 const location = `${pathname}${search}${hash}`;
 
-// calling `match` is simply for side effects of
-// loading route/component code for the initial location
-match(utils.tsReturnTypeFix({ routes, location }), () => {
-  render(
-      <Router routes={routes} history={history} />,
-      document.getElementById('app')
-  )
+store.subscribe(() => {
+  match(utils.tsReturnTypeFix({ routes, location }), () => {
+    render(
+        <Router routes={routes} history={history} />,
+        document.getElementById('app')
+    );
+  });
 });
 
 startServices();

@@ -11,10 +11,11 @@
     "build-server": "./node_modules/webpack/bin/webpack.js --config webpack.config.server.js",
     "build-server:watch": "./node_modules/webpack/bin/webpack.js --config webpack.config.server.js --watch",
 
-    "build": "npm run build-client ||build-server",
+    "build": "npm run build-client && npm run build-server",
     "build:prod": "NODE_ENV=production npm run build-client || build-server",
 
     "start": "node dist/server.js",
+    "build-start": "npm run build && node dist/server.js",
     "prod-start": "npm run build:prod && npm run start",
 
     "typings:install": "./node_modules/typings/dist/typings.js install",

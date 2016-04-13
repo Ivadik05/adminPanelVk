@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Header from '../../components/header';
-import { Enhance } from '../enhancer';
 
 export interface IProps extends React.Props<Wrapper> {
   state: any;
@@ -12,7 +11,7 @@ export default class Wrapper extends React.Component<IProps, void> {
     return (
         <div>
           <Header/>
-          {this.props.childen}
+          {this.props.children}
         </div>
     );
   }
