@@ -44,7 +44,7 @@ export function createPage(html) {
     <head>
       <meta charset="utf-8"/>
       <title>My Universal App</title>
-      <link rel='stylesheet' href='/dist/reset.css'>
+      <link rel='stylesheet' href='/dist/normalize.css'>
       <link rel='stylesheet' href='/dist/main.css'>
       <link rel='stylesheet' href='/dist/app.css'>
     </head>

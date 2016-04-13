@@ -1,10 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-// require promise polyfill for old node environment
-if(typeof Promise === 'undefined') {
-  require('es6-promise').polyfill();
-}
 
 var NODE_ENV = JSON.stringify(process.env.NODE_ENV || 'development');
 var DEV = Boolean(NODE_ENV === '"development"');
@@ -13,10 +9,10 @@ var developFlag = new webpack.DefinePlugin({
 });
 
 var listOfPlugins = [
-    developFlag,
-    new ExtractTextPlugin('app.css', {
-        allChunks: true
-    })
+  developFlag,
+  new ExtractTextPlugin('app.css', {
+    allChunks: true
+  })
 ];
 
 //uglify js if production build
@@ -29,14 +25,16 @@ if (!DEV) {
   listOfPlugins.push(new webpack.optimize.UglifyJsPlugin(uglifierOptions));
 }
 
+console.error('path.resolve()', path.resolve('src', 'styles'));
 module.exports = {
-  entry: [
-      path.resolve('src', 'index.tsx')
-  ],
-  devtool: DEV && 'inline-source-map',
+  target: 'node',
+  entry: {
+    index: path.resolve('src', 'index.tsx'),
+    server: path.resolve('src', 'server.tsx')
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'index.js',
+    filename: '[name].js',
     publicPath: '/dist/'
   },
   resolve: {
@@ -44,64 +42,24 @@ module.exports = {
   },
   plugins: listOfPlugins,
   module: {
-    preLoaders: [
-      {
-        test: /\.ts$/,
-        loader: 'tslint'
-      }
-    ],
     loaders: [
-      {
-        test: /\.ts(x)?$/,
-        exclude: /(node_modules|__tests__)/,
-        loaders: ['react-hot', 'ts-loader']
-      },
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!autoprefixer-loader')
       },
       {
-        test: /\.png$/,
-        loader: 'url-loader?limit=100000'
+        test: /main.css$/,
+        loader: 'style-loader!css-loader'
+      },
+      {
+        test: /\.ts(x)?$/,
+        exclude: /(node_modules|__tests__)/,
+        loaders: ['ts-loader']
       }
     ]
   },
 
   tslint: {
     emitErrors: false
-  },
-
-  devServer: {
-    hot: true
   }
 };
-
-
-// module.exports = {
-//   target: 'node',
-//   entry: [
-//     path.resolve('src', 'server.tsx')
-//   ],
-//   output: {
-//     path: path.resolve(__dirname, 'public', 'dist'),
-//     filename: 'server.js',
-//     publicPath: '/dist/'
-//   },
-//   resolve: {
-//     extensions: ['', '.webpack.js', '.web.js', '.tsx', '.js', '.ts', '.css']
-//   },
-//
-//   module: {
-//     loaders: [
-//       {
-//         test: /\.ts(x)?$/,
-//         exclude: /(node_modules|__tests__)/,
-//         loaders: ['ts-loader']
-//       }
-//     ]
-//   },
-//
-//   tslint: {
-//     emitErrors: false
-//   }
-// };

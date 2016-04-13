@@ -5,6 +5,7 @@
     "classnames": "github:DefinitelyTyped/DefinitelyTyped/classnames/classnames.d.ts#e937b3e64af586d19f2ea29fdf771e9dc4feecc8",
     "es6-promise": "github:DefinitelyTyped/DefinitelyTyped/es6-promise/es6-promise.d.ts#e937b3e64af586d19f2ea29fdf771e9dc4feecc8",
     "jest": "github:DefinitelyTyped/DefinitelyTyped/jest/jest.d.ts#e937b3e64af586d19f2ea29fdf771e9dc4feecc8",
+    "marked": "github:DefinitelyTyped/DefinitelyTyped/marked/marked.d.ts#e937b3e64af586d19f2ea29fdf771e9dc4feecc8",
     "moment": "github:DefinitelyTyped/DefinitelyTyped/moment/moment.d.ts#e937b3e64af586d19f2ea29fdf771e9dc4feecc8",
     "moment-node": "github:DefinitelyTyped/DefinitelyTyped/moment/moment-node.d.ts#e937b3e64af586d19f2ea29fdf771e9dc4feecc8",
     "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#e937b3e64af586d19f2ea29fdf771e9dc4feecc8",

@@ -6,6 +6,7 @@ import Nav from './components/nav';
 import Wrapper from './containers/wrapper';
 import Footer from './components/footer';
 import store from '../store';
+require('../styles/main.css');
 
 let styles = require('./style.css');
 
