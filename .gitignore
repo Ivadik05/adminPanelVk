@@ -4,16 +4,16 @@
 .vscode
 
 ### Build artifacts ###
-/public/dist/app.css
-/public/dist/index.js
-/public/dist/server.js
+/dist/app.css
+/dist/index.js
+/dist/server.js
 
 ### NPM files ###
 /node_modules
 npm-debug.log
 
 ### Settings ###
-/src/settings/settings.ts
+/src/settings/index.ts
 
 ### Typings ###
 /typings
