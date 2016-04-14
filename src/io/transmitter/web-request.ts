@@ -2,15 +2,16 @@ import { ITransmitter } from '../interfaces';
 
 
 export class WebRequest implements ITransmitter {
-  private url: string;
+  private host: string;
+  private path: string;
   private sync: boolean;
   private data: Object = {};
   private method: string = 'GET';
   private headers: Object = {};
-  private requests: Array<XMLHttpRequest> = [];
 
-  constructor(url?: string, sync?: string) {
-    this.url = url || '/';
+  constructor(host?: string, path?: string, sync?: string) {
+    this.host = host || '/';
+    this.path = path || '';
     this.sync = !!sync;
   }
 
@@ -36,13 +37,21 @@ export class WebRequest implements ITransmitter {
   private joinUrlData(data: Object): string {
     let result = [];
     Object.keys(data).map((name) => {
-      result.push(name + '='+ data[name]);
+      result.push(name + '=' + data[name]);
     });
     return result.join('&');
   }
 
-  public setHost(url: string) {
-    this.url = url;
+  private getUrl() {
+    return 'http://' + this.host + this.path;
+  }
+
+  public setHost(host: string) {
+    this.host = host;
+  }
+
+  public setPath(path: string) {
+    this.path = path;
   }
 
   public setData(data) {
@@ -67,14 +76,13 @@ export class WebRequest implements ITransmitter {
     //    new ActiveXObject('Microsoft.XMLHTTP') :
     //    new XMLHttpRequest();
 
-    let request = this.createRequest(this.method, this.url, this.data);
+    let request = this.createRequest(this.method, this.getUrl(), this.data);
     this.setHeaders(request, this.headers);
 
     if (!this.sync) {
       request.onreadystatechange = () => {
         if (request.readyState === 4) {
           complete(request.responseText);
-          this.removeRequest(request);
           request.abort();
         }
       };
@@ -92,30 +100,5 @@ export class WebRequest implements ITransmitter {
     }
 
     request.send(sendData);
-
-    if (this.sync) {
-      // console.error('done', request.responseText);
-    } else {
-      this.requests.push(request);
-    }
-  }
-
-  public abort() {
-    while (this.requests.length > 0) {
-      this.requests.shift().abort();
-    }
-  }
-
-  private removeRequest(request: XMLHttpRequest) {
-    let i = 0;
-    let l = this.requests.length;
-
-    while (i < l) {
-      if (this.requests[i] === request) {
-        this.requests.splice(i, 1);
-      }
-
-      i++;
-    }
   }
 }

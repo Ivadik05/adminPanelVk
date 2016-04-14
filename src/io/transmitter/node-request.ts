@@ -1,28 +1,38 @@
 import { ITransmitter } from '../interfaces';
-
+import * as http from 'http';
 
 export class NodeRequest implements ITransmitter {
-  private url: string;
+  private host: string;
+  private path: string;
   private sync: boolean;
   private data: Object = {};
   private method: string = 'GET';
   private headers: Object = {};
-  private requests: Array<XMLHttpRequest> = [];
 
-  constructor(url?: string, sync?: string) {
-    this.url = url || '/';
+  constructor(url?: string, path?: string, sync?: string) {
+    this.host = url || '/';
+    this.path = path || '';
     this.sync = !!sync;
   }
 
-  private createRequest(method, url, data) {
-    let xhr = new XMLHttpRequest();
+  private createRequest(options, url, data, callback) {
     let requestURL = url;
     let dataString = this.joinUrlData(data);
-    if (method === 'GET' && dataString.length !== 0) {
+    if (dataString.length !== 0) {
       requestURL += (requestURL.indexOf('?') === -1 ? '?' : '&') + dataString;
     }
-    xhr.open(this.method, requestURL, !this.sync);
-    return xhr;
+
+    let req = http.get(requestURL, (res) => {
+      let bodyChunks = [];
+      res.on('data', function(chunk) {
+        bodyChunks.push(chunk);
+      }).on('end', function() {
+        let body = Buffer.concat(bodyChunks);
+        console.log('BODY: ' + body);
+        callback(body);
+      });
+    });
+    return req;
   }
 
   private setHeaders(xhr: XMLHttpRequest, headers: Object) {
@@ -36,20 +46,24 @@ export class NodeRequest implements ITransmitter {
   private joinUrlData(data: Object): string {
     let result = [];
     Object.keys(data).map((name) => {
-      result.push(name + '='+ data[name]);
+      result.push(name + '=' + data[name]);
     });
     return result.join('&');
   }
 
   public setHost(url: string) {
-    this.url = url;
+    this.host = url;
   }
 
-  public setData(data) {
+  public setPath(path: string) {
+    this.path = path;
+  }
+
+  public setData(data: Object) {
     this.data = data;
   }
 
-  public setMethod(method) {
+  public setMethod(method: string) {
     this.method = method;
   }
 
@@ -61,53 +75,22 @@ export class NodeRequest implements ITransmitter {
     delete this.headers[name];
   }
 
+  private getUrl() {
+    return this.host + this.path;
+  }
+
+  private getData() {
+    return this.data;
+  }
+
   public send(complete?: Function) {
-    let request = this.createRequest(this.method, this.url, this.data);
-    this.setHeaders(request, this.headers);
+    let request = this.createRequest({}, this.getUrl(), this.getData(), (result) => {
+      complete(result);
+    });
+    request.on('error', function(e) {
+      console.log('ERROR: ' + e.message);
+    });
 
-    if (!this.sync) {
-      request.onreadystatechange = () => {
-        if (request.readyState === 4) {
-          complete(request.responseText);
-          this.removeRequest(request);
-          request.abort();
-        }
-      };
-    }
-
-    let sendData = null;
-    if (this.method !== 'GET') {
-      request.setRequestHeader(
-          'Content-Type', 'application/x-www-form-urlencoded'
-      );
-      sendData = this.joinUrlData(this.data);
-    }
-
-    request.send(sendData);
-
-    if (this.sync) {
-      // console.error('done', request.responseText);
-    } else {
-      this.requests.push(request);
-    }
-  }
-
-  public abort() {
-    while (this.requests.length > 0) {
-      this.requests.shift().abort();
-    }
-  }
-
-  private removeRequest(request: XMLHttpRequest) {
-    let i = 0;
-    let l = this.requests.length;
-
-    while (i < l) {
-      if (this.requests[i] === request) {
-        this.requests.splice(i, 1);
-      }
-
-      i++;
-    }
+    request.end();
   }
 }

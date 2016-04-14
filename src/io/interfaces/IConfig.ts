@@ -1,4 +1,5 @@
 
 export interface IConfig {
-  server: string;
+  host: string;
+  path: string;
 }

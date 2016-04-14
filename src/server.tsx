@@ -12,25 +12,6 @@ import { utils } from '../src/utils';
 
 let PORT = process.env.PORT || 5000;
 
-function requestData(options, callback) {
-  let req = http.get(options, function(res) {
-    let bodyChunks = [];
-    res.on('data', function(chunk) {
-      bodyChunks.push(chunk);
-    }).on('end', function() {
-      let body = Buffer.concat(bodyChunks);
-      console.log('BODY: ' + body);
-      callback(body);
-    });
-  });
-
-  req.on('error', function(e) {
-    console.log('ERROR: ' + e.message);
-  });
-
-  req.end();
-}
-
 function renderApp(props, res) {
   let store = createStore(reducers, {});
   let markup = renderToString(
@@ -72,8 +53,9 @@ http.createServer((req, res) => {
           host: 'ecoprint43.ru',
           path: '/connector.php?method=market.get&owner_id=-61279456&extended=1'
         };
-        // let transmitter: ITransmitter = new WebRequest();
-        // this.io = new Io({server: settings.SERVER}, transmitter);
+        let transmitter: ITransmitter = new WebRequest();
+        this.io = new Io({server: settings.SERVER}, transmitter);
+
         requestData(options, (result) => {
           renderApp(renderProps, res);
         });

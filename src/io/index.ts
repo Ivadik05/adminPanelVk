@@ -19,7 +19,7 @@ export class Io {
    */
   private sendAlone(request: IRequest, callback) {
     this.requestSend(
-        this.config.server,
+        this.config.host + this.config.path,
         request,
         this.handleResponse(
             request.getName(),
@@ -28,7 +28,7 @@ export class Io {
         )
     );
     console.info(
-        `send request to ${this.config.server} method: ${request.getName()}`,
+        `send request to ${this.config.host}${this.config.path} method: ${request.getName()}`,
         'request data: ', request.getData());
   }
 
@@ -51,7 +51,7 @@ export class Io {
   private createPromise(request) {
     return new Promise((resolve, reject) => {
       this.requestSend(
-          this.config.server,
+          this.config.host + this.config.path,
           request,
           this.handleResponse(
               request.getName(),
@@ -70,7 +70,7 @@ export class Io {
       console.error('e', e);
     });
     console.info(
-        `send request promise to ${this.config.server} methods: ${promises}`);
+        `send request promise to ${this.config.host} methods: ${promises}`);
   }
 
   private handleResponse(nameResponse: string, callback: Function, errorCallback) {

@@ -14,7 +14,7 @@ export default class Sender {
 
   constructor() {
     let transmitter: ITransmitter = new WebRequest();
-    this.io = new Io({server: settings.SERVER}, transmitter);
+    this.io = new Io({host: settings.HOST, path: settings.PATH}, transmitter);
     this.storage = new Storage();
 
     // let requests = [new GetMarket('-61279456', '', true), new GetAbout('61279456', '33502073')];
