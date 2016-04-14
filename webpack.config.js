@@ -1,20 +1,18 @@
 var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
+var objectAssign = require('object-assign');
 var NODE_ENV = JSON.stringify(process.env.NODE_ENV || 'development');
 var DEV = Boolean(NODE_ENV === '"development"');
 var developFlag = new webpack.DefinePlugin({
   'process.env.NODE_ENV': NODE_ENV
 });
-
 var listOfPlugins = [
   developFlag,
   new ExtractTextPlugin('app.css', {
     allChunks: true
   })
 ];
-
 //uglify js if production build
 var uglifierOptions = {
   minimize: true, mangle: {
@@ -25,18 +23,7 @@ if (!DEV) {
   listOfPlugins.push(new webpack.optimize.UglifyJsPlugin(uglifierOptions));
 }
 
-console.error('path.resolve()', path.resolve('src', 'styles'));
-module.exports = {
-  target: 'node',
-  entry: {
-    index: path.resolve('src', 'index.tsx'),
-    server: path.resolve('src', 'server.tsx')
-  },
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js',
-    publicPath: '/dist/'
-  },
+var commonConfigs = {
   resolve: {
     extensions: ['', '.webpack.js', '.web.js', '.tsx', '.js', '.ts', '.css']
   },
@@ -46,10 +33,6 @@ module.exports = {
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!autoprefixer-loader')
-      },
-      {
-        test: /main.css$/,
-        loader: 'style-loader!css-loader'
       },
       {
         test: /\.ts(x)?$/,
@@ -63,3 +46,27 @@ module.exports = {
     emitErrors: false
   }
 };
+
+module.exports = [
+  objectAssign({}, commonConfigs, {
+    entry: {
+      index: path.resolve('src', 'index.tsx'),
+    },
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename: '[name].js',
+      publicPath: '/dist/'
+    }
+  }),
+  objectAssign({}, commonConfigs, {
+    target: 'node',
+    entry: {
+      server: path.resolve('src', 'server.tsx')
+    },
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename: '[name].js',
+      publicPath: '/dist/'
+    }
+  })
+];

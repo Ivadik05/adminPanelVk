@@ -1,6 +1,6 @@
 import * as React from 'react';
 let styles = require('./style.css');
-import { Link } from 'react-router';
+import { Link, IndexLink } from 'react-router';
 
 export interface IProps extends React.Props<Nav> {
 }
@@ -10,23 +10,23 @@ export default class Nav extends React.Component<IProps, void> {
     return (
         <ul className={styles.navigation}>
           <li>
-            <button>
-              <Link to={`/`}>Главная</Link>
+            <button className={styles.navItem}>
+              <IndexLink to={`/`} activeClassName={styles.active}>Главная</IndexLink>
             </button>
           </li>
           <li>
-            <button>
-              <Link to={`/about`}>О нас</Link>
+            <button className={styles.navItem}>
+              <Link to={`/about`} activeClassName={styles.active}>О нас</Link>
             </button>
           </li>
           <li>
-            <button>
-              <Link to={`/market`}>Магазин</Link>
+            <button className={styles.navItem}>
+              <Link to={`/market`} activeClassName={styles.active}>Магазин</Link>
             </button>
           </li>
           <li>
-            <button>
-              <Link to={`/contacts`}>Контакты</Link>
+            <button className={styles.navItem}>
+              <Link to={`/contacts`} activeClassName={styles.active}>Контакты</Link>
             </button>
           </li>
         </ul>

@@ -5,6 +5,7 @@ export module names {
     export const services = {
         'SERVICE': 'service',
         'APPLICATION': 'application-service',
-        'MARKET': 'market'
+        'MARKET': 'market',
+        'ABOUT': 'about'
     };
 }

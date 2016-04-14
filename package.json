@@ -7,6 +7,7 @@
     "cpsettings": "cp ./src/settings/settings.js ./public/dist",
     "build": "./node_modules/webpack/bin/webpack.js",
     "build:watch": "./node_modules/webpack/bin/webpack.js --watch",
+    "dev": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --hot --inline --content-base public",
     "build:prod": "NODE_ENV=production npm run build",
     "start": "node dist/server.js",
     "build-start": "npm run build && npm run start",

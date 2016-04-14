@@ -43,9 +43,7 @@ export function createPage(html) {
   <html>
     <head>
       <meta charset="utf-8"/>
-      <title>My Universal App</title>
-      <link rel='stylesheet' href='/dist/normalize.css'>
-      <link rel='stylesheet' href='/dist/main.css'>
+      <title>Всё взаимосвязано</title>
       <link rel='stylesheet' href='/dist/app.css'>
     </head>
     <body>

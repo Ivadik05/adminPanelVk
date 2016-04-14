@@ -10,4 +10,8 @@ export module events {
     'DRAW_MARKETS': 'draw-markets',
     'GET_MARKET': 'get-market'
   };
+
+  export const about = {
+    'DRAW_ABOUT_CONTENT': 'draw-about-content'
+  };
 }

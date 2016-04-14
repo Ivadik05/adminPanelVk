@@ -1,4 +1,5 @@
 .header {
-  background: tomato;
   height: 160px;
+  display: flex;
+  background: #fff;
 }

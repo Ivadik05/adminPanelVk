@@ -1,8 +1,7 @@
 .navigation {
   list-style: none;
   margin: 0;
-
-  background: #9D00FF;
+  background: #F5F5F5;
 
   display: -webkit-box;
   display: -moz-box;
@@ -14,16 +13,33 @@
   justify-content: flex-end;
 }
 
-.navigation a {
+.navItem a {
+  font-size: 14px;
+  color: #949494;
   text-decoration: none;
   display: block;
   padding: 1em;
-  color: white;
+  text-transform: uppercase;
 }
 
-.navigation a:hover {
-  background: darken(deepskyblue, 2%);
+.navItem a:hover {
+  color: #4f4f4f;
 }
+
+.navItem a:hover, .navItem a.active {
+  color: #4f4f4f;
+}
+
+/*.navigation a {*/
+  /*text-decoration: none;*/
+  /*display: block;*/
+  /*padding: 1em;*/
+  /*color: white;*/
+/*}*/
+
+/*.navigation a:hover {*/
+  /*background: darken(deepskyblue, 2%);*/
+/*}*/
 
 @media all and (max-width: 800px) {
   .navigation {

@@ -1,5 +1,13 @@
+@import '../../node_modules/normalize.css/normalize.css';
+@import '../styles/main.css';
+
 .app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+
+  background-image: url('http://cs631121.vk.me/v631121061/24eef/V00vusQ9AXc.jpg');
+  background-size: 100%;
+  background-attachment: scroll;
+  background-repeat: no-repeat;
 }

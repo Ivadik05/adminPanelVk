@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Link } from 'react-router';
+import { Container } from '../../../components/container';
+let styles = require('./style.css');
 
 export interface IProps extends React.Props<Main> {
   state: any;
@@ -9,9 +10,7 @@ export interface IProps extends React.Props<Main> {
 export default class Main extends React.Component<IProps, void> {
   public render() {
     return (
-        <div>
-          MAIN
-        </div>
+        <div className={styles.main}></div>
     );
   }
 };
