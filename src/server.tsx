@@ -16,16 +16,34 @@ import { NodeTransmitter } from './io/transmitter';
 import { ITransmitter, IResponse } from './io/interfaces';
 import { IAbstractRequest } from './io/interfaces';
 import { GetMarket } from './io/request/get-market';
+import { GetAbout } from './io/request/get-about';
 import { events } from './events';
 
 let PORT = process.env.PORT || 5000;
 
-function renderApp(props, res, resultApi: IResponse) {
+function getApiData(callback) {
+  let requestSettings = {
+    host: settings.HOST,
+    path: settings.PATH
+  };
+  let transmitter: ITransmitter = new NodeTransmitter(requestSettings);
+  let io = new Io(requestSettings, transmitter);
+  let requests = [new GetMarket('-61279456', '', true), new GetAbout('61279456', '33502073')];
+  io.promiseAll(requests, (resultApi: Array<IResponse>) => {
+    callback(resultApi);
+  });
+}
+
+function updateStore(resultApi: IResponse) {
   let store = createStore(reducers, {});
   store.dispatch({
     type: `save-${resultApi.getName()}`,
     payload: resultApi.getData()
   });
+  return store;
+}
+
+function renderApp(props, res, store) {
   let markup = renderToString(
       <Provider store={store}>
         <RoutingContext {...props}/>
@@ -36,7 +54,6 @@ function renderApp(props, res, resultApi: IResponse) {
 }
 
 http.createServer((req, res) => {
-
   if (req.url === '/favicon.ico') {
     write('haha', 'text/plain', res);
   } else if (/dist/.test(req.url)) {
@@ -61,14 +78,9 @@ http.createServer((req, res) => {
       } else if (redirectLocation) {
         redirect(redirectLocation, res);
       } else if (renderProps) {
-        let requestSettings = {
-          host: settings.HOST,
-          path: settings.PATH
-        };
-        let transmitter: ITransmitter = new NodeTransmitter(requestSettings);
-        let io = new Io(requestSettings, transmitter);
-        io.send(new GetMarket('-61279456', '', true), (resultApi: IResponse) => {
-          renderApp(renderProps, res, resultApi);
+        getApiData((resultApi) => {
+          let store = updateStore(resultApi);
+          renderApp(renderProps, res, store);
         });
       } else {
         writeNotFound(res);

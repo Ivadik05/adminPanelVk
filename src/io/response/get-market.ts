@@ -1,7 +1,7 @@
 import { marketType } from '../types';
 import { BaseResponse } from './response';
 
-export function prepareMarket(nameResponse, payload: Array<any>): BaseResponse {
+export function prepareMarket(nameResponse, payload: Array<Object>): BaseResponse {
   let response = new BaseResponse(nameResponse);
   response.setData(payload.map(item => ({
     id: item['id'],

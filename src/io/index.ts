@@ -2,7 +2,7 @@ import { IRequest, IAbstractRequest, types, IConfig } from './interfaces';
 import { utils } from '../utils';
 import { ITransmitter } from './interfaces';
 import {queries} from './queries/index';
-import { prepareMarket } from './response';
+import { prepareMarket, prepareComments } from './response';
 import { BaseResponse } from './response';
 export * from './request';
 
@@ -83,7 +83,7 @@ export class Io {
       // callback(response, 0, data);
       if (response) {
         if (response['response']) {
-          let lengthResponseArray: number = response['response'].splice(0, 1).join();
+          // let lengthResponseArray: number = response['response'].splice(0, 1).join();
           let resultResponse = this.prepareResponse(nameResponse, response['response']);
           callback(resultResponse, 0, data);
         } else if (response['error']) {
@@ -100,6 +100,9 @@ export class Io {
     switch (nameResponse) {
       case queries.GET_MARKET:
         result = prepareMarket(nameResponse, response);
+        break;
+      case queries.GET_COMMENTS:
+        result = prepareComments(nameResponse, response);
         break;
       default:
         result = response;
