@@ -11,15 +11,15 @@ import NoFound from '../ui/containers/noFound';
 
 export default (
     <Router>
-          <Route path='/' component={utils.tsReturnTypeFix(App)}>
-            <IndexRoute component={utils.tsReturnTypeFix(Main)}/>
-            <Route path='/about' component={utils.tsReturnTypeFix(About)} />
+          <Route path='/' component={App}>
+            <IndexRoute component={Main}/>
+            <Route path='/about' component={About} />
             <Redirect from='/about.*' to='/about' />
-            <Route path='/market' component={utils.tsReturnTypeFix(Market)} />
+            <Route path='/market' component={Market} />
             <Redirect from='/market.*' to='/market' />
-            <Route path='/contacts' component={utils.tsReturnTypeFix(Contacts)} />
+            <Route path='/contacts' component={Contacts} />
             <Redirect from='/contacts.*' to='/contacts' />
           </Route>
-          <Route path='*' component={utils.tsReturnTypeFix(NoFound)} />
+          <Route path='*' component={NoFound} />
     </Router>
 )

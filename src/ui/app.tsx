@@ -12,10 +12,11 @@ import Footer from './components/footer';
 let styles = require('./style.css');
 
 interface IProps extends React.Props<App> {
+  state: any;
   dispatch: IDispatch;
 }
 
-class App extends React.Component<IProps, void> {
+class App extends React.Component<IProps, {}> {
   constructor(props) {
     super(props);
   }
@@ -40,4 +41,4 @@ const mapStateToProps = state => ({
   state: state
 });
 
-export default connect(mapStateToProps)(utils.tsReturnTypeFix(App));
+export default connect(mapStateToProps)(App);

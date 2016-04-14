@@ -7,14 +7,14 @@ import { Dispatch as IDispatch } from 'redux';
 import { utils } from '../../../../utils';
 let styles = require('./style.css');
 
-export interface IProps extends React.Props<Market> {
+export interface IProps {
   market: any;
   dispatch: IDispatch;
 }
 
-class Market extends React.Component<IProps, void> {
+class Market extends React.Component<IProps , {}> {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   public render() {
@@ -47,5 +47,4 @@ const mapStateToProps = state => ({
   market: state.market
 });
 
-
-export default connect(mapStateToProps)(utils.tsReturnTypeFix(Market));
+export default connect(mapStateToProps)(Market);

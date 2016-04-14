@@ -1,16 +1,23 @@
 import * as React from 'react';
-import { Container } from '../../../components/container';
+import { Dispatch as IDispatch } from 'redux';
+import { connect } from 'react-redux';
 let styles = require('./style.css');
 
 export interface IProps extends React.Props<Main> {
-  state: any;
-  dispatch: Function;
+  main: any;
+  dispatch: IDispatch;
 }
 
-export default class Main extends React.Component<IProps, void> {
+class Main extends React.Component<IProps, {}> {
   public render() {
     return (
         <div className={styles.main}></div>
     );
   }
-};
+}
+
+const mapStateToProps = state => ({
+  main: state.main
+});
+
+export default connect(mapStateToProps)(Main);
