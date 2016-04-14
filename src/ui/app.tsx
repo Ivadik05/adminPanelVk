@@ -1,26 +1,27 @@
 import * as React from 'react';
+import { Dispatch as IDispatch } from 'redux';
+import { connect } from 'react-redux';
 import { marketType } from '../io/types';
 import { uiState } from '../constants';
+import { utils } from '../utils';
+
 import Header from './components/header';
 import Nav from './components/nav';
 import Wrapper from './containers/wrapper';
 import Footer from './components/footer';
-
-import startServices from '../app/start';
 let styles = require('./style.css');
 
-export interface IProps extends React.Props<App> {
-  state: any;
-  dispatch: Function;
+interface IProps extends React.Props<App> {
+  dispatch: IDispatch;
 }
 
-export default class App extends React.Component<IProps, void> {
+class App extends React.Component<IProps, void> {
   constructor(props) {
     super(props);
   }
 
     public render() {
-      
+
       return (
           <div className={styles.app}>
             <Header/>
@@ -32,4 +33,11 @@ export default class App extends React.Component<IProps, void> {
           </div>
       );
     }
-};
+}
+
+
+const mapStateToProps = state => ({
+  state: state
+});
+
+export default connect(mapStateToProps)(utils.tsReturnTypeFix(App));

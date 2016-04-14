@@ -17,10 +17,10 @@ export default class Sender {
     this.io = new Io({server: settings.SERVER}, transmitter);
     this.storage = new Storage();
 
-    let requests = [new GetMarket('-61279456', '', true), new GetAbout('61279456', '33502073')];
-    this.io.promiseAll(requests, (response: Array<string>) => {
-      console.error(response);
-    });
+    // let requests = [new GetMarket('-61279456', '', true), new GetAbout('61279456', '33502073')];
+    // this.io.promiseAll(requests, (response: Array<string>) => {
+    //   console.error(response);
+    // });
   }
 
   public send(request: IAbstractRequest, callback) {

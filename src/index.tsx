@@ -1,5 +1,6 @@
 import startServices from './app/start';
 import * as React from 'react';
+import { Provider } from 'react-redux';
 import { match, Router, browserHistory } from 'react-router';
 import { render } from 'react-dom';
 import { syncHistoryWithStore } from 'react-router-redux';
@@ -13,7 +14,9 @@ const location = `${pathname}${search}${hash}`;
 
 match(utils.tsReturnTypeFix({ routes, location }), () => {
   render(
-      <Router routes={routes} history={history} />,
+      <Provider store={store}>
+        <Router routes={routes} history={history} />
+      </Provider>,
       document.getElementById('app')
   );
 });

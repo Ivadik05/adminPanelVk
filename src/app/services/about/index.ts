@@ -13,9 +13,9 @@ class About extends Service {
     this.sender = sender;
     this.initListeners();
     this.initApiListeners();
-    this.sender.send(new GetAbout('61279456', '33502073'), (response: Array<marketType>) => {
-      this.publishEvent(events.about.DRAW_ABOUT_CONTENT, response);
-    });
+    // this.sender.send(new GetAbout('61279456', '33502073'), (response: Array<marketType>) => {
+    //   this.publishEvent(events.about.DRAW_ABOUT_CONTENT, response);
+    // });
   }
 
   private initListeners() {

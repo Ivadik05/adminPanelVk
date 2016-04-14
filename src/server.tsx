@@ -1,5 +1,6 @@
 import * as http from 'http';
 import * as React from 'react';
+import { Provider } from 'react-redux';
 import { renderToString } from 'react-dom/server';
 import { createStore } from 'redux';
 import reducers from './ui/reducers';
@@ -32,7 +33,11 @@ function requestData(options, callback) {
 
 function renderApp(props, res) {
   let store = createStore(reducers, {});
-  let markup = renderToString(<RoutingContext {...props}/>);
+  let markup = renderToString(
+      <Provider store={store}>
+        <RoutingContext {...props}/>
+      </Provider>
+  );
   let html = createPage(markup, store.getState());
   write(html, 'text/html', res);
 }

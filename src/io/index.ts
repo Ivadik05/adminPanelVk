@@ -76,21 +76,21 @@ export class Io {
   private handleResponse(nameResponse: string, callback: Function, errorCallback) {
     return (data: string) => {
       let response = utils.decodeJsonData(data);
-      if (response === null) {
-        errorCallback();
-      }
-      callback(response, 0, data);
-      // if (response) {
-      //   if (response['response']) {
-      //     let lengthResponseArray: number = response['response'].splice(0, 1).join();
-      //     let resultResponse = this.prepareResponse(nameResponse, response['response']);
-      //     callback(resultResponse, 0, data);
-      //   } else if (response['error']) {
-      //     console.error(`response ${nameResponse} error`);
-      //   }
-      // } else {
-      //   console.error(`response ${nameResponse} is no data`);
+      // if (response === null) {
+      //   errorCallback();
       // }
+      // callback(response, 0, data);
+      if (response) {
+        if (response['response']) {
+          let lengthResponseArray: number = response['response'].splice(0, 1).join();
+          let resultResponse = this.prepareResponse(nameResponse, response['response']);
+          callback(resultResponse, 0, data);
+        } else if (response['error']) {
+          console.error(`response ${nameResponse} error`);
+        }
+      } else {
+        console.error(`response ${nameResponse} is no data`);
+      }
     };
   }
 
