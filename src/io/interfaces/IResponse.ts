@@ -1,4 +1,5 @@
 export interface IResponse {
-  getType(): string;
-  getData(): string;
+  getName(): string;
+  getData(): Object;
+  setData(data: Array<Object>);
 }

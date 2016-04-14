@@ -2,7 +2,7 @@ import { Io  } from '../io';
 import { IAbstractRequest } from '../io/interfaces';
 import { Storage, storageMarks } from '../storage';
 import { settings } from '../settings';
-import { WebRequest } from '../io/transmitter/web-request';
+import { WebTransmitter } from '../io/transmitter';
 import { ITransmitter } from '../io/interfaces';
 
 import { GetAbout } from '../io/request/get-about';
@@ -13,8 +13,12 @@ export default class Sender {
   private storage: Storage = null;
 
   constructor() {
-    let transmitter: ITransmitter = new WebRequest();
-    this.io = new Io({host: settings.HOST, path: settings.PATH}, transmitter);
+    let requestSettings = {
+      host: settings.HOST,
+      path: settings.PATH
+    };
+    let transmitter: ITransmitter = new WebTransmitter(requestSettings);
+    this.io = new Io(requestSettings, transmitter);
     this.storage = new Storage();
 
     // let requests = [new GetMarket('-61279456', '', true), new GetAbout('61279456', '33502073')];

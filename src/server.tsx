@@ -10,10 +10,22 @@ import { createPage, write, writeError, writeNotFound, redirect, getFileExtensio
 import routes from './routes';
 import { utils } from '../src/utils';
 
+import { settings } from './settings';
+import { Io  } from './io';
+import { NodeTransmitter } from './io/transmitter';
+import { ITransmitter, IResponse } from './io/interfaces';
+import { IAbstractRequest } from './io/interfaces';
+import { GetMarket } from './io/request/get-market';
+import { events } from './events';
+
 let PORT = process.env.PORT || 5000;
 
-function renderApp(props, res) {
+function renderApp(props, res, resultApi: IResponse) {
   let store = createStore(reducers, {});
+  store.dispatch({
+    type: `save-${resultApi.getName()}`,
+    payload: resultApi.getData()
+  });
   let markup = renderToString(
       <Provider store={store}>
         <RoutingContext {...props}/>
@@ -49,15 +61,14 @@ http.createServer((req, res) => {
       } else if (redirectLocation) {
         redirect(redirectLocation, res);
       } else if (renderProps) {
-        let options = {
-          host: 'ecoprint43.ru',
-          path: '/connector.php?method=market.get&owner_id=-61279456&extended=1'
+        let requestSettings = {
+          host: settings.HOST,
+          path: settings.PATH
         };
-        let transmitter: ITransmitter = new WebRequest();
-        this.io = new Io({server: settings.SERVER}, transmitter);
-
-        requestData(options, (result) => {
-          renderApp(renderProps, res);
+        let transmitter: ITransmitter = new NodeTransmitter(requestSettings);
+        let io = new Io(requestSettings, transmitter);
+        io.send(new GetMarket('-61279456', '', true), (resultApi: IResponse) => {
+          renderApp(renderProps, res, resultApi);
         });
       } else {
         writeNotFound(res);

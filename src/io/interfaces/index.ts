@@ -1,4 +1,4 @@
-export * from './IConfig';
-export * from './IRequest';
-export * from './IResponse';
-export * from './ITransmitter';
+export { IConfig } from './IConfig';
+export { IRequest, IAbstractRequest,types } from './IRequest';
+export { IResponse } from './IResponse';
+export { ITransmitter, ITransmitterOptions } from './ITransmitter';

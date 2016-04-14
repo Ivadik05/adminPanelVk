@@ -1,5 +1,6 @@
 import { events } from '../../events';
 import { marketType } from '../../io/types';
+import { queries } from '../../io/queries';
 let objectAssign = require('object-assign');
 
 let initialState = {
@@ -27,6 +28,7 @@ type market = {
 
 export default function market<Reducer>(state: market = initialState, action) {
   switch (action.type) {
+    case `save-${queries.GET_MARKET}`:
     case events.market.DRAW_MARKETS:
       return objectAssign({}, state, {
         data: action.payload

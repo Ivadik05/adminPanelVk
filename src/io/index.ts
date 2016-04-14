@@ -1,8 +1,9 @@
 import { IRequest, IAbstractRequest, types, IConfig } from './interfaces';
 import { utils } from '../utils';
-import { ITransmitter } from './interfaces/ITransmitter';
+import { ITransmitter } from './interfaces';
 import {queries} from './queries/index';
 import { prepareMarket } from './response';
+import { BaseResponse } from './response';
 export * from './request';
 
 export class Io {
@@ -19,7 +20,6 @@ export class Io {
    */
   private sendAlone(request: IRequest, callback) {
     this.requestSend(
-        this.config.host + this.config.path,
         request,
         this.handleResponse(
             request.getName(),
@@ -27,31 +27,32 @@ export class Io {
             () => {}
         )
     );
-    console.info(
-        `send request to ${this.config.host}${this.config.path} method: ${request.getName()}`,
-        'request data: ', request.getData());
+    // console.info(
+    //     `Io: send request to ${this.config.host}${this.config.path} method: ${request.getName()}`,
+    //     'request data: ', request.getData());
   }
 
 
   /**
-   * @param {string} server
    * @param {IRequest} request
    * @param {Function} response
    * @param {Function=} errorResponse
    */
-  private requestSend(server: string, request: IRequest, response: Function, errorResponse?: Function) {
-    this.transmitter.setHost(server);
-    this.transmitter.setData(request.getData());
-    this.transmitter.send(response, errorResponse);
+  private requestSend(request: IRequest, response: Function, errorResponse?: Function) {
+    let options = {
+      method: 'GET',
+      async: true,
+      query: request.getData()
+    };
+    this.transmitter.send(options, response, errorResponse);
     console.info(
-        `send request method: ${request.getName()}`,
+        `IO: ${this.transmitter.getType()}: send request method: ${request.getName()}`,
         'request data: ', request.getData());
   }
 
   private createPromise(request) {
     return new Promise((resolve, reject) => {
       this.requestSend(
-          this.config.host + this.config.path,
           request,
           this.handleResponse(
               request.getName(),
@@ -98,7 +99,7 @@ export class Io {
     let result;
     switch (nameResponse) {
       case queries.GET_MARKET:
-        result = prepareMarket(response);
+        result = prepareMarket(nameResponse, response);
         break;
       default:
         result = response;
@@ -110,7 +111,7 @@ export class Io {
   /**
    * @inheritDoc
    */
-  public send(req: IAbstractRequest, callback?: Function) {
+  public send(req: IAbstractRequest, callback: Function) {
     let request = req.getRequest();
     if (request) {
       this.sendAlone(request, callback);

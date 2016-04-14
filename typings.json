@@ -10,6 +10,7 @@
     "moment-node": "github:DefinitelyTyped/DefinitelyTyped/moment/moment-node.d.ts#e937b3e64af586d19f2ea29fdf771e9dc4feecc8",
     "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#e937b3e64af586d19f2ea29fdf771e9dc4feecc8",
     "object-assign": "github:DefinitelyTyped/DefinitelyTyped/object-assign/object-assign.d.ts#e937b3e64af586d19f2ea29fdf771e9dc4feecc8",
+    "query-string": "registry:dt/query-string#3.0.0+20160331065456",
     "react": "github:DefinitelyTyped/DefinitelyTyped/react/react.d.ts#e937b3e64af586d19f2ea29fdf771e9dc4feecc8",
     "react-addons-css-transition-group": "github:DefinitelyTyped/DefinitelyTyped/react/react-addons-css-transition-group.d.ts#e937b3e64af586d19f2ea29fdf771e9dc4feecc8",
     "react-addons-pure-render-mixin": "github:DefinitelyTyped/DefinitelyTyped/react/react-addons-pure-render-mixin.d.ts#e937b3e64af586d19f2ea29fdf771e9dc4feecc8",
