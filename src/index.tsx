@@ -11,13 +11,11 @@ const history = syncHistoryWithStore(browserHistory, store);
 const { pathname, search, hash } = window.location;
 const location = `${pathname}${search}${hash}`;
 
-store.subscribe(() => {
-  match(utils.tsReturnTypeFix({ routes, location }), () => {
-    render(
-        <Router routes={routes} history={history} />,
-        document.getElementById('app')
-    );
-  });
+match(utils.tsReturnTypeFix({ routes, location }), () => {
+  render(
+      <Router routes={routes} history={history} />,
+      document.getElementById('app')
+  );
 });
 
 startServices();

@@ -7,7 +7,7 @@ export function writeError(msg, res) {
 }
 
 export function redirect(location, res) {
-  res.writeHead(303, { 'Location': location });
+  res.writeHead(302, { 'Location': location.pathname });
   res.end();
 }
 
@@ -37,7 +37,7 @@ export function getFileExtension(link: string) {
   return link.substr(dotIndex + 1);
 }
 
-export function createPage(html) {
+export function createPage(html, initialState) {
   return `
   <!doctype html>
   <html>
@@ -48,6 +48,9 @@ export function createPage(html) {
     </head>
     <body>
       <div id="app">${html}</div>
+      <script>
+        window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
+      </script>
       <script src="/dist/index.js"></script>
     </body>
   </html>

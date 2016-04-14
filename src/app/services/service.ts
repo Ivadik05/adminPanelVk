@@ -2,13 +2,6 @@ import store from '../../store';
 import { utils } from '../../utils';
 import {events} from '../../events';
 
-// import { LocalStorage } from 'web-storage';
-// import Person from '../../model-storage/models/person/person';
-// import { ModelStorage } from '../../model-storage';
-// import { storageMarks } from '../../app/storage-marks';
-
-// import { generateId } from '../../util';
-
 export default class Service {
   public utils: Object = utils;
   private name: string;

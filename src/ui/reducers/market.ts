@@ -3,7 +3,22 @@ import { marketType } from '../../io/types';
 let objectAssign = require('object-assign');
 
 let initialState = {
-  data: []
+  data: [
+    {
+      id: 'ddddd',
+      ownerId: '1231231',
+      title: 'Шарф',
+      description: 'УРАААА!!!',
+      price: '100р',
+      category: {
+        id: 2222,
+        name: 'Кака',
+        section: {}
+      },
+      date: new Date(),
+      photo: ''
+    }
+  ]
 };
 
 type market = {

@@ -1,6 +1,8 @@
 import * as http from 'http';
 import * as React from 'react';
 import { renderToString } from 'react-dom/server';
+import { createStore } from 'redux';
+import reducers from './ui/reducers';
 import { match, RouterContext as RoutingContext } from 'react-router';
 import * as fs from 'fs';
 import { createPage, write, writeError, writeNotFound, redirect, getFileExtension } from './utils/server-utils';
@@ -9,9 +11,29 @@ import { utils } from '../src/utils';
 
 let PORT = process.env.PORT || 5000;
 
+function requestData(options, callback) {
+  let req = http.get(options, function(res) {
+    let bodyChunks = [];
+    res.on('data', function(chunk) {
+      bodyChunks.push(chunk);
+    }).on('end', function() {
+      let body = Buffer.concat(bodyChunks);
+      console.log('BODY: ' + body);
+      callback(body);
+    });
+  });
+
+  req.on('error', function(e) {
+    console.log('ERROR: ' + e.message);
+  });
+
+  req.end();
+}
+
 function renderApp(props, res) {
+  let store = createStore(reducers, {});
   let markup = renderToString(<RoutingContext {...props}/>);
-  let html = createPage(markup);
+  let html = createPage(markup, store.getState());
   write(html, 'text/html', res);
 }
 
@@ -41,7 +63,15 @@ http.createServer((req, res) => {
       } else if (redirectLocation) {
         redirect(redirectLocation, res);
       } else if (renderProps) {
-        renderApp(renderProps, res);
+        let options = {
+          host: 'ecoprint43.ru',
+          path: '/connector.php?method=market.get&owner_id=-61279456&extended=1'
+        };
+        // let transmitter: ITransmitter = new WebRequest();
+        // this.io = new Io({server: settings.SERVER}, transmitter);
+        requestData(options, (result) => {
+          renderApp(renderProps, res);
+        });
       } else {
         writeNotFound(res);
       }

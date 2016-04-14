@@ -1,7 +1,7 @@
+import { ITransmitter } from '../interfaces';
 
 
-
-export class WebRequest {
+export class WebRequest implements ITransmitter {
   private url: string;
   private sync: boolean;
   private data: Object = {};
@@ -41,7 +41,7 @@ export class WebRequest {
     return result.join('&');
   }
 
-  public setUrl(url: string) {
+  public setHost(url: string) {
     this.url = url;
   }
 
@@ -61,7 +61,7 @@ export class WebRequest {
     delete this.headers[name];
   }
 
-  public send(complete?: Function) {
+  public send(complete?: Function, errorResponse?: Function) {
 
     // let request = util.isIe() ?
     //    new ActiveXObject('Microsoft.XMLHTTP') :
@@ -77,6 +77,9 @@ export class WebRequest {
           this.removeRequest(request);
           request.abort();
         }
+      };
+      request.onerror = (e) => {
+        errorResponse(e);
       };
     }
 

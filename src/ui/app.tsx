@@ -5,7 +5,8 @@ import Header from './components/header';
 import Nav from './components/nav';
 import Wrapper from './containers/wrapper';
 import Footer from './components/footer';
-import store from '../store';
+
+import startServices from '../app/start';
 let styles = require('./style.css');
 
 export interface IProps extends React.Props<App> {
@@ -14,15 +15,17 @@ export interface IProps extends React.Props<App> {
 }
 
 export default class App extends React.Component<IProps, void> {
+  constructor(props) {
+    super(props);
+  }
+
     public render() {
-      let state = store.getState();
-      let dispatch = store.dispatch;
+      
       return (
           <div className={styles.app}>
             <Header/>
             <Nav/>
-            <Wrapper
-                {...state} {...dispatch}>
+            <Wrapper>
               {this.props.children}
             </Wrapper>
             <Footer/>
