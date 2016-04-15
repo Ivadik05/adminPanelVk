@@ -34,16 +34,21 @@ function getApiData(callback) {
   });
 }
 
-function updateStore(resultApi: IResponse) {
-  let store = createStore(reducers, {});
-  store.dispatch({
-    type: `save-${resultApi.getName()}`,
-    payload: resultApi.getData()
-  });
-  return store;
-}
+// function updateStore(resultApi: IResponse) {
+//   let store = createStore(reducers, {});
+//   store.dispatch({
+//     type: `save-${resultApi.getName()}`,
+//     payload: resultApi.getData()
+//   });
+//   return store;
+// }
 
-function renderApp(props, res, store) {
+function renderApp(props, res) {
+  let store = createStore(reducers, {});
+  // store.dispatch({
+  //   type: `save-${resultApi.getName()}`,
+  //   payload: resultApi.getData()
+  // });
   let markup = renderToString(
       <Provider store={store}>
         <RoutingContext {...props}/>
@@ -78,10 +83,16 @@ http.createServer((req, res) => {
       } else if (redirectLocation) {
         redirect(redirectLocation, res);
       } else if (renderProps) {
-        getApiData((resultApi) => {
-          let store = updateStore(resultApi);
-          renderApp(renderProps, res, store);
-        });
+        let requestSettings = {
+          host: settings.HOST,
+          path: settings.PATH
+        };
+        let transmitter: ITransmitter = new NodeTransmitter(requestSettings);
+        let io = new Io(requestSettings, transmitter);
+        // io.send(new GetMarket('-61279456', '', true), (resultApi: IResponse) => {
+        //   renderApp(renderProps, res, resultApi);
+        // });
+        renderApp(renderProps, res);
       } else {
         writeNotFound(res);
       }
