@@ -2,6 +2,12 @@ var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var objectAssign = require('object-assign');
+var precss       = require('precss');
+var autoprefixer = require('autoprefixer');
+// require promise polyfill for old node environment
+if(typeof Promise === 'undefined') {
+  require('es6-promise').polyfill();
+}
 var NODE_ENV = JSON.stringify(process.env.NODE_ENV || 'development');
 var DEV = Boolean(NODE_ENV === '"development"');
 var developFlag = new webpack.DefinePlugin({
@@ -32,7 +38,7 @@ var commonConfigs = {
     loaders: [
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!autoprefixer-loader')
+        loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!!postcss-loader')
       },
       {
         test: /\.ts(x)?$/,
@@ -41,7 +47,9 @@ var commonConfigs = {
       }
     ]
   },
-
+  postcss: function () {
+    return [precss, autoprefixer];
+  },
   tslint: {
     emitErrors: false
   }

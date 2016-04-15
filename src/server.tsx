@@ -19,6 +19,7 @@ import { GetMarket } from './io/request/get-market';
 import { GetAbout } from './io/request/get-about';
 import { events } from './events';
 
+let HOST = process.env.HOST || '127.0.0.1';
 let PORT = process.env.PORT || 5000;
 
 function getApiData(callback) {
@@ -99,5 +100,5 @@ http.createServer((req, res) => {
     });
   }
 
-}).listen(PORT);
-console.log(`listening on port ${PORT}`);
+}).listen(PORT, HOST);
+console.log(`listening on host ${HOST}:${PORT}`);
