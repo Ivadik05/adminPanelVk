@@ -48,7 +48,7 @@ var commonConfigs = {
     ]
   },
   postcss: function () {
-    return [precss, autoprefixer];
+    return [autoprefixer];
   },
   tslint: {
     emitErrors: false

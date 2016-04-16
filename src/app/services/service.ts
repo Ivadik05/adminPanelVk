@@ -24,7 +24,6 @@ export default class Service {
 
   public publishEvent(type: string, payload?: any) {
     if (type) {
-      console.info(`APP - publish event: ${type} from: ${this.getName()}`);
       store.dispatch({type, payload});
     } else {
       console.error(`APP - publish unknown type: ${type} from: ${this.getName()}`);

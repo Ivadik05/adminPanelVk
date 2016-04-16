@@ -10,30 +10,23 @@ import { createPage, write, writeError, writeNotFound, redirect, getFileExtensio
 import routes from './routes';
 import { utils } from '../src/utils';
 
-import { settings } from './settings';
-import { Io  } from './io';
-import { NodeTransmitter } from './io/transmitter';
-import { ITransmitter, IResponse } from './io/interfaces';
-import { IAbstractRequest } from './io/interfaces';
-import { GetMarket } from './io/request/get-market';
-import { GetAbout } from './io/request/get-about';
-import { events } from './events';
+import { NodeSender, ISender } from './app/sender';
 
 let HOST = process.env.HOST || '127.0.0.1';
 let PORT = process.env.PORT || 5000;
 
-function getApiData(callback) {
-  let requestSettings = {
-    host: settings.HOST,
-    path: settings.PATH
-  };
-  let transmitter: ITransmitter = new NodeTransmitter(requestSettings);
-  let io = new Io(requestSettings, transmitter);
-  let requests = [new GetMarket('-61279456', '', true), new GetAbout('61279456', '33502073')];
-  io.promiseAll(requests, (resultApi: Array<IResponse>) => {
-    callback(resultApi);
-  });
-}
+// function getApiData(callback) {
+//   let requestSettings = {
+//     host: settings.HOST,
+//     path: settings.PATH
+//   };
+//   let transmitter: ITransmitter = new NodeTransmitter(requestSettings);
+//   let io = new Io(requestSettings, transmitter);
+//   let requests = [new GetMarket('-61279456', '', true), new GetAbout('61279456', '33502073')];
+//   io.promiseAll(requests, (resultApi: Array<IResponse>) => {
+//     callback(resultApi);
+//   });
+// }
 
 // function updateStore(resultApi: IResponse) {
 //   let store = createStore(reducers, {});
@@ -60,6 +53,8 @@ function renderApp(props, res) {
 }
 
 http.createServer((req, res) => {
+  let sender: ISender = new NodeSender();
+
   if (req.url === '/favicon.ico') {
     write('haha', 'text/plain', res);
   } else if (/dist/.test(req.url)) {
@@ -84,16 +79,9 @@ http.createServer((req, res) => {
       } else if (redirectLocation) {
         redirect(redirectLocation, res);
       } else if (renderProps) {
-        let requestSettings = {
-          host: settings.HOST,
-          path: settings.PATH
-        };
-        let transmitter: ITransmitter = new NodeTransmitter(requestSettings);
-        let io = new Io(requestSettings, transmitter);
-        // io.send(new GetMarket('-61279456', '', true), (resultApi: IResponse) => {
-        //   renderApp(renderProps, res, resultApi);
-        // });
-        renderApp(renderProps, res);
+        sender.fetchAllData(() => {
+          renderApp(renderProps, res);
+        });
       } else {
         writeNotFound(res);
       }

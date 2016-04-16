@@ -1,5 +1,5 @@
 import Service from '../service';
-import Sender from '../../sender';
+import { WebSender } from '../../sender';
 import {names} from '../names';
 import { marketType } from '../../../io/types';
 import {events} from '../../../events';
@@ -7,7 +7,7 @@ import { GetAbout } from '../../../io/request/get-about';
 
 
 class About extends Service {
-  private sender: Sender = null;
+  private sender: WebSender = null;
   constructor(sender) {
     super(names.services.ABOUT);
     this.sender = sender;

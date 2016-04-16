@@ -1,14 +1,15 @@
-import { Io  } from '../io';
-import { IAbstractRequest } from '../io/interfaces';
-import { Storage, storageMarks } from '../storage';
-import { settings } from '../settings';
-import { WebTransmitter } from '../io/transmitter';
-import { ITransmitter } from '../io/interfaces';
+import { Io  } from '../../io';
+import { Storage, storageMarks } from '../../storage';
+import { IAbstractRequest } from '../../io/interfaces';
+import { settings } from '../../settings';
+import { WebTransmitter } from '../../io/transmitter';
+import { ITransmitter } from '../../io/interfaces';
+import { ISender } from './index';
 
-import { GetAbout } from '../io/request/get-about';
-import { GetMarket } from '../io/request/get-market';
+// import { GetAbout } from '../../io/request';
+import { GetMarket } from '../../io/request';
 
-export default class Sender {
+export class WebSender implements ISender {
   private io: Io = null;
   private storage: Storage = null;
 

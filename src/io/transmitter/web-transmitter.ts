@@ -29,7 +29,7 @@ export class WebTransmitter implements ITransmitter {
 
   private createUrl(query: Object) {
     let queryParams = queryString.stringify(query);
-    return 'http://' + this.getHost() + this.getPath() + '?' + + queryParams;
+    return 'http://' + this.getHost() + this.getPath() + '?' + queryParams;
   }
 
   public getType() {
@@ -57,7 +57,7 @@ export class WebTransmitter implements ITransmitter {
         complete(request.responseText);
         request.abort();
       } else {
-        alert(request.responseText);
+        complete(request.responseText);
       }
     };
     request.onerror = (e) => {
