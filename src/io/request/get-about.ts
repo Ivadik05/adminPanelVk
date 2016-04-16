@@ -1,5 +1,6 @@
 import {request} from './request';
 import {queries} from '../queries';
+import { events } from '../../events';
 import {error} from "util";
 
 type marketData = {
@@ -18,7 +19,7 @@ export class GetAbout extends request.VK {
    * @param topicId идентификатор топика
    */
   constructor(groupId: string, topicId: string) {
-    super(queries.GET_COMMENTS);
+    super(queries.GET_COMMENTS, events.saver.ABOUT);
     this.groupId = groupId;
     this.topicId = topicId;
   }

@@ -2,12 +2,14 @@ import {IRequest, IAbstractRequest, types} from '../interfaces';
 
 export module request {
   'use strict';
-  export class BaseRequest {
+  export class BaseRequest implements IRequest {
     private name: string;
+    private saverEvent: string;
     private requestData: Object;
 
-    constructor(name: string) {
+    constructor(name: string, saverEvent: string) {
       this.name = name;
+      this.saverEvent = saverEvent;
     }
 
     public getName() {
@@ -17,8 +19,13 @@ export module request {
     public serialize() {
       return '';
     }
+
     public getData() {
       return this.requestData;
+    }
+
+    public getSaverEvent() {
+      return this.saverEvent;
     }
 
     public setData(data) {
@@ -27,8 +34,8 @@ export module request {
   }
 
   export class VK extends BaseRequest implements IRequest, IAbstractRequest {
-    constructor(name: string) {
-      super(name);
+    constructor(name: string, saverEvent: string) {
+      super(name, saverEvent);
     }
 
     public getRequest() {

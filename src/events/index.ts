@@ -14,4 +14,9 @@ export module events {
   export const about = {
     'DRAW_ABOUT_CONTENT': 'draw-about-content'
   };
+
+  export const saver = {
+    'MARKET': 'market',
+    'ABOUT': 'about'
+  };
 }

@@ -1,7 +1,6 @@
 
 
 export interface IRequest {
-  getType(): string;
   getName(): string;
   getData(): Object;
   setData(data: any): void;

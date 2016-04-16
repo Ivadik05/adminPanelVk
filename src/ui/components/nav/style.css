@@ -13,6 +13,10 @@
   justify-content: flex-end;
 }
 
+.navItem {
+  width: 100%;
+}
+
 .navItem a {
   font-size: 14px;
   color: #949494;

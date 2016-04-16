@@ -51,7 +51,7 @@ export class WebTransmitter implements ITransmitter {
             this.createUrl(sendOptions.query),
             sendOptions.async
         );
-    request.onreadystatechange = function() {
+    request.onreadystatechange = () => {
       if (request.readyState != 4) return;
       if (request.status != 200) {
         complete(request.responseText);

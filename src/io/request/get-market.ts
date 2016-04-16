@@ -1,5 +1,6 @@
 import {request} from './request';
 import {queries} from '../queries';
+import { events } from '../../events';
 import {error} from "util";
 
 type marketData = {
@@ -18,7 +19,7 @@ export class GetMarket extends request.VK {
    * @param ownerId идентификатор группы
    */
   constructor(ownerId: string, albumId?: string, extended?: boolean) {
-    super(queries.GET_MARKET);
+    super(queries.GET_MARKET, events.saver.MARKET);
     this.ownerId = ownerId;
     this.albumId = albumId;
     this.extended = extended ? 1 : 0;
