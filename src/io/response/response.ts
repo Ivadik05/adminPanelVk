@@ -2,10 +2,12 @@ import { IResponse } from '../interfaces';
 
 export class BaseResponse implements IResponse {
   private name: string;
-  private requestData: Object;
+  private saverEvent: string;
+  private requestData;
 
-  constructor(name: string) {
+  constructor(name: string, saverEvent: string) {
     this.name = name;
+    this.saverEvent = saverEvent;
   }
 
   public getName() {
@@ -19,8 +21,12 @@ export class BaseResponse implements IResponse {
   public getData() {
     return this.requestData;
   }
-  
-  public setData(data) {
+
+  public setData<T>(data: Array<T>) {
     this.requestData = data;
+  }
+
+  public getSaverEvent() {
+    return this.saverEvent;
   }
 }

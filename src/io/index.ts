@@ -4,6 +4,7 @@ import { ITransmitter } from './interfaces';
 import {queries} from './queries/index';
 import { prepareMarket, prepareComments } from './response';
 import { BaseResponse } from './response';
+import {marketType, commentsType} from './types';
 export * from './request';
 
 export class Io {
@@ -23,6 +24,7 @@ export class Io {
         request,
         this.handleResponse(
             request.getName(),
+            request.getSaverEvent(),
             callback,
             () => {}
         )
@@ -56,6 +58,7 @@ export class Io {
           request,
           this.handleResponse(
               request.getName(),
+              request.getSaverEvent(),
               result => resolve(result),
               result => reject(result)
           )
@@ -74,7 +77,7 @@ export class Io {
         `send request promise to ${this.config.host} methods: ${promises}`);
   }
 
-  private handleResponse(nameResponse: string, callback: Function, errorCallback) {
+  private handleResponse(nameResponse: string, saverEvent: string, callback: Function, errorCallback) {
     return (data: string) => {
       let response = utils.decodeJsonData(data);
       // if (response === null) {
@@ -83,9 +86,9 @@ export class Io {
       // callback(response, 0, data);
       if (response) {
         if (response['response']) {
-          let lengthResponseArray: number = response['response'].splice(0, 1).join();
-          let resultResponse = this.prepareResponse(nameResponse, response['response']);
-          callback(resultResponse, 0, data);
+          console.error('data', data);
+          let resultResponse = this.prepareResponse(nameResponse, saverEvent, response['response']);
+          callback(resultResponse, data);
         } else if (response['error']) {
           console.error(`response ${nameResponse} error`);
         }
@@ -95,15 +98,18 @@ export class Io {
     };
   }
 
-  private prepareResponse(nameResponse: string, response: Array<Object>): Array<Object> {
-    let result;
+  private prepareResponse(nameResponse: string, saverEvent: string, response: Array<Object>): BaseResponse {
+    let result = new BaseResponse(nameResponse, saverEvent);
     switch (nameResponse) {
       case queries.GET_MARKET:
-        result = prepareMarket(nameResponse, response);
+        result.setData<marketType>(prepareMarket(response));
         break;
-      default:
-        result = response;
+      case queries.GET_COMMENTS:
+        response = response['comments'];
+        console.error('response', response);
+        result.setData<commentsType>(prepareComments(response));
         break;
+      default: break;
     }
     return result;
   }
