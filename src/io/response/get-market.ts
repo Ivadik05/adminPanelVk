@@ -1,9 +1,9 @@
 import { marketType } from '../types';
 import { BaseResponse } from './response';
 
-export function prepareMarket(nameResponse, payload: Array<Object>): BaseResponse {
-  let response = new BaseResponse(nameResponse);
-  response.setData(payload.map(item => ({
+export function prepareMarket(payload: Array<Object>): Array<marketType> {
+  payload.splice(0, 1).join();
+  return payload.map(item => ({
     id: item['id'],
     ownerId: item['owner_id'],
     title: item['title'],
@@ -12,6 +12,5 @@ export function prepareMarket(nameResponse, payload: Array<Object>): BaseRespons
     category: item['category'],
     date: new Date(item['date']),
     photo: item['photos'] ? item['photos'][0]['src_xbig'] : ''
-  })));
-  return response;
+  }));
 }

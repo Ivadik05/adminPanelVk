@@ -2,7 +2,7 @@ import Service from '../service';
 import { WebSender } from '../../sender';
 import {names} from '../names';
 import { GetMarket } from '../../../io/request/get-market';
-// import { GetAbout } from '../../../io/request/get-about';
+import { GetAbout } from '../../../io/request/get-about';
 import { marketType } from '../../../io/types';
 import {events} from '../../../events';
 import {BaseResponse} from "../../../io/response/response";
@@ -29,9 +29,14 @@ class Market extends Service {
 
   private initListeners() {
     this.listenEvent(events.market.GET_MARKET, () => {
-      this.sender.send(new GetMarket('-61279456', '', true), (response: BaseResponse) => {
-        this.publishEvent(events.market.DRAW_MARKETS, response.getData());
+      this.sender.send(new GetAbout('61279456', '33502073'), (response: BaseResponse) => {
+        console.error(response.getSaverEvent());
+        console.error(response.getName());
+        // this.publishEvent(events.market.DRAW_MARKETS, response.getData());
       });
+      // this.sender.send(new GetMarket('-61279456', '', true), (response: BaseResponse) => {
+      //   this.publishEvent(events.market.DRAW_MARKETS, response.getData());
+      // });
     });
   }
 

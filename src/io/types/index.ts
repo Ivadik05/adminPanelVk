@@ -8,3 +8,8 @@ export type marketType = {
   date: Date,
   photo: string
 }
+
+export type commentsType = {
+  id: string,
+  text: string
+}

@@ -1,10 +1,10 @@
-import { marketType } from '../types';
+import { commentsType } from '../types';
 import { BaseResponse } from './response';
 
-export function prepareComments(nameResponse, payload: Array<Object>): BaseResponse {
-  let response = new BaseResponse(nameResponse);
-  response.setData(payload['comments'].map(item => ({
-    id: item['id']
-  })));
-  return response;
+export function prepareComments(payload: Array<Object>): Array<commentsType> {
+  payload.splice(0, 1).join();
+  return payload.map(item => ({
+    id: item['id'],
+    text: item['text']
+  }));
 }

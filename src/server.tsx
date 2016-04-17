@@ -37,8 +37,8 @@ let PORT = process.env.PORT || 5000;
 //   return store;
 // }
 
-function renderApp(props, res) {
-  let store = createStore(reducers, {});
+function renderApp(props, res, store) {
+
   // store.dispatch({
   //   type: `save-${resultApi.getName()}`,
   //   payload: resultApi.getData()
@@ -53,8 +53,6 @@ function renderApp(props, res) {
 }
 
 http.createServer((req, res) => {
-  let sender: ISender = new NodeSender();
-
   if (req.url === '/favicon.ico') {
     write('haha', 'text/plain', res);
   } else if (/dist/.test(req.url)) {
@@ -79,8 +77,10 @@ http.createServer((req, res) => {
       } else if (redirectLocation) {
         redirect(redirectLocation, res);
       } else if (renderProps) {
+        let store = createStore(reducers, {});
+        let sender: ISender = new NodeSender(store);
         sender.fetchAllData(() => {
-          renderApp(renderProps, res);
+          renderApp(renderProps, res, store);
         });
       } else {
         writeNotFound(res);

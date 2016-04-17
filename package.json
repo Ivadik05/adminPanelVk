@@ -9,11 +9,13 @@
     "build:watch": "./node_modules/webpack/bin/webpack.js --watch",
     "dev": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --hot --inline --content-base public",
     "build:prod": "NODE_ENV=production npm run build",
-    "start": "node dist/server.js",
+    "start": "pm2 start dist/server.js --watch",
     "build-start": "npm run build && npm run start",
     "prod-start": "npm run build:prod && npm run start",
     "typings:install": "./node_modules/typings/dist/typings.js install",
-    "test": "./node_modules/jest-cli/bin/jest.js"
+    "test": "./node_modules/jest-cli/bin/jest.js",
+    "deploy:watch": "git pull; npm i && npm run build:prod && pm2 restart dist/server.js || pm2 start dist/server.js",
+    "deploy": "git pull; npm i && npm run build:prod"
   },
   "files": [
     "public/",

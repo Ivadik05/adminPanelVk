@@ -2,6 +2,7 @@
 
 export interface IRequest {
   getName(): string;
+  getSaverEvent(): string;
   getData(): Object;
   setData(data: any): void;
 }
