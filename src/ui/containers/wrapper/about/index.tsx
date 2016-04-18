@@ -14,7 +14,6 @@ export interface IProps extends React.Props<About> {
 
 class About extends React.Component<IProps, {}> {
   public render() {
-    console.error(this.props.about);
     return (
         <div className={styles.about}>
           <Container>
