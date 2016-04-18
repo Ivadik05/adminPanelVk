@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Container } from '../../../components/container';
 import { actionCreators } from '../../../action-creators';
-import { Markdown } from '../../../components/markdown';
+import { Markup } from '../../../components/markup';
 import { connect } from 'react-redux';
 import { Dispatch as IDispatch } from 'redux';
 import { utils } from '../../../../utils';
@@ -23,7 +23,7 @@ class Market extends React.Component<IProps , {}> {
           <div>
             <div>Название: {market.title}</div>
             <div>Цена: {market.price}, как же дорого</div>
-            <Markdown
+            <Markup
                 str={market.title}
             />
           </div>

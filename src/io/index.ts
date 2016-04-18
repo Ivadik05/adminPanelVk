@@ -86,7 +86,7 @@ export class Io {
           let resultResponse = this.prepareResponse(nameResponse, saverEvent, response['response']);
           callback(resultResponse, data);
         } else if (response['error']) {
-          console.error(`response ${nameResponse} error`);
+          console.error(`response ${nameResponse} error: ${data}`);
         }
       } else {
         console.error(`response ${nameResponse} is no data`);
@@ -100,8 +100,8 @@ export class Io {
       case queries.GET_MARKET:
         result.setData<marketType>(prepareMarket(response));
         break;
-      case queries.GET_PAGES:
-        response = response['topics'];
+      case queries.GET_PAGE:
+        // response = response['topics'];
         result.setData<pagesType>(preparePages(response));
         break;
       default: break;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Dispatch as IDispatch } from 'redux';
 import { Container } from '../../../components/container';
-import { Markdown } from '../../../components/markdown';
+import { Markup } from '../../../components/markup';
 import { connect } from 'react-redux';
 import { actionCreators } from '../../../action-creators';
 import { aboutType } from '../../../reducers/about';
@@ -17,11 +17,8 @@ class About extends React.Component<IProps, {}> {
     return (
         <div className={styles.about}>
           <Container>
-            <Markdown
-                str={this.props.about.contentText
-                .replace(/<br\s*[\/]?>/gi, '\n')
-                .replace(/&gt;/gi,'>')
-                .replace('/&lt;/gi','<')} />
+            <Markup
+                str={this.props.about.contentText} />
           </Container>
         </div>
     );

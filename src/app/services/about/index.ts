@@ -3,7 +3,7 @@ import { WebSender } from '../../sender';
 import {names} from '../names';
 import { marketType } from '../../../io/types';
 import {events} from '../../../events';
-import { GetPagesData } from '../../../io/request/get-pages-data';
+import { GetPage } from '../../../io/request';
 
 
 class About extends Service {

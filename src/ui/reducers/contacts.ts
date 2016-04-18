@@ -14,7 +14,7 @@ export default function contacts<Reducer>(state: contactsType = initialState, ac
   switch (action.type) {
     case events.saver.PAGES:
       return objectAssign({}, state, {
-        contentText: action.payload.filter(page => page['name'] === 'contacts')[0].text
+        // contentText: action.payload.filter(page => page['name'] === 'contacts')[0].text
       });
     default:
       return state;
