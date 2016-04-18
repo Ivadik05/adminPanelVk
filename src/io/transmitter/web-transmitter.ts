@@ -42,7 +42,7 @@ export class WebTransmitter implements ITransmitter {
     //    new XMLHttpRequest();
     let sendOptions = {
       method: options.method || 'GET',
-      async: options.async,
+      async: (options.async === false) ? false : true,
       query: options.query || {}
     };
     let request =

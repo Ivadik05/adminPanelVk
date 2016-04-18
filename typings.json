@@ -1,5 +1,5 @@
 {
-  "name": "vse",
+  "name": "VVS",
   "version": false,
   "ambientDependencies": {
     "classnames": "github:DefinitelyTyped/DefinitelyTyped/classnames/classnames.d.ts#e937b3e64af586d19f2ea29fdf771e9dc4feecc8",
@@ -25,9 +25,5 @@
     "react-router/history": "registry:dt/react-router/history#2.0.0+20160316155526",
     "redux": "github:DefinitelyTyped/DefinitelyTyped/redux/redux.d.ts#e937b3e64af586d19f2ea29fdf771e9dc4feecc8",
     "redux-logger": "github:DefinitelyTyped/DefinitelyTyped/redux-logger/redux-logger.d.ts#e937b3e64af586d19f2ea29fdf771e9dc4feecc8"
-  },
-  "dependencies": {
-    "enzyme": "registry:npm/enzyme#2.2.0+20160322031343",
-    "node-uuid": "registry:npm/node-uuid#1.4.0+20160224202522"
   }
 }

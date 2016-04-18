@@ -86,7 +86,6 @@ export class Io {
       // callback(response, 0, data);
       if (response) {
         if (response['response']) {
-          console.error('data', data);
           let resultResponse = this.prepareResponse(nameResponse, saverEvent, response['response']);
           callback(resultResponse, data);
         } else if (response['error']) {
@@ -106,7 +105,6 @@ export class Io {
         break;
       case queries.GET_COMMENTS:
         response = response['comments'];
-        console.error('response', response);
         result.setData<commentsType>(prepareComments(response));
         break;
       default: break;
