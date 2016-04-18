@@ -22,6 +22,6 @@ export function preparePages(payload: Array<Object>): pagesType {
     id: String(payload['id']),
     name: generateName(String(payload['id'])),
     title: payload['title'],
-    text: payload['source'] 
+    text: payload['html']
   };
 }
