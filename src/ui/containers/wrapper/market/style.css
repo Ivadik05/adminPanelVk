@@ -2,3 +2,45 @@
     width: 100%;
     background: rgba(255, 255, 255, .8);
 }
+
+.marketList {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.marketItem {
+    background: tomato;
+    padding: 5px;
+    width: 200px;
+    height: 150px;
+    margin-top: 10px;
+
+    line-height: 150px;
+    color: white;
+    font-weight: bold;
+    font-size: 3em;
+    text-align: center;
+}
+
+.margetItem .marketPhoto {
+
+}
+
+.marketPhoto img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.title {
+
+}

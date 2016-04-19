@@ -17,9 +17,12 @@ export let Logo = (props: Props) => {
   let link = props.link ? props.link : '/';
   return (
     <div className={styles.logo}>
+      <div className={styles.logoText}>
         <Link to={link}>
-          <img src={props.src} alt='logo'/>
+          <div className={styles.logoUp}>Всё взаимо</div>
+          <div className={styles.logoDown}>Связано</div>
         </Link>
+      </div>
     </div>
   );
 };

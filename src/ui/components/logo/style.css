@@ -1,5 +1,32 @@
+/*@import url(https://fonts.googleapis.com/css?family=Comfortaa:400,300,700&subset=latin,cyrillic);*/
+@import url(https://fonts.googleapis.com/css?family=Bad+Script&subset=latin,cyrillic);
 .logo {
   margin: auto;
+}
+
+.logoText {
+  font-family: 'Bad Script', cursive;
+  font-size: 30px;
+  text-transform: uppercase;
+  text-align: -webkit-center;
+  font-weight: 700;
+}
+
+.logoText a {
+  text-decoration: none;
+  color: #4B93B1;
+}
+
+.logoText a .logoUp {
+  /*line-height: 40px;*/
+  line-height: 1.35em;
+}
+
+.logoText a .logoDown {
+  /*font-size: 44px;*/
+  font-size: 1.47em;
+  /*line-height: 52px;*/
+  line-height: 1.20em;
 }
 
 .logo a {

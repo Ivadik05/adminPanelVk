@@ -19,13 +19,14 @@ class Market extends React.Component<IProps , {}> {
 
   public render() {
     let markets = this.props.market.data.map((market) => {
+      console.error('market', market);
       return (
-          <div>
+          <div className={styles.marketItem}>
+            <div className={styles.marketPhoto}>
+              <img src={market.photo} alt={market.title}/>
+            </div>
             <div>Название: {market.title}</div>
-            <div>Цена: {market.price}, как же дорого</div>
-            <Markup
-                str={market.title}
-            />
+            <div>Цена: {market.price}</div>
           </div>
       );
     });
@@ -34,7 +35,9 @@ class Market extends React.Component<IProps , {}> {
           <Container>
             <Markup
                 str={this.props.market.contentText} />
-            <div>{markets}</div>
+            <div className={styles.marketList}>
+              {markets}
+            </div>
             <br/>
             <div>
               <button onClick={() => {this.props.dispatch(actionCreators.getMarket())}}>Запрос</button>
