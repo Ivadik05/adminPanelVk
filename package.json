@@ -4,18 +4,14 @@
   "description": "Vse vzaimosvyazano",
   "main": "index.js",
   "scripts": {
-    "cpsettings": "cp ./src/settings/settings.js ./public/dist",
     "build": "./node_modules/webpack/bin/webpack.js",
     "build:watch": "./node_modules/webpack/bin/webpack.js --watch",
-    "dev": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --hot --inline --content-base public",
-    "build:prod": "NODE_ENV=production npm run build",
-    "start": "pm2 start dist/server.js --watch",
-    "build-start": "npm run build && npm run start",
-    "prod-start": "npm run build:prod && npm run start",
+    "start:dev": "pm2 start dist/server.js --watch",
     "typings:install": "./node_modules/typings/dist/typings.js install",
-    "test": "./node_modules/jest-cli/bin/jest.js",
-    "deploy:watch": "git pull; npm i && npm run build:prod && pm2 restart dist/server.js || pm2 start dist/server.js  --watch",
-    "deploy": "git pull; npm i && npm run build:prod"
+    "build:prod": "NODE_ENV=production npm run build",
+    "deploy:watch": "git pull; npm i && npm run typings:install && npm run build:prod && pm2 restart dist/server.js || pm2 start dist/server.js  --watch",
+    "deploy": "git pull; npm i && npm run typings:install && npm run build:prod",
+    "deploy-on-server": "chmod +x ./deploy/deploy.sh; ./deploy/deploy.sh"
   },
   "files": [
     "dist/"

@@ -29,9 +29,9 @@ export class Io {
             () => {}
         )
     );
-    // console.info(
-    //     `Io: send request to ${this.config.host}${this.config.path} method: ${request.getName()}`,
-    //     'request data: ', request.getData());
+    console.info(
+        `IO: ${this.transmitter.getType()}: send request method: ${request.getName()}`,
+        'request data: ', request.getData());
   }
 
 
@@ -47,9 +47,6 @@ export class Io {
       query: request.getData()
     };
     this.transmitter.send(options, response, errorResponse);
-    console.info(
-        `IO: ${this.transmitter.getType()}: send request method: ${request.getName()}`,
-        'request data: ', request.getData());
   }
 
   private createPromise(request) {
@@ -66,15 +63,15 @@ export class Io {
     });
   }
 
-  public promiseAll(requests: Array<IAbstractRequest>, callback) {
+  public promiseAll(requests: Array<IRequest>, callback) {
     let promises =  requests.map((request) => {
       return this.createPromise(request);
     });
     Promise.all(promises).then(callback).catch((e) => {
       console.error('e', e);
     });
-    console.info(
-        `send request promise to ${this.config.host} methods: ${promises}`);
+    console.info(`IO: ${this.transmitter.getType()}:
+     send request methods: ${requests.map(request => request.getName())}`);
   }
 
   private handleResponse(nameResponse: string, saverEvent: string, callback: Function, errorCallback) {
