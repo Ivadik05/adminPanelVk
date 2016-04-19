@@ -2,9 +2,9 @@ import { IRequest, IAbstractRequest, types, IConfig } from './interfaces';
 import { utils } from '../utils';
 import { ITransmitter } from './interfaces';
 import {queries} from './queries/index';
-import { prepareMarket, prepareComments } from './response';
+import { prepareMarket, preparePages } from './response';
 import { BaseResponse } from './response';
-import {marketType, commentsType} from './types';
+import { marketType, pagesType } from './types';
 export * from './request';
 
 export class Io {
@@ -100,9 +100,9 @@ export class Io {
       case queries.GET_MARKET:
         result.setData<marketType>(prepareMarket(response));
         break;
-      case queries.GET_COMMENTS:
-        response = response['comments'];
-        result.setData<commentsType>(prepareComments(response));
+      case queries.GET_PAGES:
+        response = response['topics'];
+        result.setData<pagesType>(preparePages(response));
         break;
       default: break;
     }

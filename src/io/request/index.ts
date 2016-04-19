@@ -1,2 +1,2 @@
 export { GetMarket } from './get-market';
-export { GetAbout } from './get-about';
+export { GetPagesData } from './get-pages-data';

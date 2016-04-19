@@ -59,7 +59,7 @@ export class GetMarket extends request.VK {
   public getData(): marketData {
     let data = {
       'method': this.getName(),
-      'owner_id': this.getOwnerId()
+      'owner_id': '-' + this.getOwnerId()
     };
     if (this.getAlbumId()) {
       data['album_id'] = this.getAlbumId();

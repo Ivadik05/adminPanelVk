@@ -3,4 +3,15 @@
   border-top: 1px solid #d9d9d9;
   text-align: center;
   background: #fff;
+  display: flex;
+}
+
+.linkInsta {
+  display: block;
+  margin: auto;
+  width: 48px;
+  height: 48px;
+  background: url('http://cs630620.vk.me/v630620541/271f0/c2lDFM68NUU.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
 }

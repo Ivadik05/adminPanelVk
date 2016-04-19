@@ -1,3 +1,3 @@
 export { BaseResponse } from './response';
 export { prepareMarket } from './get-market';
-export { prepareComments } from './get-comments';
+export { preparePages } from './get-pages-data';

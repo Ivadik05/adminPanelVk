@@ -33,6 +33,10 @@ export default function market<Reducer>(state: market = initialState, action) {
       return objectAssign({}, state, {
         data: action.payload
       });
+    case events.saver.PAGES:
+      return objectAssign({}, state, {
+        contentText: action.payload.filter(page => page['name'] === 'market')[0].text
+      });
     default:
       return state;
   }

@@ -1,19 +1,20 @@
 import { Io  } from '../../io';
-import { ITransmitter, IAbstractRequest } from '../../io/interfaces';
+import { ITransmitter, IRequest } from '../../io/interfaces';
 import { settings } from '../../settings';
 import { NodeTransmitter } from '../../io/transmitter';
 import { ISender } from './index';
 import { Store } from 'redux';
 
-import { GetMarket, GetAbout } from '../../io/request';
+import { GetMarket, GetPagesData } from '../../io/request';
 import { BaseResponse } from '../../io/response/response';
+import { connector } from '../../constants';
 
 export class NodeSender implements ISender {
   private io: Io = null;
   private store: Store;
-  private requestList: Array<IAbstractRequest> = [
-    new GetMarket('-61279456', '', true),
-    new GetAbout('61279456', '33502073')
+  private requestList: Array<IRequest> = [
+    new GetMarket(connector.GROUP_ID, '', true),
+    new GetPagesData(connector.GROUP_ID)
   ];
 
   constructor(store: any) {
@@ -38,7 +39,7 @@ export class NodeSender implements ISender {
         this.store.dispatch({
           type: response.getSaverEvent(),
           payload: response.getData()
-        })
+        });
       });
       callback();
     });

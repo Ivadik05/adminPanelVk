@@ -17,6 +17,6 @@ export module events {
 
   export const saver = {
     'MARKET': 'market',
-    'ABOUT': 'about'
+    'PAGES': 'pages'
   };
 }
