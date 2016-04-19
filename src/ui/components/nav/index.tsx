@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { Link, IndexLink } from 'react-router';
 import { routeConstants } from '../../../routes';
-
-
 let classNames = require('classnames');
 let styles = require('./style.css');
 
 export interface IProps extends React.Props<Nav> {
+  routing: Object;
   getAbout: Function;
 }
 
@@ -32,37 +31,43 @@ export default class Nav extends React.Component<IProps, IState> {
   }
 
   public clickButton() {
-    console.error('click');
     this.toggleMenu(this.state.isOpenMenu);
+  }
+
+  public componentWillUpdate(nextProps, nextState) {
+    if (nextProps.routing['locationBeforeTransitions'].pathname !==
+        this.props.routing['locationBeforeTransitions'].pathname) {
+      this.toggleMenu(true);
+    }
   }
 
   public render() {
     return (
         <div className={classNames(styles.navigation, {[styles.open]: this.state.isOpenMenu})}>
-          <ul onClick={this.clickButton}>
+          <ul>
             <li>
-              <button className={styles.navItem} onClick={this.clickButton}>
+              <button className={styles.navItem}>
                 <IndexLink to={routeConstants.INDEX} activeClassName={styles.active}>Главная</IndexLink>
               </button>
             </li>
             <li>
-              <button className={styles.navItem} onClick={this.clickButton}>
+              <button className={styles.navItem}>
                 <Link to={routeConstants.ABOUT} activeClassName={styles.active}>О нас</Link>
               </button>
             </li>
             <li>
-              <button className={styles.navItem} onClick={this.clickButton}>
+              <button className={styles.navItem}>
                 <Link to={routeConstants.MARKET} activeClassName={styles.active}>Магазин</Link>
               </button>
             </li>
             <li>
-              <button className={styles.navItem} onClick={this.clickButton}>
-                <Link to={routeConstants.CONTACTS} activeClassName={styles.active}>Контакты</Link>
+              <button className={styles.navItem}>
+                <Link to={routeConstants.DELIVERY} activeClassName={styles.active}>Оплата и доставка</Link>
               </button>
             </li>
             <li>
-              <button className={styles.navItem} onClick={this.clickButton}>
-                <Link to={routeConstants.DELIVERY} activeClassName={styles.active}>Оплата и доставка</Link>
+              <button className={styles.navItem}>
+                <Link to={routeConstants.CONTACTS} activeClassName={styles.active}>Контакты</Link>
               </button>
             </li>
           </ul>

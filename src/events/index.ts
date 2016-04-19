@@ -21,4 +21,8 @@ export module events {
     'MARKET': 'market',
     'PAGES': 'pages'
   };
+
+  export const router = {
+    'LOCATION_CHANGE': '@@router/LOCATION_CHANGE'
+  }
 }

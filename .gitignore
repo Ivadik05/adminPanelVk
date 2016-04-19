@@ -5,6 +5,7 @@
 
 ### Build artifacts ###
 /public
+/private
 
 ### NPM files ###
 /node_modules

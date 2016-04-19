@@ -8,6 +8,7 @@ import routes from './routes';
 import { utils } from './utils';
 import store from './store';
 import * as ga from 'react-ga';
+import { ym } from 'react-ym';
 const history = syncHistoryWithStore(browserHistory, store);
 const { pathname, search, hash } = window.location;
 const location = `${pathname}${search}${hash}`;
@@ -15,6 +16,7 @@ const location = `${pathname}${search}${hash}`;
 
 if (process.env.NODE_ENV === 'production') {
   ga.initialize('UA-76791325-1');
+  ym.initialize('36942255');
 }
 
 // 36942255

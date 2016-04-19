@@ -28,11 +28,11 @@ class App extends React.Component<IProps, {}> {
   }
 
   public render() {
-
     return (
         <div className={styles.app}>
           <Header/>
           <Nav
+            routing={this.props.state.routing}
             getAbout={this.getAbout}
           />
           <Wrapper>
