@@ -3,25 +3,26 @@ import {queries} from '../queries';
 import { events } from '../../events';
 import {error} from "util";
 
-type marketData = {
+type pagesData = {
   method: string;
   group_id: string;
-  topic_id: string;
+  preview: string;
+  preview_length: string;
 }
 
 // http://ecoprint43.ru/connector.php?method=board.getComments&group_id=61279456&topic_id=33502073
-export class GetAbout extends request.VK {
+// http://ecoprint43.ru/connector.php?group_id=61279456&method=board.getTopics&preview=1&preview_length=0
+export class GetPagesData extends request.VK {
   private groupId: string;
-  private topicId: string;
+  private preview: string = '1';
+  private previewLength: string = '0';
 
   /**
    * @param groupId идентификатор группы
-   * @param topicId идентификатор топика
    */
-  constructor(groupId: string, topicId: string) {
-    super(queries.GET_COMMENTS, events.saver.ABOUT);
+  constructor(groupId: string) {
+    super(queries.GET_PAGES, events.saver.PAGES);
     this.groupId = groupId;
-    this.topicId = topicId;
   }
 
   /**
@@ -34,18 +35,26 @@ export class GetAbout extends request.VK {
   /**
    * @returns {string}
    */
-  public getTopicId(): string {
-    return this.topicId;
+  public getPreview(): string {
+    return this.preview;
+  }
+
+  /**
+   * @returns {string}
+   */
+  public getPreviewLength(): string {
+    return this.previewLength;
   }
 
   /**
    * @inheritDoc
    */
-  public getData(): marketData {
+  public getData(): pagesData {
     let data = {
       'method': this.getName(),
       'group_id': this.getGroupId(),
-      'topic_id': this.getTopicId()
+      'preview': this.getPreview(),
+      'preview_length': this.getPreviewLength()
     };
     return data;
   }

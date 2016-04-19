@@ -4,3 +4,7 @@ export const uiState = {
   CONTACTS: 'main',
   MARKET: 'main'
 };
+
+export const connector = {
+  GROUP_ID: '61279456'
+};

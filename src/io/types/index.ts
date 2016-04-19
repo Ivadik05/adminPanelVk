@@ -9,7 +9,9 @@ export type marketType = {
   photo: string
 }
 
-export type commentsType = {
+export type pagesType = {
   id: string,
+  name: string;
+  title: string,
   text: string
 }
