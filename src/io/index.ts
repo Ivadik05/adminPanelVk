@@ -104,6 +104,10 @@ export class Io {
         // response = response['topics'];
         result.setData<pagesType>(preparePages(response));
         break;
+      case queries.EXECUTE:
+        // response = response['topics'];
+        // result.setData<pagesType>(preparePages(response));
+        break;
       default: break;
     }
     return result;

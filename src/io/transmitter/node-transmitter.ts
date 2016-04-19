@@ -3,7 +3,6 @@ import * as queryString from 'query-string';
 import { ITransmitterOptions } from '../interfaces';
 import { IConfig } from '../interfaces';
 import * as http from 'http';
-import * as fs from 'fs';
 
 export class NodeTransmitter implements ITransmitter {
   private host: string;
