@@ -56,6 +56,11 @@ export default class Nav extends React.Component<IProps, IState> {
                 <Link to={`/contacts`} activeClassName={styles.active}>Контакты</Link>
               </button>
             </li>
+            <li>
+              <button className={styles.navItem}>
+                <Link to={`/contacts`} activeClassName={styles.active}>Оплата и доставка</Link>
+              </button>
+            </li>
           </ul>
           <button className={styles.openButton} onClick={this.clickButton}>
             <span></span>

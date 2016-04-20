@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Dispatch as IDispatch } from 'redux';
 import { connect } from 'react-redux';
 import { Container } from '../../../components/container';
+import { Markup } from '../../../components/markup';
 import { actionCreators } from '../../../action-creators';
 let styles = require('./style.css');
 
@@ -15,7 +16,8 @@ class Contacts extends React.Component<IProps, {}> {
     return (
         <div className={styles.contacts}>
           <Container>
-            КОНТАКТЫ
+            <Markup
+                str={this.props.contacts.contentText} />
           </Container>
         </div>
     );

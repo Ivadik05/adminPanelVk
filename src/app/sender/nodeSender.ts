@@ -14,7 +14,10 @@ export class NodeSender implements ISender {
   private store: Store;
   private requestList: Array<IRequest> = [
     new GetMarket(connector.GROUP_ID, '', true),
-    new GetPage(connector.GROUP_ID, connector.PAGE_ABOUT)
+    new GetPage(connector.GROUP_ID, connector.PAGE_ABOUT),
+    new GetPage(connector.GROUP_ID, connector.PAGE_CONTACTS),
+    new GetPage(connector.GROUP_ID, connector.PAGE_DELIVERY),
+    new GetPage(connector.GROUP_ID, connector.PAGE_MARKET)
   ];
 
   constructor(store: any) {

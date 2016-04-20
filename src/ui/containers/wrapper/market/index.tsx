@@ -32,11 +32,13 @@ class Market extends React.Component<IProps , {}> {
     return (
         <div className={styles.market}>
           <Container>
-            МАГАЗИН
+            <Markup
+                str={this.props.market.contentText} />
+            <div>{markets}</div>
+            <br/>
             <div>
               <button onClick={() => {this.props.dispatch(actionCreators.getMarket())}}>Запрос</button>
             </div>
-            <div>{markets}</div>
           </Container>
         </div>
     );
