@@ -13,6 +13,7 @@ export module events {
 
   export const about = {
     'DRAW_ABOUT_CONTENT': 'draw-about-content'
+    'GET_ABOUT': 'get-about'
   };
 
   export const saver = {

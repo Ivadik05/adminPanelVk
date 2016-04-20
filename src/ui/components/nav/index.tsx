@@ -5,6 +5,7 @@ let classNames = require('classnames');
 let styles = require('./style.css');
 
 export interface IProps extends React.Props<Nav> {
+  getAbout: Function;
 }
 
 interface IState {
@@ -42,7 +43,7 @@ export default class Nav extends React.Component<IProps, IState> {
               </button>
             </li>
             <li>
-              <button className={styles.navItem}>
+              <button className={styles.navItem} onClick={this.props.getAbout}>
                 <Link to={`/about`} activeClassName={styles.active}>О нас</Link>
               </button>
             </li>

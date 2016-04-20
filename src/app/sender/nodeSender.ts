@@ -1,5 +1,5 @@
 import { Io  } from '../../io';
-import { ITransmitter, IRequest } from '../../io/interfaces';
+import { ITransmitter, IRequest, IAbstractRequest } from '../../io/interfaces';
 import { settings } from '../../settings';
 import { NodeTransmitter } from '../../io/transmitter';
 import { ISender } from './index';
@@ -8,6 +8,7 @@ import { Store } from 'redux';
 import { GetMarket, GetPage } from '../../io/request';
 import { BaseResponse } from '../../io/response/response';
 import { connector } from '../../constants';
+import { routeConstants } from '../../routes/index';
 
 export class NodeSender implements ISender {
   private io: Io = null;
@@ -30,8 +31,37 @@ export class NodeSender implements ISender {
     this.io = new Io(requestSettings, transmitter);
   }
 
-  public send() {
-    // TODO send
+  private updateStore(callback) {
+    return (response: BaseResponse) => {
+      this.store.dispatch({
+        type: response.getSaverEvent(),
+        payload: response.getData()
+      });
+      callback();
+    };
+  }
+
+  public requestResolver(location, callback) {
+    switch (location) {
+      case routeConstants.INDEX:
+          this.send(new GetMarket(connector.GROUP_ID, '', true), this.updateStore(callback));
+        break;
+      case routeConstants.ABOUT:
+        this.send(new GetPage(connector.GROUP_ID, connector.PAGE_ABOUT), this.updateStore(callback));
+        break;
+      case routeConstants.MARKET:
+        this.send(new GetPage(connector.GROUP_ID, connector.PAGE_MARKET), this.updateStore(callback));
+        break;
+      case routeConstants.CONTACTS:
+        this.send(new GetPage(connector.GROUP_ID, connector.PAGE_CONTACTS), this.updateStore(callback));
+        break;
+      default: break;
+    }
+  }
+
+  public send(request: IAbstractRequest, callback) {
+    // let requestName = request.getRequest().getName();
+    this.io.send(request, callback);
   }
 
   public fetchAllData(callback) {

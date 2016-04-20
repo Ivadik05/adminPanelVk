@@ -12,5 +12,5 @@ export interface ITransmitter {
 export interface ITransmitterOptions {
   method?: string;
   async?: boolean;
-  query?: Object
+  query?: Object;
 }

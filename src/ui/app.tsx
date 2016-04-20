@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { marketType } from '../io/types';
 import { uiState } from '../constants';
 import { utils } from '../utils';
+import { actionCreators } from './action-creators';
 
 import Header from './components/header';
 import Nav from './components/nav';
@@ -19,21 +20,28 @@ interface IProps extends React.Props<App> {
 class App extends React.Component<IProps, {}> {
   constructor(props) {
     super(props);
+    this.getAbout = this.getAbout.bind(this);
   }
 
-    public render() {
+  public getAbout() {
+    this.props.dispatch(actionCreators.getAbout());
+  }
 
-      return (
-          <div className={styles.app}>
-            <Header/>
-            <Nav/>
-            <Wrapper>
-              {this.props.children}
-            </Wrapper>
-            <Footer/>
-          </div>
-      );
-    }
+  public render() {
+
+    return (
+        <div className={styles.app}>
+          <Header/>
+          <Nav
+            getAbout={this.getAbout}
+          />
+          <Wrapper>
+            {this.props.children}
+          </Wrapper>
+          <Footer/>
+        </div>
+    );
+  }
 }
 
 
