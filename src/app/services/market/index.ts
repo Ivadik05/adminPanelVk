@@ -23,9 +23,9 @@ class Market extends Service {
   private initListeners() {
     this.listenEvent(events.market.GET_MARKET, () => {
       this.sender.send(new GetPage(connector.GROUP_ID, connector.PAGE_ABOUT), (response: BaseResponse) => {
-        console.error(response.getSaverEvent());
-        console.error(response.getName());
-        console.error(response.getData());
+        // console.error(response.getSaverEvent());
+        // console.error(response.getName());
+        // console.error(response.getData());
         // this.publishEvent(events.market.DRAW_MARKETS, response.getData());
       });
       // this.sender.send(new GetMarket('-61279456', '', true), (response: BaseResponse) => {

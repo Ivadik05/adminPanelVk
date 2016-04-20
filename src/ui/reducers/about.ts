@@ -14,8 +14,6 @@ export type aboutType = {
 export default function about<Reducer>(state: aboutType = initialState, action) {
   switch (action.type) {
     case events.saver.PAGES:
-      console.error(action.payload);
-      console.error(connector.PAGE_ABOUT);
       return objectAssign({}, state, {
         contentText: (action.payload.id === connector.PAGE_ABOUT) ?
             action.payload.text :

@@ -10,7 +10,8 @@
 
 }
 
-.markdoen .wk_header {
+.markdown :global .wk_header {
+    /*composes: h1;*/
     display: block;
     font-size: 2em;
     -webkit-margin-before: 0.67em;
@@ -20,7 +21,7 @@
     font-weight: bold;
 }
 
-.markdoen .wk_sub_header {
+.markdown :global .wk_sub_header {
     display: block;
     font-size: 1.5em;
     -webkit-margin-before: 0.83em;
@@ -30,7 +31,7 @@
     font-weight: bold;
 }
 
-.markdoen .wk_sub_sub_header {
+.markdown :global .wk_sub_sub_header {
     display: block;
     font-size: 1.17em;
     -webkit-margin-before: 1em;

@@ -3,7 +3,6 @@ import { BaseResponse } from './response';
 import { connector } from '../../constants';
 
 let generateName = (id: string) => {
-  console.error(id);
   switch (id) {
     case connector.PAGE_CONTACTS:
       return 'contacts';
@@ -17,11 +16,18 @@ let generateName = (id: string) => {
   }
 };
 
+let checkText = (text: string) => {
+  if (text.indexOf('&#62;') !== -1 || text.indexOf('&#60;') !== -1) {
+    return text.replace(/&#62;/gi, '>').replace(/&#60;/gi, '<');
+  }
+  return text;
+};
+
 export function preparePages(payload: Array<Object>): pagesType {
   return {
     id: String(payload['id']),
     name: generateName(String(payload['id'])),
     title: payload['title'],
-    text: payload['html']
+    text: checkText(payload['html'])
   };
 }

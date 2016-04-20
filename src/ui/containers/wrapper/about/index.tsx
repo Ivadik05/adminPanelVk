@@ -14,14 +14,12 @@ export interface IProps extends React.Props<About> {
 
 class About extends React.Component<IProps, {}> {
   public render() {
-    let replaceText = this.props.about.contentText.replace(/&#62;/gi,'>').replace(/&#60;/gi,'<');
+    let text = this.props.about.contentText;
     return (
         <div className={styles.about}>
           <Container>
             <Markup
-                str={replaceText
-                // .replace(/<br\s*[\/]?>/gi, '\n')
-                } />
+                str={text} />
           </Container>
         </div>
     );
