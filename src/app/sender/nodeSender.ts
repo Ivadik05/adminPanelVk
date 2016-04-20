@@ -5,7 +5,7 @@ import { NodeTransmitter } from '../../io/transmitter';
 import { ISender } from './index';
 import { Store } from 'redux';
 
-import { GetMarket, GetPagesData } from '../../io/request';
+import { GetMarket, GetPage } from '../../io/request';
 import { BaseResponse } from '../../io/response/response';
 import { connector } from '../../constants';
 
@@ -14,7 +14,10 @@ export class NodeSender implements ISender {
   private store: Store;
   private requestList: Array<IRequest> = [
     new GetMarket(connector.GROUP_ID, '', true),
-    new GetPagesData(connector.GROUP_ID)
+    new GetPage(connector.GROUP_ID, connector.PAGE_ABOUT),
+    new GetPage(connector.GROUP_ID, connector.PAGE_CONTACTS),
+    new GetPage(connector.GROUP_ID, connector.PAGE_DELIVERY),
+    new GetPage(connector.GROUP_ID, connector.PAGE_MARKET)
   ];
 
   constructor(store: any) {
