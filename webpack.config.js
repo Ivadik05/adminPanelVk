@@ -46,8 +46,8 @@ var commonConfigs = {
         loaders: ['ts-loader']
       },
       {
-        test: /\.(png|jpg|gif)$/,
-        loaders: [ 'url?limit=10000', 'img?minimize', 'file-loader?name=/static/img-[hash:6].[ext]']
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loader: 'url-loader?limit=10000!img-loader?progressive=true' 
       }
     ]
   },
