@@ -4,9 +4,7 @@
 .vscode
 
 ### Build artifacts ###
-/dist/app.css
-/dist/index.js
-/dist/server.js
+/dist/
 
 ### NPM files ###
 /node_modules
