@@ -11,6 +11,7 @@
 }
 
 .markdown :global .wk_header {
+    font-family: 'Open Sans Condensed', sans-serif;
     /*composes: h1;*/
     display: block;
     font-size: 1.5em;
@@ -22,6 +23,7 @@
 }
 
 .markdown :global .wk_sub_header {
+    font-family: 'Open Sans Condensed', sans-serif;
     display: block;
     font-size: 1.25em;
     /*-webkit-margin-before: 0.83em;*/
@@ -32,6 +34,7 @@
 }
 
 .markdown :global .wk_sub_sub_header {
+    font-family: 'Open Sans Condensed', sans-serif;
     display: block;
     font-size: 1.10em;
     /*-webkit-margin-before: 1em;*/
