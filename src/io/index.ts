@@ -94,6 +94,12 @@ export class Io {
     };
   }
 
+// {
+//   // !img-loader?progressive=true!file-loader?name=[hash].[ext]
+//   test: /\.(jpe?g|png|gif|svg)$/i,
+//   loader: 'url-loader?limit=10000'
+// }
+
   private prepareResponse(nameResponse: string, saverEvent: string, response: Array<Object>) {
     let result: any;
     switch (nameResponse) {
