@@ -108,12 +108,8 @@ export class Io {
         break;
       case queries.EXECUTE:
         result = new BaseResponse<Array<BaseResponse<any>>>(nameResponse, saverEvent);
-        let prepareResponses = response.map(res => {
-          let name: string  = res['name'];
-          let saver: string  = res['saver'];
-          let data: Array<Object>  = res['data'];
-          return this.prepareResponse(name, saver, data);
-        });
+        let prepareResponses = response
+            .map(res => this.prepareResponse(res['name'], res['saver'], res['data']));
         result.setData(prepareResponses);
         break;
       default: break;
