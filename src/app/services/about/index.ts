@@ -21,14 +21,7 @@ class About extends Service {
   }
 
   private initListeners() {
-    this.listenEvent(events.about.GET_ABOUT, () => {
-      this.sender.send(new GetPage(connector.GROUP_ID, connector.PAGE_ABOUT), (response: BaseResponse) => {
-        // console.error(response.getSaverEvent());
-        // console.error(response.getName());
-        // console.error(response.getData());
-        this.publishEvent(events.about.DRAW_ABOUT_CONTENT, response.getData());
-      });
-    });
+
   }
 
   private initApiListeners() {

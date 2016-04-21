@@ -23,17 +23,17 @@ class Market extends Service {
 
   private initListeners() {
     let requestList: Array<IRequest> = [
-      new GetMarket<marketType>(connector.GROUP_ID, '', true),
-      // new GetPage(connector.GROUP_ID, connector.PAGE_ABOUT),
-      // new GetPage(connector.GROUP_ID, connector.PAGE_CONTACTS),
-      // new GetPage(connector.GROUP_ID, connector.PAGE_DELIVERY),
+      new GetMarket(connector.GROUP_ID, '', true),
+      new GetPage(connector.GROUP_ID, connector.PAGE_ABOUT),
+      new GetPage(connector.GROUP_ID, connector.PAGE_CONTACTS),
+      new GetPage(connector.GROUP_ID, connector.PAGE_DELIVERY),
       new GetPage(connector.GROUP_ID, connector.PAGE_MARKET)
     ];
     this.listenEvent(events.market.GET_MARKET, () => {
-      let code = Execute.createPromiseCode(requestList);
-      this.sender.send(new Execute(code), (responses: Array<BaseResponse>) => {
-        console.error(responses);
-      });
+      // let code = Execute.createPromiseCode(requestList);
+      // this.sender.send(new Execute(code), (responses: Array<BaseResponse<any>>) => {
+      //   console.error(responses);
+      // });
       // this.sender.send(new GetMarket('-61279456', '', true), (response: BaseResponse) => {
       //   this.publishEvent(events.market.DRAW_MARKETS, response.getData());
       // });

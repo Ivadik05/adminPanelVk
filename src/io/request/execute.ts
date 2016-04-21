@@ -32,10 +32,9 @@ export class Execute extends request.VK {
             return acc;
           }, [])
           .join(',');
-      return `"${req.getName()}":${method}({${attrStr}})`;
+      return `{"name":"${req.getName()}","saver":"${req.getSaverEvent()}","data":${method}({${attrStr}})}`;
     });
-    console.error(`return{${requestsStr.join(',')}};`);
-    return `return{${requestsStr.join(',')}};`;
+    return `return[${requestsStr.join(',')}];`;
   }
   // static createPromiseCode(requests: Array<IRequest>): string {
   //   var posts = API.wall.get({"count": 1});
@@ -70,7 +69,6 @@ export class Execute extends request.VK {
    * @inheritDoc
    */
   public getData(): executeData {
-    console.error(this.getCode());
     let data = {
       'method': this.getName(),
       'code': this.getCode(),

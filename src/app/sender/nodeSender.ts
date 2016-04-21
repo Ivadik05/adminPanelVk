@@ -8,7 +8,7 @@ import { Store } from 'redux';
 import { GetMarket, GetPage, Execute } from '../../io/request';
 import { BaseResponse } from '../../io/response/response';
 import { connector } from '../../constants';
-import { routeConstants } from '../../routes/index';
+import { executeType } from '../../io/types';
 
 export class NodeSender implements ISender {
   private io: Io = null;
@@ -31,42 +31,26 @@ export class NodeSender implements ISender {
     this.io = new Io(requestSettings, transmitter);
   }
 
-  private updateStore(response: BaseResponse) {
-    this.store.dispatch({
-      type: response.getSaverEvent(),
-      payload: response.getData()
-    });
-  }
+  // private updateStore(response: BaseResponse) {
+  //   this.store.dispatch({
+  //     type: response.getSaverEvent(),
+  //     payload: response.getData()
+  //   });
+  // }
 
-  public requestResolver(location, callback) {
-    callback();
-    // switch (location) {
-    //   case routeConstants.INDEX:
-    //       this.send(new GetMarket(connector.GROUP_ID, '', true), this.updateStore(callback));
-    //     break;
-    //   case routeConstants.ABOUT:
-    //     this.send(new GetPage(connector.GROUP_ID, connector.PAGE_ABOUT), this.updateStore(callback));
-    //     break;
-    //   case routeConstants.MARKET:
-    //     this.send(new GetPage(connector.GROUP_ID, connector.PAGE_MARKET), this.updateStore(callback));
-    //     break;
-    //   case routeConstants.CONTACTS:
-    //     this.send(new GetPage(connector.GROUP_ID, connector.PAGE_CONTACTS), this.updateStore(callback));
-    //     break;
-    //   default: break;
-    // }
-  }
-
-  public send() {
-
-  }
+  public send() {}
 
   public fetchAllData(callback) {
     // TODO Promise.all с одним ответом
     // let requestName = request.getRequest().getName();
     let code = Execute.createPromiseCode(this.requestList);
-    this.io.send(new Execute(code), (responses: Array<BaseResponse>) => {
-      responses.map((response) => this.updateStore);
+    this.io.send(new Execute(code), (response: BaseResponse<executeType>) => {
+      response.getData().map((res: BaseResponse<any>) => {
+        this.store.dispatch({
+          type: res.getSaverEvent(),
+          payload: res.getData()
+        });
+      });
       callback();
     });
   }
