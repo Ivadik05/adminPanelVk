@@ -17,11 +17,6 @@ let HOST = process.env.HOST || '127.0.0.1';
 let PORT = process.env.PORT || 5000;
 
 function renderApp(props, res, store) {
-
-  // store.dispatch({
-  //   type: `save-${resultApi.getName()}`,
-  //   payload: resultApi.getData()
-  // });
   let markup = renderToString(
       <Provider store={store}>
         <RoutingContext {...props}/>
