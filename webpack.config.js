@@ -44,11 +44,33 @@ var commonConfigs = {
         test: /\.ts(x)?$/,
         exclude: /(node_modules|__tests__)/,
         loaders: ['ts-loader']
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        loaders: [ 'url?limit=10000', 'img?minimize', 'file-loader?name=/static/img-[hash:6].[ext]']
       }
     ]
   },
   postcss: function () {
     return [autoprefixer];
+  },
+  imagemin: {
+    gifsicle: { interlaced: false },
+    jpegtran: {
+      progressive: true,
+      arithmetic: false
+    },
+    optipng: { optimizationLevel: 5 },
+    pngquant: {
+      floyd: 0.5,
+      speed: 2
+    },
+    svgo: {
+      plugins: [
+        { removeTitle: true },
+        { convertPathData: false }
+      ]
+    }
   },
   tslint: {
     emitErrors: false

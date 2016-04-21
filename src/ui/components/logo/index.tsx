@@ -13,13 +13,12 @@ type ButtonListProps = {
   align?: 'center' | 'justify' | 'left' | 'right' | 'start' | 'end';
 }
 
-// <img src={props.src} alt='logo'/>
 export let Logo = (props: Props) => {
   let link = props.link ? props.link : '/';
   return (
     <div className={styles.logo}>
         <Link to={link}>
-          <img src='200x100.png' data-1x='400x200.png' data-2x='800x400.png'/>
+          <img src={props.src} alt='logo'/>
         </Link>
     </div>
   );

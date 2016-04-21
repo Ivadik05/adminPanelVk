@@ -6,8 +6,7 @@
   flex-direction: column;
   min-height: 100vh;
 
-  background-image: url('http://cs631121.vk.me/v631121061/24eef/V00vusQ9AXc.jpg');
-
+  background-image: url('./V00vusQ9AXc.jpg');
   background-attachment: scroll;
   background-repeat: no-repeat;
   background-position: 50%;
