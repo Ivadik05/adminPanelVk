@@ -80,7 +80,7 @@ var commonConfigs = {
 module.exports = [
   objectAssign({}, commonConfigs, {
     entry: {
-      index: path.resolve('src', 'app.tsx')
+      app: path.resolve('src', 'app.tsx')
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
