@@ -47,7 +47,7 @@ var commonConfigs = {
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
-        loader: 'url-loader?limit=10000!img-loader?progressive=true' 
+        loader: 'url-loader?mimetype=image/limit=10000'
       }
     ]
   },
@@ -80,12 +80,12 @@ var commonConfigs = {
 module.exports = [
   objectAssign({}, commonConfigs, {
     entry: {
-      index: path.resolve('src', 'index.tsx'),
+      index: path.resolve('src', 'app.tsx')
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].js',
-      publicPath: '/dist/'
+      publicPath: '/'
     }
   }),
   objectAssign({}, commonConfigs, {

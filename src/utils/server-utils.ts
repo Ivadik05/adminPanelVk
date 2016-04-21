@@ -44,15 +44,15 @@ export function createPage(html, initialState) {
     <head>
       <meta charset="utf-8"/>
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-      <title>Всё взаимосвязано</title>
-      <link rel='stylesheet' href='/dist/app.css'>
+      <title>Всё взаимосвязано</title>      
     </head>
     <body>
       <div id="app">${html}</div>
       <script>
         window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
       </script>
-      <script src="/dist/index.js"></script>
+      <link rel='stylesheet' href='/dist/app.css'>
+      <script src="/dist/app.js"></script>
     </body>
   </html>
   `;
