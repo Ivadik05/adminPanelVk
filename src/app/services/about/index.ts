@@ -4,6 +4,8 @@ import {names} from '../names';
 import { marketType } from '../../../io/types';
 import {events} from '../../../events';
 import { GetPage } from '../../../io/request';
+import { BaseResponse } from '../../../io/response/response';
+import { connector } from '../../../constants';
 
 
 class About extends Service {

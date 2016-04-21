@@ -94,15 +94,27 @@ export class Io {
     };
   }
 
-  private prepareResponse(nameResponse: string, saverEvent: string, response: Array<Object>): BaseResponse {
-    let result = new BaseResponse(nameResponse, saverEvent);
+  private prepareResponse(nameResponse: string, saverEvent: string, response: Array<Object>) {
+    let result: any;
     switch (nameResponse) {
       case queries.GET_MARKET:
-        result.setData<marketType>(prepareMarket(response));
+        result = new BaseResponse<Array<marketType>>(nameResponse, saverEvent);
+        result.setData(prepareMarket(response));
         break;
       case queries.GET_PAGE:
         // response = response['topics'];
-        result.setData<pagesType>(preparePages(response));
+        result = new BaseResponse<pagesType>(nameResponse, saverEvent);
+        result.setData(preparePages(response));
+        break;
+      case queries.EXECUTE:
+        result = new BaseResponse<Array<BaseResponse<any>>>(nameResponse, saverEvent);
+        let prepareResponses = response.map(res => {
+          let name: string  = res['name'];
+          let saver: string  = res['saver'];
+          let data: Array<Object>  = res['data'];
+          return this.prepareResponse(name, saver, data);
+        });
+        result.setData(prepareResponses);
         break;
       default: break;
     }

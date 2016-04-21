@@ -5,10 +5,10 @@
 .navigation ul {
   list-style: none;
   margin: 0;
-  background: #F5F5F5;
+  background: #fff;
   display: flex;
 
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .navItem {
@@ -115,7 +115,7 @@
 
   .navigation.open {
     height: 100vh;
-    border-width: 0px 150px 50px 0;
+    border-width: 0 150px 69px 0;
     background-color: rgba(0, 0, 0, 0.5);
     transition: border-width 0.3s, background-color 0.3s;
   }

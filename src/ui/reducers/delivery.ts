@@ -14,7 +14,7 @@ export default function delivery<Reducer>(state: deliveryType = initialState, ac
   switch (action.type) {
     case events.saver.PAGES:
       return objectAssign({}, state, {
-        contentText: (action.payload.id === connector.PAGE_CONTACTS) ?
+        contentText: (action.payload.id === connector.PAGE_DELIVERY) ?
             action.payload.text :
             state.contentText
       });

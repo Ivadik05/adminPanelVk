@@ -1,5 +1,5 @@
-export interface IResponse {
+export interface IResponse<TResponse> {
   getName(): string;
-  getData(): Object;
-  setData(data: Array<Object>);
+  getData(): TResponse;
+  setData(data: TResponse);
 }

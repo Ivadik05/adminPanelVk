@@ -1,3 +1,4 @@
+import { BaseResponse } from '../response/response';
 export type marketType = {
   id: string,
   ownerId: string,
@@ -15,3 +16,5 @@ export type pagesType = {
   title: string,
   text: string
 }
+
+export type executeType = Array<BaseResponse<any>>

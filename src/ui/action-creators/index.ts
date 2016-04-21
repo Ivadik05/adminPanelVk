@@ -7,4 +7,9 @@ export module actionCreators {
       type: events.market.GET_MARKET
     };
   }
+  export function getAbout<ActionCreator>() {
+    return {
+      type: events.about.GET_ABOUT
+    };
+  }
 }

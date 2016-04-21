@@ -2,7 +2,11 @@ import { marketType } from '../types';
 import { BaseResponse } from './response';
 
 export function prepareMarket(payload: Array<Object>): Array<marketType> {
-  payload.splice(0, 1).join();
+  if (payload['items']) {
+    payload = payload['items'];
+  } else {
+    payload.splice(0, 1).join();
+  }
   return payload.map(item => ({
     id: item['id'],
     ownerId: item['owner_id'],

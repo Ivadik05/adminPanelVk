@@ -71,6 +71,7 @@ http.createServer((req, res) => {
       } else if (renderProps) {
         let store = createStore(reducers, {});
         let sender: ISender = new NodeSender(store);
+        console.error('renderProps', renderProps.location.pathname);
         sender.fetchAllData(() => {
           renderApp(renderProps, res, store);
         });

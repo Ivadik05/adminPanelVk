@@ -1,13 +1,14 @@
 import { Io  } from '../../io';
-import { ITransmitter, IRequest } from '../../io/interfaces';
+import { ITransmitter, IRequest, IAbstractRequest } from '../../io/interfaces';
 import { settings } from '../../settings';
 import { NodeTransmitter } from '../../io/transmitter';
 import { ISender } from './index';
 import { Store } from 'redux';
 
-import { GetMarket, GetPage } from '../../io/request';
+import { GetMarket, GetPage, Execute } from '../../io/request';
 import { BaseResponse } from '../../io/response/response';
 import { connector } from '../../constants';
+import { executeType } from '../../io/types';
 
 export class NodeSender implements ISender {
   private io: Io = null;
@@ -30,18 +31,24 @@ export class NodeSender implements ISender {
     this.io = new Io(requestSettings, transmitter);
   }
 
-  public send() {
-    // TODO send
-  }
+  // private updateStore(response: BaseResponse) {
+  //   this.store.dispatch({
+  //     type: response.getSaverEvent(),
+  //     payload: response.getData()
+  //   });
+  // }
+
+  public send() {}
 
   public fetchAllData(callback) {
     // TODO Promise.all с одним ответом
     // let requestName = request.getRequest().getName();
-    this.io.promiseAll(this.requestList, (responses: Array<BaseResponse>) => {
-      responses.map((response) => {
+    let code = Execute.createPromiseCode(this.requestList);
+    this.io.send(new Execute(code), (response: BaseResponse<executeType>) => {
+      response.getData().map((res: BaseResponse<any>) => {
         this.store.dispatch({
-          type: response.getSaverEvent(),
-          payload: response.getData()
+          type: res.getSaverEvent(),
+          payload: res.getData()
         });
       });
       callback();

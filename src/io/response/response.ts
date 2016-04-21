@@ -1,9 +1,9 @@
 import { IResponse } from '../interfaces';
 
-export class BaseResponse implements IResponse {
+export class BaseResponse<TResponse> implements IResponse<TResponse> {
   private name: string;
   private saverEvent: string;
-  private requestData;
+  private requestData: TResponse;
 
   constructor(name: string, saverEvent: string) {
     this.name = name;
@@ -18,11 +18,11 @@ export class BaseResponse implements IResponse {
   //   return '';
   // }
 
-  public getData() {
+  public getData(): TResponse {
     return this.requestData;
   }
 
-  public setData<T>(data: Array<T>) {
+  public setData(data: TResponse) {
     this.requestData = data;
   }
 
