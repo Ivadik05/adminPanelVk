@@ -9,9 +9,11 @@ if(typeof Promise === 'undefined') {
   require('es6-promise').polyfill();
 }
 var NODE_ENV = JSON.stringify(process.env.NODE_ENV || 'development');
+var GA_TRACKING_ID = JSON.stringify(process.env.GA_TRACKING_ID || '');
 var DEV = Boolean(NODE_ENV === '"development"');
 var developFlag = new webpack.DefinePlugin({
-  'process.env.NODE_ENV': NODE_ENV
+  'process.env.NODE_ENV': NODE_ENV,
+  'process.env.GA_TRACKING_ID': GA_TRACKING_ID
 });
 var listOfPlugins = [];
 //uglify js if production build

@@ -4,7 +4,8 @@
 .vscode
 
 ### Build artifacts ###
-/dist
+/public
+/private
 
 ### NPM files ###
 /node_modules

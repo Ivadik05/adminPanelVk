@@ -68,9 +68,10 @@
     display: -moz-box;
     display: -ms-flexbox;
     background: #9D00FF;
-    display: block;
     width: auto;
     background: none;
+    display: block;
+    visibility: hidden;
   }
 
   .navigation li {
@@ -107,6 +108,10 @@
     border-width: 0 210px 69px 0;
     background-color: rgba(0, 0, 0, 0.5);
     transition: border-width 0.3s, background-color 0.3s;
+  }
+
+  .navigation.open ul {
+    visibility: visible;
   }
 
   .navigation.open li {

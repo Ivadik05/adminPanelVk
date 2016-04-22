@@ -19,7 +19,6 @@ class Market extends React.Component<IProps , {}> {
 
   public render() {
     let markets = this.props.market.data.map((market) => {
-      console.error('market', market);
       return (
           <div className={styles.marketItem}>
             <div className={styles.marketPhoto}>
@@ -37,10 +36,6 @@ class Market extends React.Component<IProps , {}> {
                 str={this.props.market.contentText} />
             <div className={styles.marketList}>
               {markets}
-            </div>
-            <br/>
-            <div>
-              <button onClick={() => {this.props.dispatch(actionCreators.getMarket())}}>Запрос</button>
             </div>
           </Container>
         </div>

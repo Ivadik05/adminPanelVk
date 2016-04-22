@@ -14,10 +14,10 @@ export default function app<Reducer>(state = initialState, action) {
         started: true,
         uiState: uiState.MAIN
       });
-    case '':
-      return objectAssign({}, state, {
-        uiState: uiState.MAIN
-      });
+    // case events.router.LOCATION_CHANGE:
+    //   return objectAssign({}, state, {
+    //     uiState: uiState.MAIN
+    //   });
     default:
       return state;
   }
