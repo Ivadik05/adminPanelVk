@@ -15,22 +15,24 @@ export const routeConstants = {
   ABOUT: '/about',
   MARKET: '/market',
   CONTACTS: '/contacts',
-  DELIVERY: '/delivery'
+  DELIVERY: '/delivery',
+  NO_FOUND: '/404'
 };
 
 export default (
     <Router>
-          <Route path={routeConstants.INDEX} component={App}>
-            <IndexRoute component={Main}/>
-            <Route path={routeConstants.ABOUT} component={About} />
-            <Redirect from={`${routeConstants.ABOUT}.*`} to={routeConstants.ABOUT} />
-            <Route path={routeConstants.MARKET} component={Market} />
-            <Redirect from={`${routeConstants.MARKET}.*`} to={routeConstants.MARKET} />
-            <Route path={routeConstants.CONTACTS} component={Contacts} />
-            <Redirect from={`${routeConstants.CONTACTS}.*`} to={routeConstants.CONTACTS} />
-            <Route path={routeConstants.DELIVERY} component={Delivery} />
-            <Redirect from={`${routeConstants.DELIVERY}.*`} to={routeConstants.DELIVERY} />
-          </Route>
-          <Route path='*' component={NoFound} />
+        <Route path={routeConstants.INDEX} component={App}>
+          <IndexRoute component={Main}/>
+          <Route path={routeConstants.ABOUT} component={About} />
+          <Redirect from={`${routeConstants.ABOUT}.*`} to={routeConstants.ABOUT} />
+          <Route path={routeConstants.MARKET} component={Market} />
+          <Redirect from={`${routeConstants.MARKET}.*`} to={routeConstants.MARKET} />
+          <Route path={routeConstants.CONTACTS} component={Contacts} />
+          <Redirect from={`${routeConstants.CONTACTS}.*`} to={routeConstants.CONTACTS} />
+          <Route path={routeConstants.DELIVERY} component={Delivery} />
+          <Redirect from={`${routeConstants.DELIVERY}.*`} to={routeConstants.DELIVERY} />
+          <Route path={routeConstants.NO_FOUND} component={NoFound} />
+        </Route>
+        <Redirect from={`*`} to={routeConstants.NO_FOUND} />
     </Router>
 )

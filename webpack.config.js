@@ -13,12 +13,7 @@ var DEV = Boolean(NODE_ENV === '"development"');
 var developFlag = new webpack.DefinePlugin({
   'process.env.NODE_ENV': NODE_ENV
 });
-var listOfPlugins = [
-  developFlag,
-  new ExtractTextPlugin('app.css', {
-    allChunks: true
-  })
-];
+var listOfPlugins = [];
 //uglify js if production build
 var uglifierOptions = {
   minimize: true, mangle: {
@@ -33,7 +28,6 @@ var commonConfigs = {
   resolve: {
     extensions: ['', '.webpack.js', '.web.js', '.tsx', '.js', '.ts', '.css']
   },
-  plugins: listOfPlugins,
   module: {
     loaders: [
       {
@@ -79,24 +73,36 @@ var commonConfigs = {
 
 module.exports = [
   objectAssign({}, commonConfigs, {
+    plugins: listOfPlugins.concat([
+      developFlag,
+      new ExtractTextPlugin('app.css', {
+        allChunks: true
+      })
+    ]),
     entry: {
       app: path.resolve('src', 'app.tsx')
     },
     output: {
-      path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(__dirname, 'public', 'dist'),
       filename: '[name].js',
-      publicPath: '/'
+      publicPath: '/public'
     }
   }),
   objectAssign({}, commonConfigs, {
     target: 'node',
+    plugins: listOfPlugins.concat([
+      developFlag,
+      new ExtractTextPlugin('../public/dist/app.css', {
+        allChunks: true
+      })
+    ]),
     entry: {
-      server: path.resolve('src', 'server.tsx')
+      vvs: path.resolve('src', 'server.tsx')
     },
     output: {
-      path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(__dirname, 'private'),
       filename: '[name].js',
-      publicPath: '/dist/'
+      publicPath: '/public/'
     }
   })
 ];
