@@ -9,6 +9,7 @@ import Market from '../ui/containers/wrapper/market';
 import Contacts from '../ui/containers/wrapper/contacts';
 import Delivery from '../ui/containers/wrapper/delivery';
 import NoFound from '../ui/containers/noFound';
+import MarketItem from '../ui/components/market-item/index';
 
 export const routeConstants = {
   INDEX: '/',
@@ -26,6 +27,7 @@ export default (
           <Route path={routeConstants.ABOUT} component={About} />
           <Redirect from={`${routeConstants.ABOUT}.*`} to={routeConstants.ABOUT} />
           <Route path={routeConstants.MARKET} component={Market} />
+          <Route path= {`${routeConstants.MARKET}/:marketId`} component={Market} />
           <Redirect from={`${routeConstants.MARKET}.*`} to={routeConstants.MARKET} />
           <Route path={routeConstants.CONTACTS} component={Contacts} />
           <Redirect from={`${routeConstants.CONTACTS}.*`} to={routeConstants.CONTACTS} />

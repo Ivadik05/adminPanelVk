@@ -15,6 +15,7 @@ export function prepareMarket(payload: Array<Object>): Array<marketType> {
     price: item['price']['text'],
     category: item['category'],
     date: new Date(item['date']),
+    preview_photo: item['photos'] ? item['photos'][0]['photo_604'] : '',
     photo: item['photos'] ? item['photos'][0]['photo_807'] : ''
   }));
 }

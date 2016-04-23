@@ -45,17 +45,11 @@ export default class Nav extends React.Component<IProps, IState> {
     }
     window.addEventListener('scroll', this.onScroll, true);
   }
-
+// <Link to={{ pathname: '/market/bob', query: { showAge: true } }} activeClassName={styles.active}>Market With Query Params</Link>
   public render() {
     return (
         <div className={classNames(styles.navigation, {[styles.open]: this.state.isOpenMenu})}>
-          {this.state.isOpenMenu &&
-          <Helmet
-              meta={[
-                    {'name': 'theme-color', content: '#333'}
-                ]}
-              onChangeClientState={(newState) => console.log(newState)}
-          />}
+          {this.state.isOpenMenu && <Helmet meta={[{'name': 'theme-color', content: '#333'}]}/>}
           <ul>
             <li>
               <button className={styles.navItem}>

@@ -1,13 +1,15 @@
 import * as React from 'react';
 import { Container } from '../../../components/container';
-import { actionCreators } from '../../../action-creators';
+import { Link } from 'react-router';
 import { Markup } from '../../../components/markup';
 import { connect } from 'react-redux';
 import { Dispatch as IDispatch } from 'redux';
 import { utils } from '../../../../utils';
+import { routeConstants } from '../../../../routes';
 let styles = require('./style.css');
 
 export interface IProps {
+  params: Object;
   market: any;
   dispatch: IDispatch;
 }
@@ -22,37 +24,25 @@ class Market extends React.Component<IProps , {}> {
       return (
           <div className={styles.marketItem}>
             <div className={styles.inner}>
-              <div className={styles.marketPhoto}>
-                <img src={market.photo} alt={market.title}/>
-              </div>
-              <div className={styles.name}>{market.title}</div>
-              <div className={styles.price}>Цена: {market.price}</div>
+              <Link to={{ pathname: `${routeConstants.MARKET}/${market.id}`}} activeClassName={styles.active}>
+                <div className={styles.marketPhoto}>
+                  <img src={market.photo} alt={market.title}/>
+                </div>
+                <div className={styles.name}>{market.title}</div>
+                <div className={styles.price}>{market.price}</div>
+              </Link>
             </div>
           </div>
       );
     });
-    let parts: Array<any> = [];
-    let lth = 4;
-    function partition(arr) {
-      if (arr.length > lth) {
-        parts.push(arr.slice(0, lth));
-        partition(arr.slice(lth));
-      } else {
-        arr.length = lth;
-        parts.push(arr.slice(0, lth));
-      }
-    }
-    // markets = markets.concat(markets).splice(1);
-    // partition(markets);
-    parts = parts.map((part) => {
-      return (
-          <div className={styles.row}>
-            {markets}
-          </div>
-      );
-    });
+    console.error('marketId', this.props.params['marketId']);
     return (
         <div className={styles.market}>
+          {this.props.params['marketId'] &&
+            (<div className={styles.overlay}>
+              <div className={styles.marketDetail}></div>
+            </div>)
+          }
           <Container>
             <Markup
                 str={this.props.market.contentText} />

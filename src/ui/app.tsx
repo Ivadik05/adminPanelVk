@@ -29,6 +29,14 @@ class App extends React.Component<IProps, {}> {
   }
 
   public render() {
+    // let bgImage = [
+    //   'http://cs630620.vk.me/v630620541/28050/BU8j3o3JI-E.jpg',
+    //   'http://cs631728.vk.me/v631728541/23f33/5w96LpKezSI.jpg',
+    //   'http://cs631728.vk.me/v631728541/23f05/5ItfeDv7Lt4.jpg'
+    // ];
+    // let appStyles = {
+    //   backgroundImage: `url(${bgImage[utils.getRandomInt(0, 2)]})`
+    // };
     return (
         <div className={styles.app}>
           <Helmet
