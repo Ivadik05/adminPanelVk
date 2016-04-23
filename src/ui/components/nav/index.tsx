@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Link, IndexLink } from 'react-router';
 import { routeConstants } from '../../../routes';
 let classNames = require('classnames');
+import * as Helmet from 'react-helmet';
 let styles = require('./style.css');
 
 export interface IProps extends React.Props<Nav> {
@@ -44,6 +45,19 @@ export default class Nav extends React.Component<IProps, IState> {
   public render() {
     return (
         <div className={classNames(styles.navigation, {[styles.open]: this.state.isOpenMenu})}>
+          {this.state.isOpenMenu &&
+          <Helmet
+              title='My Title'
+              titleTemplate='MySite.com - %s'
+              meta={[
+                    {'name': 'theme-color', content: '#333'}
+                ]}
+              link={[
+                    {'rel': 'canonical', 'href': 'http://mysite.com/example'},
+                    {'rel': 'apple-touch-icon', 'href': 'http://mysite.com/img/apple-touch-icon-57x57.png'},
+                ]}
+              onChangeClientState={(newState) => console.log(newState)}
+          />}
           <ul>
             <li>
               <button className={styles.navItem}>
