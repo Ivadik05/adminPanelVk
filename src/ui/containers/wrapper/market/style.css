@@ -8,7 +8,7 @@
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    margin: 0 -2%;
+    margin: -2% -2%;
 }
 
 .marketItem {
@@ -21,9 +21,29 @@
     height: 180px;
 }
 
+.marketPhoto {
+    overflow: hidden;
+    height: 200px;
+}
+
 .marketPhoto img {
     width: 100%;
+    height: 100%;
     object-fit: cover;
+}
+
+.name {
+    color: #585858;
+    font-size: 16px;
+    margin: 8px 0;
+    min-height: 40px;
+    line-height: 20px;
+}
+
+.price {
+    text-align: right;
+    font-size: 14px;
+    color: #004B6B;
 }
 
 .title {

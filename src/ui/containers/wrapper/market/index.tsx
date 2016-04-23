@@ -25,8 +25,8 @@ class Market extends React.Component<IProps , {}> {
               <div className={styles.marketPhoto}>
                 <img src={market.photo} alt={market.title}/>
               </div>
-              <div>Название: {market.title}</div>
-              <div>Цена: {market.price}</div>
+              <div className={styles.name}>{market.title}</div>
+              <div className={styles.price}>Цена: {market.price}</div>
             </div>
           </div>
       );

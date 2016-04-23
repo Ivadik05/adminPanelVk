@@ -8,7 +8,7 @@ export default class Footer extends React.Component<IProps, void> {
   public render() {
     return (
         <footer className={styles.footer}>
-          <a href='' className={styles.linkInsta}></a>
+          <a href='https://www.instagram.com/vse_vzaimo_svyazano/' className={styles.linkInsta}></a>
         </footer>
     );
   }

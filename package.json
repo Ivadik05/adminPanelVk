@@ -47,7 +47,7 @@
     "react-redux": "^4.0.6",
     "react-router": "^2.0.1",
     "react-router-redux": "^4.0.2",
-    "react-ym": "0.0.4",
+    "react-ym": "0.0.5",
     "redux": "^3.0.6",
     "redux-logger": "^2.4.0",
     "style-loader": "^0.13.0",

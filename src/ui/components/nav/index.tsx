@@ -23,6 +23,7 @@ export default class Nav extends React.Component<IProps, IState> {
     };
 
     this.clickButton = this.clickButton.bind(this);
+    this.onScroll = this.onScroll.bind(this);
   }
 
   public toggleMenu(menuState) {
@@ -35,11 +36,14 @@ export default class Nav extends React.Component<IProps, IState> {
     this.toggleMenu(this.state.isOpenMenu);
   }
 
+  public onScroll() {}
+
   public componentWillUpdate(nextProps, nextState) {
     if (nextProps.routing['locationBeforeTransitions'].pathname !==
         this.props.routing['locationBeforeTransitions'].pathname) {
       this.toggleMenu(true);
     }
+    window.addEventListener('scroll', this.onScroll, true);
   }
 
   public render() {
