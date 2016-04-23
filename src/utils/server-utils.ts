@@ -44,6 +44,8 @@ export function createPage(html, initialState) {
     <head>
       <meta charset="utf-8"/>
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+      <meta name="theme-color" content="#4B93B1">
+      <meta name="google-site-verification" content="Y6Z6xpAQ0jRjRQWaf8N11oPxF0Yj4xKkMIM6cFSg5e0" />
       <title>Всё взаимосвязано</title>
       <link rel='stylesheet' href='/dist/app.css'> 
     </head>

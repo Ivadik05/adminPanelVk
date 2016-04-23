@@ -6,6 +6,9 @@
 
 @media all and (max-width: 600px) {
   .header {
+    height: 138px;
     padding: 4.6% 0 3.1%;
+    position: fixed;
+    width: 100%;
   }
 }

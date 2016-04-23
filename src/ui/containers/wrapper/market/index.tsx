@@ -21,11 +21,33 @@ class Market extends React.Component<IProps , {}> {
     let markets = this.props.market.data.map((market) => {
       return (
           <div className={styles.marketItem}>
-            <div className={styles.marketPhoto}>
-              <img src={market.photo} alt={market.title}/>
+            <div className={styles.inner}>
+              <div className={styles.marketPhoto}>
+                <img src={market.photo} alt={market.title}/>
+              </div>
+              <div>Название: {market.title}</div>
+              <div>Цена: {market.price}</div>
             </div>
-            <div>Название: {market.title}</div>
-            <div>Цена: {market.price}</div>
+          </div>
+      );
+    });
+    let parts: Array<any> = [];
+    let lth = 4;
+    function partition(arr) {
+      if (arr.length > lth) {
+        parts.push(arr.slice(0, lth));
+        partition(arr.slice(lth));
+      } else {
+        arr.length = lth;
+        parts.push(arr.slice(0, lth));
+      }
+    }
+    // markets = markets.concat(markets).splice(1);
+    // partition(markets);
+    parts = parts.map((part) => {
+      return (
+          <div className={styles.row}>
+            {markets}
           </div>
       );
     });
