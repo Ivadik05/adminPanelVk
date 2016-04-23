@@ -30,7 +30,7 @@ export function write(string, type, res) {
 }
 
 export function getFileExtension(link: string) {
-  var dotIndex = link.lastIndexOf('.');
+  let dotIndex = link.lastIndexOf('.');
   if (dotIndex === -1) {
     return '';
   }

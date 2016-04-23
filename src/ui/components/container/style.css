@@ -4,3 +4,9 @@
     margin: 0 auto;
     padding: 20px 40px;
 }
+
+@media all and (max-width: 600px) {
+    .container {
+        padding: 20px 20px;
+    }
+}
