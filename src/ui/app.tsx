@@ -30,6 +30,12 @@ class App extends React.Component<IProps, {}> {
   public render() {
     return (
         <div className={styles.app}>
+          <Helmet
+              meta={[
+                    {'name': 'theme-color', content: '#4B93B1'}
+                ]}
+              onChangeClientState={(newState) => console.log(newState)}
+          />
           <Header/>
           <Nav
             routing={this.props.state.routing}
