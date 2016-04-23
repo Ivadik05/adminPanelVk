@@ -5,6 +5,7 @@ import { marketType } from '../io/types';
 import { uiState } from '../constants';
 import { utils } from '../utils';
 import { actionCreators } from './action-creators';
+import * as Helmet from 'react-helmet';
 
 import Header from './components/header';
 import Nav from './components/nav';
