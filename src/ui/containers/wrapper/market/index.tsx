@@ -49,7 +49,7 @@ class Market extends React.Component<IProps , {}> {
           <Helmet
               title='Магазин'
           />
-          {this.props.params['marketId'] &&
+          {this.props.params['marketI'] &&
             (<div className={styles.overlay}>
               <div className={styles.marketDetail}></div>
             </div>)

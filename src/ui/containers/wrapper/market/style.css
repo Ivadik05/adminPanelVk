@@ -102,6 +102,10 @@
 }
 
 @media all and (max-width: 600px) {
+    .marketPhoto {
+        height: 150px;
+    }
+
     .marketList {
         justify-content: space-between;
         margin: 0;

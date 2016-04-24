@@ -41,8 +41,8 @@ class App extends React.Component<IProps, {}> {
         <div className={styles.app}>
           <Helmet
               htmlAttributes={{'lang': 'ru', 'amp': undefined}}
-              titleTemplate='Всё ВзаимоСвязано - %s'
-              defaultTitle='Всё ВзаимоСвязано'
+              titleTemplate={'Всё ВзаимоСвязано - %s'}
+              defaultTitle={'Всё ВзаимоСвязано'}
               meta={[
                     {'name': 'theme-color', content: '#4B93B1'},
                     {'name': 'viewport',
