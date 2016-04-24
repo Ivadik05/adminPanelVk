@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { Dispatch as IDispatch } from 'redux';
 import { utils } from '../../../../utils';
 import { routeConstants } from '../../../../routes';
+import { actionCreators } from '../../../action-creators';
 import * as Helmet from 'react-helmet';
 let styles = require('./style.css');
 
@@ -49,6 +50,7 @@ class Market extends React.Component<IProps , {}> {
           <Helmet
               title='Магазин'
           />
+          <button onClick={() => {this.props.dispatch(actionCreators.getMarket());}}>Запрос</button>
           {this.props.params['marketI'] &&
             (<div className={styles.overlay}>
               <div className={styles.marketDetail}></div>
