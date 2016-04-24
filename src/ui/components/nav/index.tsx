@@ -78,7 +78,9 @@ export default class Nav extends React.Component<IProps, IState> {
             </li>
           </ul>
           <button className={styles.openButton} onClick={this.clickButton}>
-            <span></span>
+            <span className={styles.hamb1} />
+            <span className={styles.hamb2} />
+            <span className={styles.hamb3} />
           </button>
         </div>
     );

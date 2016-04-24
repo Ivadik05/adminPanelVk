@@ -43,6 +43,10 @@
 }
 
 @media all and (max-width: 600px) {
+  .logoText {
+    font-size: 23px;
+  }
+
   .logo img {
     width: 90px;
   }
