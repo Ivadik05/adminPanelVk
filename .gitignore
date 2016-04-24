@@ -4,9 +4,9 @@
 .vscode
 
 ### Build artifacts ###
-/public
+/public/dist
+/public/robots.txt
 /private
-!/public/favicon-192x192.png
 
 ### NPM files ###
 /node_modules
