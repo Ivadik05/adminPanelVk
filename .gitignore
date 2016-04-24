@@ -4,7 +4,8 @@
 .vscode
 
 ### Build artifacts ###
-/public
+/public/dist
+/public/robots.txt
 /private
 
 ### NPM files ###
