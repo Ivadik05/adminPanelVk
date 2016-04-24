@@ -37,13 +37,15 @@ export function getFileExtension(link: string) {
   return link.substr(dotIndex + 1);
 }
 
-export function createPage(html, initialState) {
+export function createPage(html, initialState, head) {
   return `
   <!doctype html>
-  <html>
+  <html ${head.htmlAttributes.toString()}>
     <head>
       <meta charset="utf-8"/>
       <meta name="google-site-verification" content="Y6Z6xpAQ0jRjRQWaf8N11oPxF0Yj4xKkMIM6cFSg5e0" />
+      ${head.title.toString()}
+      ${head.meta.toString()}
       <link rel='stylesheet' href='/dist/app.css'> 
     </head>
     <body>

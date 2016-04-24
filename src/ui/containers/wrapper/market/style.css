@@ -115,4 +115,15 @@
         padding: 4% 0;
         flex-basis: 48%;
     }
+
+    .name {
+        padding: 0;
+    }
+}
+
+@media all and (max-width: 600px) {
+    .name {
+        font-size: 14px;
+        padding: 0;
+    }
 }

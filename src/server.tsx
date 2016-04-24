@@ -5,6 +5,7 @@ import { renderToString } from 'react-dom/server';
 import { createStore } from 'redux';
 import reducers from './ui/reducers';
 import { match, RouterContext as RoutingContext } from 'react-router';
+import * as Helmet from 'react-helmet';
 import * as fs from 'fs';
 import { createPage, write, writeError, writeNotFound, redirect, getFileExtension } from './utils/server-utils';
 import routes from './routes';
@@ -22,7 +23,8 @@ function renderApp(props, res, store) {
         <RoutingContext {...props}/>
       </Provider>
   );
-  let html = createPage(markup, store.getState());
+  let head = Helmet.rewind();
+  let html = createPage(markup, store.getState(), head);
   write(html, 'text/html', res);
 }
 
