@@ -50,7 +50,7 @@ class Market extends React.Component<IProps , {}> {
           <Helmet
               title='Магазин'
           />
-          <button onClick={() => {this.props.dispatch(actionCreators.getMarket());}}>Запрос</button>
+          
           {this.props.params['marketI'] &&
             (<div className={styles.overlay}>
               <div className={styles.marketDetail}></div>
