@@ -16,7 +16,13 @@ const location = `${pathname}${search}${hash}`;
 
 if (process.env.NODE_ENV === 'production') {
   ga.initialize('UA-76791325-1');
-  ym.initialize('36942255');
+  ym.initialize('36942255', {
+    clickmap: true,
+    trackLinks: true,
+    accurateTrackBounce: true,
+    webvisor: true,
+    trackHash: true
+  });
 }
 
 // 36942255

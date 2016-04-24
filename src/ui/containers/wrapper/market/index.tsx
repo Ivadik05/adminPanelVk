@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { Container } from '../../../components/container';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import { Markup } from '../../../components/markup';
 import { connect } from 'react-redux';
 import { Dispatch as IDispatch } from 'redux';
 import { utils } from '../../../../utils';
 import { routeConstants } from '../../../../routes';
+import * as Helmet from 'react-helmet';
 let styles = require('./style.css');
 
 export interface IProps {
@@ -28,16 +29,26 @@ class Market extends React.Component<IProps , {}> {
                 <div className={styles.marketPhoto}>
                   <img src={market.photo} alt={market.title}/>
                 </div>
-                <div className={styles.name}>{market.title}</div>
+                <div className={styles.name}>
+                  <span>
+                    {market.title}
+                  </span>
+                </div>
                 <div className={styles.price}>{market.price}</div>
               </Link>
             </div>
           </div>
       );
     });
-    console.error('marketId', this.props.params['marketId']);
+    // example
+    // <div>
+    //   <button onClick={() => browserHistory.push('/foo')}>Go to /foo</button>
+    // </div>
     return (
         <div className={styles.market}>
+          <Helmet
+              title='Магазин'
+          />
           {this.props.params['marketId'] &&
             (<div className={styles.overlay}>
               <div className={styles.marketDetail}></div>

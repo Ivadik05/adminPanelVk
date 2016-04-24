@@ -4,14 +4,14 @@
   "description": "Vse vzaimosvyazano",
   "main": "index.js",
   "scripts": {
-    "copy-settings": "cp src/site/robots.txt /public/dist/",
+    "copy-settings": "cp src/site/robots.txt ./public/dist/",
     "build": "./node_modules/webpack/bin/webpack.js",
     "build:watch": "./node_modules/webpack/bin/webpack.js --watch",
     "start:dev": "pm2 start private/vvs.js --watch",
     "typings:install": "./node_modules/typings/dist/bin.js install",
-    "build:prod": "NODE_ENV=production GA_TRACKING_ID=UA-76791325-1 npm run build",
+    "build:prod": "NODE_ENV=production npm run build",
     "deploy:watch": "git pull; npm i && npm run typings:install && npm run build:prod && pm2 restart private/vvs.js || pm2 start private/vvs.js  --watch",
-    "deploy": "git pull; npm i; npm run typings:install && npm run build:prod && npm run copy-settings",
+    "deploy": "git pull; npm i && npm run typings:install && npm run build:prod && cp ./src/site/robots.txt ./public/",
     "deploy-on-server": "chmod +x ./deploy/deploy.sh; ./deploy/deploy.sh"
   },
   "files": [
@@ -47,7 +47,7 @@
     "react-redux": "^4.0.6",
     "react-router": "^2.0.1",
     "react-router-redux": "^4.0.2",
-    "react-ym": "0.0.5",
+    "react-ym": "^0.0.6",
     "redux": "^3.0.6",
     "redux-logger": "^2.4.0",
     "style-loader": "^0.13.0",

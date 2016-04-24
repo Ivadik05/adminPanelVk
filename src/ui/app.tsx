@@ -40,10 +40,15 @@ class App extends React.Component<IProps, {}> {
     return (
         <div className={styles.app}>
           <Helmet
+              htmlAttributes={{'lang': 'ru', 'amp': undefined}}
+              titleTemplate='Всё ВзаимоСвязано - %s'
+              defaultTitle='Всё ВзаимоСвязано'
               meta={[
-                    {'name': 'theme-color', content: '#4B93B1'}
+                    {'name': 'theme-color', content: '#4B93B1'},
+                    {'name': 'viewport',
+                    content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'},
+                    {'name': 'description', 'content': 'Всё Взаимосвязано'}
                 ]}
-              onChangeClientState={(newState) => console.log(newState)}
           />
           <Header/>
           <Nav

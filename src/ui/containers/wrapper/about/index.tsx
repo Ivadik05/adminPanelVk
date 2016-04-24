@@ -5,6 +5,7 @@ import { Markup } from '../../../components/markup';
 import { connect } from 'react-redux';
 import { actionCreators } from '../../../action-creators';
 import { aboutType } from '../../../reducers/about';
+import * as Helmet from 'react-helmet';
 let styles = require('./style.css');
 
 export interface IProps extends React.Props<About> {
@@ -17,6 +18,9 @@ class About extends React.Component<IProps, {}> {
     let text = this.props.about.contentText;
     return (
         <div className={styles.about}>
+          <Helmet
+              title='О нас'
+          />
           <Container>
             <Markup
                 str={text} />
