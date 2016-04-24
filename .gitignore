@@ -6,6 +6,7 @@
 ### Build artifacts ###
 /public
 /private
+!/public/favicon-192x192.png
 
 ### NPM files ###
 /node_modules

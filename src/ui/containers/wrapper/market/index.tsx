@@ -45,12 +45,12 @@ class Market extends React.Component<IProps , {}> {
     // <div>
     //   <button onClick={() => browserHistory.push('/foo')}>Go to /foo</button>
     // </div>
+    // <button onClick={() => {this.props.dispatch(actionCreators.getMarket());}}>Запрос</button>
     return (
         <div className={styles.market}>
           <Helmet
               title='Магазин'
           />
-          
           {this.props.params['marketI'] &&
             (<div className={styles.overlay}>
               <div className={styles.marketDetail}></div>
