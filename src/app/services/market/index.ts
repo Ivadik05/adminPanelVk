@@ -3,21 +3,21 @@ import { WebSender } from '../../sender';
 import {names} from '../names';
 import { events } from '../../../events';
 import { marketType } from '../../../io/types';
-import { Storage, storageKeys } from '../../../storage';
+import { WebStorage, storageKeys } from '../../../storage';
 import { IStorage } from '../../../io/interfaces/IStorage';
 import ShoppingCart from './shopping-cart';
 
 class Market extends Service {
   private sender: WebSender = null;
   private storage: IStorage = null;
-  private shoppingCart;
+  private shoppingCart: ShoppingCart = null;
 
   constructor(sender, store) {
     super(names.services.MARKET);
     let products = store.getState().market.data || [];
     this.sender = sender;
     this.initListeners();
-    this.storage = new Storage(names.services.MARKET);
+    this.storage = new WebStorage(names.services.MARKET);
     this.shoppingCart = new ShoppingCart(products);
     this.checkStorage();
   }

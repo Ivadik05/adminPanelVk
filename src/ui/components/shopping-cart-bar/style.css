@@ -1,0 +1,41 @@
+.shoppingCartBar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background:  rgba(0, 0, 0, 0.5);;
+    height: 43px;
+}
+
+.wrap {
+    height: 100%;
+    position: relative;
+}
+
+.cart {
+    position: absolute;
+    right: 0;
+    padding: 7px;
+    text-align: right;
+    color: #fff;
+}
+
+.title {
+    display: inline-block;
+    font-size: 15px;
+    line-height: 17px;
+}
+
+.count {
+    display: inline-block;
+    line-height: 17px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 6px 10px;
+    border-radius: 3px;
+    margin: 0 8px;
+}
+
+.sum {
+    display: inline-block;
+    line-height: 17px;
+    margin-right: 20px;
+}

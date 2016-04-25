@@ -1,9 +1,10 @@
 import { Io  } from '../../io';
-import { Storage, storageKeys } from '../../storage';
+import { WebStorage, storageKeys } from '../../storage';
 import { IAbstractRequest } from '../../io/interfaces';
 import { settings } from '../../settings';
 import { WebTransmitter } from '../../io/transmitter';
 import { ITransmitter } from '../../io/interfaces';
+import { IStorage } from '../../io/interfaces';
 import { ISender } from './index';
 
 // import { GetAbout } from '../../io/request';
@@ -11,7 +12,7 @@ import { GetMarket } from '../../io/request';
 
 export class WebSender implements ISender {
   private io: Io = null;
-  private storage: Storage = null;
+  private storage: IStorage = null;
 
   constructor() {
     let requestSettings = {

@@ -1,12 +1,12 @@
 import { IStorage } from '../io/interfaces';
 export { storageKeys } from './storage-keys';
 
-export class Storage implements IStorage {
+export class WebStorage implements IStorage {
   private storageKey: string;
-  private storage;
-  private permanentDays;
+  private storage: Storage;
+  private permanentDays: number;
 
-  constructor(storageKey, permanent: boolean = true, permanentDays: number = 5) {
+  constructor(storageKey, permanent: boolean = true, permanentDays: number = 2) {
     this.storageKey = storageKey;
     this.storage = permanent ? localStorage : sessionStorage;
     this.permanentDays = permanentDays;
@@ -16,11 +16,11 @@ export class Storage implements IStorage {
     data = JSON.parse(data);
     let nowDate = new Date();
     function getDateAgo(date, days) {
-      var dateCopy = new Date(date);
+      let dateCopy = new Date(date);
       dateCopy.setDate(date.getDate() - days);
       return dateCopy;
     }
-    if (getDateAgo(nowDate, this.permanentDays) > new Date(data.time)) {
+    if (getDateAgo(nowDate, this.permanentDays) > new Date(data['time'])) {
       this.removeData(name);
     } else {
       return data.payload;

@@ -32,4 +32,16 @@ export type pagesType = {
   text: string
 }
 
+export type shoppingCartItem = {
+  id: string,
+  quantity: number;
+  product: marketType;
+}
+
+export type shoppingCart = {
+  sum: number,
+  count: number,
+  productsSelected: Array<shoppingCartItem>;
+}
+
 export type executeType = Array<BaseResponse<any>>

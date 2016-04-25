@@ -31,6 +31,12 @@ class Market extends React.Component<IProps , {}> {
     })[0];
   }
 
+  // public getProductShoppingCart(productId: string): marketType {
+  //   return this.props.market.shoppingCart['products'].filter(item => {
+  //     return String(item.id) === String(productId);
+  //   })[0];
+  // }
+
   public freezeWindow() {
     let productDetail = this.getProduct(this.props.params['marketId']);
     if (productDetail) {
@@ -42,7 +48,6 @@ class Market extends React.Component<IProps , {}> {
 
   public openProduct(productId) {
     return () => {
-      console.error(routeConstants.MARKET + '/' + productId);
       browserHistory.push(routeConstants.MARKET + '/' + productId);
     };
   }

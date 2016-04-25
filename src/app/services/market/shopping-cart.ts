@@ -1,17 +1,6 @@
 import Service from '../service';
 import { names } from '../names';
-import { marketType } from '../../../io/types/index';
-
-type shoppingCartItem = {
-  id: string,
-  quantity: number;
-  product: marketType;
-}
-
-type shoppingCart = {
-  sum: number,
-  productsSelected: Array<shoppingCartItem>;
-}
+import { marketType, shoppingCart, shoppingCartItem } from '../../../io/types';
 
 class ShoppingCart extends Service {
   private products: Array<marketType> = [];
@@ -26,7 +15,7 @@ class ShoppingCart extends Service {
       id: productDetail.id,
       quantity: 1,
       product: productDetail
-    })
+    });
   }
 
   private getProductCart(productDetailId): any {
@@ -39,6 +28,12 @@ class ShoppingCart extends Service {
     }, 0);
   }
 
+  private getCount(): number {
+    return this.productsSelected.reduce((sum, item: shoppingCartItem) => {
+      return sum + item.quantity;
+    }, 0);
+  }
+
   setCart(cart: shoppingCart) {
     this.productsSelected = cart.productsSelected;
   }
@@ -46,6 +41,7 @@ class ShoppingCart extends Service {
   getCart(): shoppingCart {
     return {
       sum: this.getSum(),
+      count: this.getCount(),
       productsSelected: this.productsSelected
     };
   }

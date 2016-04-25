@@ -1,5 +1,5 @@
 import { events } from '../../events';
-import { marketType } from '../../io/types';
+import { marketType, albumsType, shoppingCart  } from '../../io/types';
 import { connector } from '../../constants';
 let objectAssign = require('object-assign');
 
@@ -7,12 +7,18 @@ let initialState = {
   albums: [],
   data: [],
   contentText: '',
-  shoppingCart: []
+  shoppingCart: {
+    sum: 0,
+    count: 0,
+    productsSelected: []
+  }
 };
 
 type market = {
-  data: Array<marketType>
+  albums: Array<albumsType>;
+  data: Array<marketType>;
   contentText: string;
+  shoppingCart: shoppingCart;
 };
 
 export default function market<Reducer>(state: market = initialState, action) {
