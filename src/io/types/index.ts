@@ -3,6 +3,7 @@ import { BaseResponse } from '../response/response';
 export type marketType = {
   id: string,
   ownerId: string,
+  albumId: string,
   title: string,
   description: string,
   price: string,

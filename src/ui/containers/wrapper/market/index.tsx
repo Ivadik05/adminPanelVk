@@ -57,7 +57,7 @@ class Market extends React.Component<IProps , {}> {
     let markets = this.props.market.data.map((market, i) => {
       return (
           <div className={styles.marketItem} key={i}>
-            <div className={styles.inner} onClick={this.openProduct(market.id)}>
+            <button className={styles.inner} onClick={this.openProduct(market.id)}>
               <div className={styles.marketPhoto}>
                 <img src={market.photo} alt={market.title}/>
               </div>
@@ -67,7 +67,7 @@ class Market extends React.Component<IProps , {}> {
                 </span>
               </div>
               <div className={styles.price}>{market.price}</div>
-            </div>
+            </button>
           </div>
       );
     });

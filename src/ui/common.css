@@ -29,7 +29,6 @@ button {
   text-decoration: none;
 }
 
-button:focus,
 input:focus,
 textarea:focus {
   outline: 0;

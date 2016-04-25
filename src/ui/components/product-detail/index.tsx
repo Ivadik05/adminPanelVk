@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router';
 import { marketType } from '../../../io/types';
 import { routeConstants } from '../../../routes';
 import * as ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { Button, ButtonList } from '../button';
 import Mobile from '../mobileContent';
 let MediaQuery = require('react-responsive');
 let Swipeable = require('react-swipeable');
@@ -45,7 +46,18 @@ class Detail extends React.Component<IProps , {}> {
                     <div className={styles.productImg} style={{backgroundImage: `url(${productDetail.photo})`}}>
                     </div>
                     <div className={styles.productDescription}>
-                      {productDetail.title}
+                      <div className={styles.title}>
+                        {productDetail.title}
+                      </div>
+                      <div className={styles.description}>
+                        {productDetail.description}
+                      </div>
+                      <div className={styles.date}>
+                        {productDetail.date}
+                      </div>
+                      <div className={styles.price}>
+                        {productDetail.price}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -61,7 +73,18 @@ class Detail extends React.Component<IProps , {}> {
                   <div className={styles.productImg} style={{backgroundImage: `url(${productDetail.photo})`}}>
                   </div>
                   <div className={styles.productDescription}>
-                    {productDetail.title}
+                    <div className={styles.title}>
+                      {productDetail.title}
+                    </div>
+                    <div className={styles.price}>
+                      {productDetail.price}
+                    </div>
+                    <div className={styles.description}>
+                      {productDetail.description}
+                    </div>
+                    <ButtonList align='right'>
+                      <Button handler={() => {}}>Добавить</Button>
+                    </ButtonList>
                   </div>
                 </div>
               </div>
