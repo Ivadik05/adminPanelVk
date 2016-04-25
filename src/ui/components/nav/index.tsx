@@ -52,29 +52,29 @@ export default class Nav extends React.Component<IProps, IState> {
           {this.state.isOpenMenu && <Helmet meta={[{'name': 'theme-color', content: '#333'}]}/>}
           <ul>
             <li>
-              <button className={styles.navItem}>
+              <div className={styles.navItem}>
                 <IndexLink to={routeConstants.INDEX} activeClassName={styles.active}>Главная</IndexLink>
-              </button>
+              </div>
             </li>
             <li>
-              <button className={styles.navItem}>
+              <div className={styles.navItem}>
                 <Link to={routeConstants.ABOUT} activeClassName={styles.active}>О нас</Link>
-              </button>
+              </div>
             </li>
             <li>
-              <button className={styles.navItem}>
+              <div className={styles.navItem}>
                 <Link to={routeConstants.MARKET} activeClassName={styles.active}>Магазин</Link>
-              </button>
+              </div>
             </li>
             <li>
-              <button className={styles.navItem}>
+              <div className={styles.navItem}>
                 <Link to={routeConstants.DELIVERY} activeClassName={styles.active}>Оплата и доставка</Link>
-              </button>
+              </div>
             </li>
             <li>
-              <button className={styles.navItem}>
+              <div className={styles.navItem}>
                 <Link to={routeConstants.CONTACTS} activeClassName={styles.active}>Контакты</Link>
-              </button>
+              </div>
             </li>
           </ul>
           <button className={styles.openButton} onClick={this.clickButton}>

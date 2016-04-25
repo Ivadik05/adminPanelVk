@@ -75,6 +75,13 @@ textarea {
   transition: background .2 ease-in-out;
 }
 
+::selection {
+  background: #9DCBDE;; /* Safari */
+}
+::-moz-selection {
+  background: #9DCBDE;; /* Firefox */
+}
+
 h1, h2, h3 {
   font-family: 'Open Sans', sans-serif;
 }

@@ -25,7 +25,6 @@ class Market extends React.Component<IProps , {}> {
 
   public getProduct(productId: string): marketType {
     return this.props.market.data.filter(item => {
-      console.error(item.id);
       return String(item.id) === String(productId);
     })[0];
   }
