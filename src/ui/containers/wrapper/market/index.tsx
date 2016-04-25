@@ -9,6 +9,8 @@ import { routeConstants } from '../../../../routes';
 import { actionCreators } from '../../../action-creators';
 import * as Helmet from 'react-helmet';
 let styles = require('./style.css');
+let NProgress = require('react-nprogress');
+
 
 export interface IProps {
   params: Object;
@@ -21,6 +23,14 @@ class Market extends React.Component<IProps , {}> {
     super(props);
   }
 
+  // public componentWillMount() {
+  //
+  // }
+  //
+  // public componentDidMount() {
+  //
+  // }
+
   public render() {
     let markets = this.props.market.data.map((market) => {
       return (
@@ -28,7 +38,10 @@ class Market extends React.Component<IProps , {}> {
             <div className={styles.inner}>
               <Link to={{ pathname: `${routeConstants.MARKET}/${market.id}`}} activeClassName={styles.active}>
                 <div className={styles.marketPhoto}>
-                  <img src={market.photo} alt={market.title}/>
+                  <img
+                      src={market.photo}
+                      alt={market.title}
+                  />
                 </div>
                 <div className={styles.name}>
                   <span>

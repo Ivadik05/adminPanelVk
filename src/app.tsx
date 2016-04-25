@@ -31,7 +31,6 @@ let sendLocation = () => {
   ga.pageview(window.location.pathname);
 };
 
-
 match(utils.tsReturnTypeFix({ routes, location }), () => {
   render(
       <Provider store={store}>

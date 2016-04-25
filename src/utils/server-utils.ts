@@ -1,4 +1,13 @@
 import * as zlib from 'zlib';
+import * as url from 'url';
+
+export function parseUrl(urlString) {
+  if (urlString.indexOf('//') === 0) {
+    return url.parse(urlString, true, true);
+  } else {
+    return url.parse(urlString, true, false);
+  }
+}
 
 export function writeError(msg, res) {
   res.writeHead(500, { 'Content-Type': 'text/html' });
@@ -50,6 +59,7 @@ export function createPage(html, initialState, head) {
       <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png">
       <meta name="msapplication-config" content="browserconfig.xml">
       <link rel='stylesheet' href='/dist/app.css'> 
+      <link rel='stylesheet' href='/dist/nprogress.css'> 
     </head>
     <body>
       <div id="app">${html}</div>
