@@ -38,6 +38,13 @@ class Market extends React.Component<IProps , {}> {
     }
   }
 
+  public openProduct(productId) {
+    return () => {
+      console.error(routeConstants.MARKET + '/' + productId);
+      browserHistory.push(routeConstants.MARKET + '/' + productId);
+    };
+  }
+
   public componentDidMount() {
     this.freezeWindow();
   }
@@ -50,18 +57,16 @@ class Market extends React.Component<IProps , {}> {
     let markets = this.props.market.data.map((market, i) => {
       return (
           <div className={styles.marketItem} key={i}>
-            <div className={styles.inner}>
-              <Link to={{ pathname: `${routeConstants.MARKET}/${market.id}`}} activeClassName={styles.active}>
-                <div className={styles.marketPhoto}>
-                  <img src={market.photo} alt={market.title}/>
-                </div>
-                <div className={styles.name}>
-                  <span>
-                    {market.title}
-                  </span>
-                </div>
-                <div className={styles.price}>{market.price}</div>
-              </Link>
+            <div className={styles.inner} onClick={this.openProduct(market.id)}>
+              <div className={styles.marketPhoto}>
+                <img src={market.photo} alt={market.title}/>
+              </div>
+              <div className={styles.name}>
+                <span>
+                  {market.title}
+                </span>
+              </div>
+              <div className={styles.price}>{market.price}</div>
             </div>
           </div>
       );

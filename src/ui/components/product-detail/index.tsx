@@ -5,9 +5,8 @@ import { routeConstants } from '../../../routes';
 import * as ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Mobile from '../mobileContent';
 let MediaQuery = require('react-responsive');
-let Swipeable = require('react-swipeable')
+let Swipeable = require('react-swipeable');
 let styles = require('./style.css');
-let animation = require('./animation.css');
 
 export interface IProps {
   productDetail: marketType;

@@ -66,6 +66,7 @@
     overflow: hidden;
     padding: 10px;
     text-align: center;
+    user-select: none;
 }
 
 @media all and (max-width: 800px) {
