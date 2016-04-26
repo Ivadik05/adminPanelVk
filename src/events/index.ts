@@ -19,10 +19,11 @@ export module events {
   export const saver = {
     'EXECUTE': 'execute',
     'MARKET': 'market',
+    'MARKET_ALBUMS': 'market-albums',
     'PAGES': 'pages'
   };
 
   export const router = {
     'LOCATION_CHANGE': '@@router/LOCATION_CHANGE'
-  }
+  };
 }

@@ -47,7 +47,7 @@ class Market extends React.Component<IProps , {}> {
     // </div>
     // <button onClick={() => {this.props.dispatch(actionCreators.getMarket());}}>Запрос</button>
     return (
-        <div className={styles.market}>
+        <div className={styles.market} onClick={() => {this.props.dispatch(actionCreators.getMarket());}}>
           <Helmet
               title='Магазин'
           />

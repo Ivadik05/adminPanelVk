@@ -1,4 +1,5 @@
 import { BaseResponse } from '../response/response';
+
 export type marketType = {
   id: string,
   ownerId: string,
@@ -8,6 +9,18 @@ export type marketType = {
   category: Object,
   date: Date,
   photo: string
+}
+
+export type albumsType = {
+  id: string,
+  ownerId: string,
+  title: string,
+  photo: string;
+}
+
+export type marketAlbumsType = {
+  albums: Array<albumsType>;
+  products: Array<marketType>;
 }
 
 export type pagesType = {

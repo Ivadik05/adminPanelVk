@@ -4,22 +4,8 @@ import { connector } from '../../constants';
 let objectAssign = require('object-assign');
 
 let initialState = {
-  data: [
-    {
-      id: 'ddddd',
-      ownerId: '1231231',
-      title: 'Шарф',
-      description: 'УРАААА!!!',
-      price: '100р',
-      category: {
-        id: 2222,
-        name: 'Кака',
-        section: {}
-      },
-      date: new Date(),
-      photo: ''
-    }
-  ],
+  albums: [],
+  data: [],
   contentText: ''
 };
 
@@ -30,10 +16,14 @@ type market = {
 
 export default function market<Reducer>(state: market = initialState, action) {
   switch (action.type) {
-    case events.saver.MARKET:
     case events.market.DRAW_MARKETS:
       return objectAssign({}, state, {
         data: action.payload
+      });
+    case events.saver.MARKET_ALBUMS:
+      return objectAssign({}, state, {
+        albums: action.payload['albums'],
+        data: action.payload['products']
       });
     case events.saver.PAGES:
       return objectAssign({}, state, {
