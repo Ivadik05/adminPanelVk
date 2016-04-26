@@ -8,6 +8,8 @@ import { utils } from '../../../../utils';
 import { routeConstants } from '../../../../routes';
 import { actionCreators } from '../../../action-creators';
 import * as Helmet from 'react-helmet';
+import { marketType } from '../../../../io/types';
+import ProductDetail from '../../../components/product-detail';
 let styles = require('./style.css');
 
 export interface IProps {
@@ -19,6 +21,12 @@ export interface IProps {
 class Market extends React.Component<IProps , {}> {
   constructor(props) {
     super(props);
+  }
+
+  public getProduct(productId: string): marketType {
+    return this.props.market.data.filter(item => {
+      return String(item.id) === String(productId);
+    })[0];
   }
 
   public render() {
@@ -46,16 +54,14 @@ class Market extends React.Component<IProps , {}> {
     //   <button onClick={() => browserHistory.push('/foo')}>Go to /foo</button>
     // </div>
     // <button onClick={() => {this.props.dispatch(actionCreators.getMarket());}}>Запрос</button>
+
+    let productDetail = this.getProduct(this.props.params['marketId']);
     return (
-        <div className={styles.market}>
+        <div className={styles.market} onClick={() => {this.props.dispatch(actionCreators.getMarket());}}>
           <Helmet
               title='Магазин'
           />
-          {this.props.params['marketI'] &&
-            (<div className={styles.overlay}>
-              <div className={styles.marketDetail}></div>
-            </div>)
-          }
+          {productDetail && <ProductDetail {...{productDetail}}/>}
           <Container>
             <Markup
                 str={this.props.market.contentText} />

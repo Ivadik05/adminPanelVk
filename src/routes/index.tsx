@@ -9,7 +9,6 @@ import Market from '../ui/containers/wrapper/market';
 import Contacts from '../ui/containers/wrapper/contacts';
 import Delivery from '../ui/containers/wrapper/delivery';
 import NoFound from '../ui/containers/noFound';
-import MarketItem from '../ui/components/market-item/index';
 
 export const routeConstants = {
   INDEX: '/',

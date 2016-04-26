@@ -1,10 +1,10 @@
 import { IRequest, IAbstractRequest, types, IConfig } from './interfaces';
 import { utils } from '../utils';
 import { ITransmitter } from './interfaces';
-import {queries} from './queries/index';
-import { prepareMarket, preparePages } from './response';
+import { queries } from './queries/index';
+import { prepareMarket, preparePages, prepareAlbums } from './response';
 import { BaseResponse } from './response';
-import { marketType, pagesType } from './types';
+import { marketType, pagesType, marketAlbumsType } from './types';
 export * from './request';
 
 export class Io {
@@ -100,6 +100,11 @@ export class Io {
       case queries.GET_MARKET:
         result = new BaseResponse<Array<marketType>>(nameResponse, saverEvent);
         result.setData(prepareMarket(response));
+        break;
+      case queries.GET_ALBUMS_MARKET:
+        result = new BaseResponse<marketAlbumsType>(nameResponse, saverEvent);
+          
+        result.setData(prepareAlbums(response));
         break;
       case queries.GET_PAGE:
         // response = response['topics'];

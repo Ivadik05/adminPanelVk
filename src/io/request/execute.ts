@@ -34,28 +34,8 @@ export class Execute extends request.VK {
           .join(',');
       return `{"name":"${req.getName()}","saver":"${req.getSaverEvent()}","data":${method}({${attrStr}})}`;
     });
-    return `return[${requestsStr.join(',')}];`;
+    return `${requestsStr.join(',')}`;
   }
-  // static createPromiseCode(requests: Array<IRequest>): string {
-  //   var posts = API.wall.get({"count": 1});
-  //   if (posts.count<0) {
-  //     return {"post": null, "copy_owner": null};
-  //   } else {
-  //     var post = posts.items[0];
-  //     var copy_owner=null;
-  //     if (post.copy_history[0]){
-  //       if (post.copy_history[0].owner_id > 0) {
-  //         copy_owner = API.users.get({"user_id": post.copy_history[0].owner_id})[0];
-  //       } else
-  //       if (post.copy_history[0].owner_id  < 0) {
-  //         copy_owner = API.groups.getById({"group_ids": -post.copy_history[0].owner_id})[0];
-  //       }
-  //       return {"post": post, "copy_owner": copy_owner};
-  //     } else {
-  //       return {"post": post, "copy_owner": null};
-  //     }
-  //   }
-  // }
 
   /**
    * @returns {string}

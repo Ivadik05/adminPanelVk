@@ -1,7 +1,8 @@
 /*@import url('https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,400italic&subset=latin,cyrillic');*/
 /*@import url('https://fonts.googleapis.com/css?family=Marck+Script&subset=latin,cyrillic');*/
+/*@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700&subset=latin,cyrillic');*/
 
-@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700&subset=latin,cyrillic');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,300,400italic,700&subset=latin,cyrillic');
 @import url('//fonts.googleapis.com/css?family=PT+Sans+Caption&subset=latin,cyrillic');
 
 
@@ -74,8 +75,15 @@ textarea {
   transition: background .2 ease-in-out;
 }
 
+::selection {
+  background: #9DCBDE;; /* Safari */
+}
+::-moz-selection {
+  background: #9DCBDE;; /* Firefox */
+}
+
 h1, h2, h3 {
-  font-family: 'Open Sans Condensed', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 a {
