@@ -45,7 +45,6 @@ export class NodeSender implements ISender {
     // TODO Promise.all с одним ответом
     // let requestName = request.getRequest().getName();
     let code = Execute.createPromiseCode(this.requestList);
-    // {"owner_id":-61279456,"page_id":52376141,"need_source":1,"need_html":1})}
     let customCode = `
         var categories = API.market.getAlbums({"owner_id":-61279456});
         var products = [];
