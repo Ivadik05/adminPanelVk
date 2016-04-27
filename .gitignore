@@ -5,7 +5,6 @@
 
 ### Build artifacts ###
 /public/dist
-/public/robots.txt
 /private
 
 ### NPM files ###
