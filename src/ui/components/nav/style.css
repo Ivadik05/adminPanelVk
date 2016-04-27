@@ -36,6 +36,10 @@
   display: none;
 }
 
+.mobileOverlay {
+  display: none;
+}
+
 @media all and (max-width: 800px) {
   .navigation ul {
     justify-content: space-around;
@@ -180,5 +184,12 @@
 
   .navigation.open .hamb3 {
     transform: translate3d(0, 0, 0) rotate(-45deg);
+  }
+
+  .navigation.open .mobileOverlay {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
   }
 }

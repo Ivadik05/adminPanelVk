@@ -77,6 +77,7 @@ export default class Nav extends React.Component<IProps, IState> {
               </div>
             </li>
           </ul>
+          <div className={styles.mobileOverlay} onClick={() => this.toggleMenu(true)}></div>
           <button className={styles.openButton} onClick={this.clickButton}>
             <span className={styles.hamb1} />
             <span className={styles.hamb2} />
