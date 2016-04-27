@@ -61,7 +61,7 @@ class Market extends React.Component<IProps , {}> {
           <Helmet
               title='Магазин'
           />
-          {productDetail && <ProductDetail {...{productDetail}}/>}
+          <ProductDetail {...{productDetail}}/>
           <Container>
             <Markup
                 str={this.props.market.contentText} />
