@@ -24,28 +24,43 @@ class ProductDetail extends React.Component<IProps , {}> {
   public render() {
     let productDetail: marketType = this.props.productDetail;
     return (
-      <ReactCSSTransitionGroup
-          transitionName={animation}
-          transitionEnterTimeout={1500}
-          transitionLeaveTimeout={1500}
-      >
-        {this.props.productDetail && (
-        <div className={styles.overlay} key={productDetail.id}>
-          <MediaQuery minDeviceWidth={300}>
-              <div>ТЕКСТ НА МОБИЛЕ</div>
+        <div>
+          <MediaQuery maxDeviceWidth={600}>
+            <ReactCSSTransitionGroup
+                transitionName={animation}
+                transitionLeaveTimeout={600}
+            >
+              {this.props.productDetail ? (
+              <div className={styles.overlay} key={productDetail.id}>
+                <div className={styles.productDetail}>
+                  <button className={styles.closeButton} onClick={this.onClose}>x</button>
+                  <div className={styles.productDetailwrap}>
+                    <div className={styles.productImg} style={{backgroundImage: `url(${productDetail.photo})`}}>
+                    </div>
+                    <div className={styles.productDescription}>
+                      {productDetail.title}
+                    </div>
+                  </div>
+                </div>
+              </div>) : null}
+            </ReactCSSTransitionGroup>
           </MediaQuery>
-          <div className={styles.productDetail}>
-            <button className={styles.closeButton} onClick={this.onClose}>x</button>
-            <div className={styles.productDetailwrap}>
-              <div className={styles.productImg} style={{backgroundImage: `url(${productDetail.photo})`}}>
+          <MediaQuery minDeviceWidth={600}>
+            {this.props.productDetail ? (
+            <div className={styles.overlay} key={productDetail.id}>
+              <div className={styles.productDetail}>
+                <button className={styles.closeButton} onClick={this.onClose}>x</button>
+                <div className={styles.productDetailwrap}>
+                  <div className={styles.productImg} style={{backgroundImage: `url(${productDetail.photo})`}}>
+                  </div>
+                  <div className={styles.productDescription}>
+                    {productDetail.title}
+                  </div>
+                </div>
               </div>
-              <div className={styles.productDescription}>
-                {productDetail.title}
-              </div>
-            </div>
-          </div>
-        </div>)}
-      </ReactCSSTransitionGroup>
+            </div>) : null}
+          </MediaQuery>
+        </div>
     );
   }
 }
