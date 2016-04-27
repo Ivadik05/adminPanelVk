@@ -22,7 +22,7 @@ class ProductDetail extends React.Component<IProps , {}> {
     return (
         <div className={styles.overlay}>
           <div className={styles.marketDetail}>
-            <button className={styles.closeButton} onClick={this.onClose}>xx</button>
+            <button className={styles.closeButton} onClick={this.onClose}>x</button>
             {productDetail.title}
           </div>
         </div>

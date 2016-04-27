@@ -40,13 +40,13 @@ class App extends React.Component<IProps, {}> {
     return (
         <div className={styles.app}>
           <Helmet
-              htmlAttributes={{'lang': 'ru', 'amp': undefined}}
-              titleTemplate={'Всё ВзаимоСвязано - %s'}
-              defaultTitle={'Всё ВзаимоСвязано'}
+              htmlAttributes={{'lang': 'ru'}}
+              titleTemplate={'Всё Взаимоcвязано - %s'}
+              defaultTitle={'Всё Взаимоcвязано'}
               meta={[
                     {'name': 'theme-color', content: '#4B93B1'},
                     {'name': 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'},
-                    {'name': 'description', 'content': 'Всё Взаимосвязано'}
+                    {'name': 'description', 'content': 'Всё Взаимосвязано - вязание и рукоделие.'}
                 ]}
           />
           <Header/>
