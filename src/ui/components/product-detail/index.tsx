@@ -4,6 +4,7 @@ import { marketType } from '../../../io/types';
 import { routeConstants } from '../../../routes';
 import * as ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Mobile from '../mobileContent';
+let MediaQuery = require('react-responsive');
 let styles = require('./style.css');
 let animation = require('./animation.css');
 
@@ -30,9 +31,9 @@ class ProductDetail extends React.Component<IProps , {}> {
       >
         {this.props.productDetail && (
         <div className={styles.overlay} key={productDetail.id}>
-          <Mobile visible={false}>
+          <MediaQuery minDeviceWidth={300}>
               <div>ТЕКСТ НА МОБИЛЕ</div>
-          </Mobile>
+          </MediaQuery>
           <div className={styles.productDetail}>
             <button className={styles.closeButton} onClick={this.onClose}>x</button>
             <div className={styles.productDetailwrap}>
