@@ -21,9 +21,16 @@ class ProductDetail extends React.Component<IProps , {}> {
     let productDetail: marketType = this.props.productDetail;
     return (
         <div className={styles.overlay}>
-          <div className={styles.marketDetail}>
+          <div className={styles.productDetail}>
             <button className={styles.closeButton} onClick={this.onClose}>x</button>
-            {productDetail.title}
+            <div className={styles.productDetailwrap}>
+              <div className={styles.productImg} style={{backgroundImage: `url(${productDetail.photo})`}}>
+
+              </div>
+              <div className={styles.productDescription}>
+                {productDetail.title}
+              </div>
+            </div>
           </div>
         </div>
     );
