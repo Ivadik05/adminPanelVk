@@ -10,7 +10,7 @@
     "typings:install": "./node_modules/typings/dist/bin.js install",
     "build:prod": "NODE_ENV=production npm run build",
     "deploy:watch": "git pull; npm i && npm run typings:install && npm run build:prod && pm2 restart private/vvs.js || pm2 start private/vvs.js  --watch",
-    "deploy": "git pull; npm i && npm run typings:install && npm run build:prod",
+    "deploy": "git pull; npm i && npm run typings:install && npm run build:prod && pm2 restart private/vvs.js || pm2 start private/vvs.js",
     "deploy-on-server": "./deploy/deploy.sh"
   },
   "files": [
