@@ -30,7 +30,7 @@ class Detail extends React.Component<IProps , {}> {
           <MediaQuery maxDeviceWidth={600}>
           <ReactCSSTransitionGroup
               transitionEnterTimeout={500}
-              transitionLeaveTimeout={600}
+              transitionLeaveTimeout={700}
               transitionName={ {
                 enter: styles.enter,
                 enterActive: styles.enterActive,

@@ -11,7 +11,7 @@
     "build:prod": "NODE_ENV=production npm run build",
     "deploy:watch": "git pull; npm i && npm run typings:install && npm run build:prod && pm2 restart private/vvs.js || pm2 start private/vvs.js  --watch",
     "deploy": "git pull; npm i && npm run typings:install && npm run build:prod && pm2 restart private/vvs.js || pm2 start private/vvs.js",
-    "deploy-on-server": "./deploy/clearCache.sh && ./deploy/deploy.sh"
+    "deploy-on-server": "./deploy/clearCache.sh; ./deploy/deploy.sh"
   },
   "files": [
     "public/"
