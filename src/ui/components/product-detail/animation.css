@@ -9,7 +9,7 @@
 }
 .leave {
     transform: translate3d(0, 0, 0) translateY(0);
-    transition: transform 500ms cubic-bezier(0, 1, 0.5, 1), box-shadow 500ms cubic-bezier(0, 1, 0.5, 1);
+    transition: transform 400ms linear, box-shadow 400ms linear;
     box-shadow: 0 7px 33px 0 rgba(0, 0, 0, 0.4);
 }
 .leaveActive {

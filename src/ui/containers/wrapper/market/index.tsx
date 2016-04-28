@@ -29,6 +29,23 @@ class Market extends React.Component<IProps , {}> {
     })[0];
   }
 
+  public freezeWindow() {
+    let productDetail = this.getProduct(this.props.params['marketId']);
+    if (productDetail) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }
+
+  public componentDidMount() {
+    this.freezeWindow();
+  }
+
+  public componentDidUpdate() {
+    this.freezeWindow();
+  }
+
   public render() {
     let markets = this.props.market.data.map((market) => {
       return (
