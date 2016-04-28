@@ -25,7 +25,7 @@ class Market extends Service {
     let requestList: Array<IRequest> = [
       new GetMarket(connector.GROUP_ID, '', true)
     ];
-    this.listenEvent(events.market.GET_MARKET, () => {
+    this.listenEvent('', () => {
       let code = Execute.createPromiseCode(requestList);
       let customCode = `var categories = API.market.getAlbums({"owner_id":-61279456});
         var products = [];

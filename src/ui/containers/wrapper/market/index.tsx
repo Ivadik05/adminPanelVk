@@ -47,9 +47,9 @@ class Market extends React.Component<IProps , {}> {
   }
 
   public render() {
-    let markets = this.props.market.data.map((market) => {
+    let markets = this.props.market.data.map((market, i) => {
       return (
-          <div className={styles.marketItem}>
+          <div className={styles.marketItem} key={i}>
             <div className={styles.inner}>
               <Link to={{ pathname: `${routeConstants.MARKET}/${market.id}`}} activeClassName={styles.active}>
                 <div className={styles.marketPhoto}>

@@ -29,8 +29,14 @@ class Detail extends React.Component<IProps , {}> {
         <div>
           <MediaQuery maxDeviceWidth={600}>
           <ReactCSSTransitionGroup
-              transitionName={animation}
+              transitionEnterTimeout={500}
               transitionLeaveTimeout={600}
+              transitionName={ {
+                enter: styles.enter,
+                enterActive: styles.enterActive,
+                leave: styles.leave,
+                leaveActive: styles.leaveActive
+              } }
           >
             {this.props.productDetail ? (
               <div className={styles.overlay} key={productDetail.id}>
