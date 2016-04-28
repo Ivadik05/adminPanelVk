@@ -23,35 +23,29 @@ class Detail extends React.Component<IProps , {}> {
     browserHistory.push(routeConstants.MARKET);
   }
 
-  public swipedUp() {
-    this.onClose();
-  }
-
   public render() {
     let productDetail: marketType = this.props.productDetail;
     return (
         <div>
           <MediaQuery maxDeviceWidth={600}>
-            <Swipeable onSwipedUp={this.swipedUp}>
-              <ReactCSSTransitionGroup
-                  transitionName={animation}
-                  transitionLeaveTimeout={500}
-              >
-                {this.props.productDetail ? (
-                  <div className={styles.overlay} key={productDetail.id}>
-                    <div className={styles.productDetail}>
-                      <button className={styles.closeButton} onClick={this.onClose}>x</button>
-                      <div className={styles.productDetailwrap}>
-                        <div className={styles.productImg} style={{backgroundImage: `url(${productDetail.photo})`}}>
-                        </div>
-                        <div className={styles.productDescription}>
-                          {productDetail.title}
-                        </div>
-                      </div>
+          <ReactCSSTransitionGroup
+              transitionName={animation}
+              transitionLeaveTimeout={600}
+          >
+            {this.props.productDetail ? (
+              <div className={styles.overlay} key={productDetail.id}>
+                <div className={styles.productDetail}>
+                  <button className={styles.closeButton} onClick={this.onClose}>x</button>
+                  <div className={styles.productDetailwrap}>
+                    <div className={styles.productImg} style={{backgroundImage: `url(${productDetail.photo})`}}>
                     </div>
-                  </div>) : null}
-              </ReactCSSTransitionGroup>
-            </Swipeable>
+                    <div className={styles.productDescription}>
+                      {productDetail.title}
+                    </div>
+                  </div>
+                </div>
+              </div>) : null}
+          </ReactCSSTransitionGroup>
           </MediaQuery>
           <MediaQuery minDeviceWidth={600}>
             {this.props.productDetail ? (
