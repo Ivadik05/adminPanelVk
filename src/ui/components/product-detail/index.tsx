@@ -16,6 +16,7 @@ export interface IProps {
 class Detail extends React.Component<IProps , {}> {
   constructor(props) {
     super(props);
+    this.onClose = this.onClose.bind(this);
   }
 
   public onClose() {
