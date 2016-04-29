@@ -11,12 +11,12 @@ import {events} from '../../events';
 
 class Application extends Service {
   // private transponder: Transponder = null;
-  constructor(sender) {
+  constructor(sender, store) {
     super(names.services.APPLICATION);
     this.publishEvent(events.system.APPLICATION_STARTED);
   }
 }
 
-export default function startApplicationService(sender) {
-  return new Application(sender);
+export default function startApplicationService(sender, store) {
+  return new Application(sender, store);
 }

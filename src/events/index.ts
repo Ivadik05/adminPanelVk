@@ -8,7 +8,10 @@ export module events {
 
   export const market = {
     'DRAW_MARKETS': 'draw-markets',
-    'GET_MARKET': 'get-market'
+    'GET_MARKET': 'get-market',
+    'ADD_PRODUCT': 'add-product',
+    'REMOVE_PRODUCT': 'remove-product',
+    'DRAW_SHOPPING_CART': 'draw-shopping-cart'
   };
 
   export const about = {

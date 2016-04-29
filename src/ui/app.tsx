@@ -28,6 +28,13 @@ class App extends React.Component<IProps, {}> {
     this.props.dispatch(actionCreators.getAbout());
   }
 
+  public componentDidMount() {
+    let tempStore = document.querySelector('#tempStore');
+    if (tempStore) {
+      tempStore.remove();
+    }
+  }
+
   public render() {
     // let bgImage = [
     //   'http://cs630620.vk.me/v630620541/28050/BU8j3o3JI-E.jpg',

@@ -10,8 +10,10 @@ export function prepareMarket(payload: Array<Object>): Array<marketType> {
   return payload.map(item => ({
     id: item['id'],
     ownerId: item['owner_id'],
+    albumId: '',
     title: item['title'],
     description: item['description'],
+    priceNum: parseFloat(item['price']['text']),
     price: item['price']['text'],
     category: item['category'],
     date: new Date(item['date']),

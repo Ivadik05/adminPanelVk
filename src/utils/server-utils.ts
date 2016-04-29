@@ -38,6 +38,7 @@ export function getFileExtension(link: string) {
 }
 
 export function createPage(html, initialState, head) {
+  //noinspection TsLint
   return `
   <!doctype html>
   <html ${head.htmlAttributes.toString()}>
@@ -46,14 +47,14 @@ export function createPage(html, initialState, head) {
       <meta name="google-site-verification" content="Y6Z6xpAQ0jRjRQWaf8N11oPxF0Yj4xKkMIM6cFSg5e0" />
       ${head.title.toString()}
       ${head.meta.toString()}
-      <link rel="apple-touch-icon" sizes="192x192" href="favicon-192x192.png">
-      <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png">
-      <meta name="msapplication-config" content="browserconfig.xml">
+      <link rel="apple-touch-icon" sizes="192x192" href="/favicon-192x192.png">
+      <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+      <meta name="msapplication-config" content="/browserconfig.xml">
       <link rel='stylesheet' href='/dist/app.css'> 
     </head>
     <body>
       <div id="app">${html}</div>
-      <script>
+      <script id='tempStore'>
         window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
       </script>
       <script src="/dist/app.js"></script>

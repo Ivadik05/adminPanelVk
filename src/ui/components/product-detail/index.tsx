@@ -11,6 +11,8 @@ let styles = require('./style.css');
 
 export interface IProps {
   productDetail: marketType;
+  onRemoveProduct: Function;
+  onAddProduct: Function;
 }
 
 class Detail extends React.Component<IProps , {}> {
@@ -43,22 +45,7 @@ class Detail extends React.Component<IProps , {}> {
                 <div className={styles.productDetail}>
                   <button className={styles.closeButton} onClick={this.onClose}>x</button>
                   <div className={styles.productDetailwrap}>
-                    <div className={styles.productImg} style={{backgroundImage: `url(${productDetail.photo})`}}>
-                    </div>
-                    <div className={styles.productDescription}>
-                      <div className={styles.title}>
-                        {productDetail.title}
-                      </div>
-                      <div className={styles.description}>
-                        {productDetail.description}
-                      </div>
-                      <div className={styles.date}>
-                        {productDetail.date}
-                      </div>
-                      <div className={styles.price}>
-                        {productDetail.price}
-                      </div>
-                    </div>
+
                   </div>
                 </div>
               </div>) : null}
@@ -73,17 +60,20 @@ class Detail extends React.Component<IProps , {}> {
                   <div className={styles.productImg} style={{backgroundImage: `url(${productDetail.photo})`}}>
                   </div>
                   <div className={styles.productDescription}>
-                    <div className={styles.title}>
-                      {productDetail.title}
-                    </div>
-                    <div className={styles.price}>
-                      {productDetail.price}
-                    </div>
-                    <div className={styles.description}>
-                      {productDetail.description}
+                    <div className={styles.detailText}>
+                      <div className={styles.title}>
+                        {productDetail.title}
+                      </div>
+                      <div className={styles.price}>
+                        {productDetail.price}
+                      </div>
+                      <div className={styles.description}>
+                        {productDetail.description}
+                      </div>
                     </div>
                     <ButtonList align='right'>
-                      <Button handler={() => {}}>Добавить</Button>
+                      <Button type='error' handler={() => {this.props.onRemoveProduct(productDetail)}}>Убрать</Button>
+                      <Button handler={() => {this.props.onAddProduct(productDetail)}}>Добавить</Button>
                     </ButtonList>
                   </div>
                 </div>

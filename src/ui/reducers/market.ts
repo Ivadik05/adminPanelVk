@@ -6,7 +6,8 @@ let objectAssign = require('object-assign');
 let initialState = {
   albums: [],
   data: [],
-  contentText: ''
+  contentText: '',
+  shoppingCart: []
 };
 
 type market = {
@@ -19,6 +20,10 @@ export default function market<Reducer>(state: market = initialState, action) {
     case events.market.DRAW_MARKETS:
       return objectAssign({}, state, {
         data: action.payload
+      });
+    case events.market.DRAW_SHOPPING_CART:
+      return objectAssign({}, state, {
+        shoppingCart: action.payload
       });
     case events.saver.MARKET_ALBUMS:
       return objectAssign({}, state, {

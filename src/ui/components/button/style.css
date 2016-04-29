@@ -40,26 +40,28 @@
 }
 
 .btn[disabled] {
-  background-color: #f3f3f3;
-  color: #AAAAAA;
-  border: solid 1px #bbbbbb;
+  background-color: #DFDFDF !important;
+  box-shadow: none;
+  color: #9F9F9F !important;
+  cursor: default;
 }
 
 .error {
-  /*composes: btn;*/
-  /*border: solid 1px #e57171;*/
-  /*background-color: transparent;*/
-  /*color: #e57171;*/
+  composes: btn;
+  background-color: #F44336 !important;
 }
 
 .white {
-  /*composes: btn;*/
-  /*background-color: #fcfcfc;*/
-  /*color: #6b747e;*/
-  /*border: none;*/
-  /*box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);*/
+  composes: btn;
+  background-color: #fcfcfc;
+  color: #6b747e;
+  border: none;
 }
 
-/*.ButtonList button:not(:last-child) {*/
-  /*margin-right: 14px;*/
-/*}*/
+.buttonList {
+  white-space: nowrap;
+}
+
+.buttonList button:not(:last-child) {
+  margin-right: 10px;
+}

@@ -7,6 +7,7 @@ export type marketType = {
   title: string,
   description: string,
   price: string,
+  priceNum: number,
   category: Object,
   date: Date,
   photo: string
