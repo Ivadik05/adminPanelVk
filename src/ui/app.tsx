@@ -11,6 +11,7 @@ import Header from './components/header';
 import Nav from './components/nav';
 import Wrapper from './containers/wrapper';
 import Footer from './components/footer';
+import ShoppingCartBar from './components/shopping-cart-bar';
 let styles = require('./style.css');
 
 interface IProps extends React.Props<App> {
@@ -26,6 +27,13 @@ class App extends React.Component<IProps, {}> {
 
   public getAbout() {
     this.props.dispatch(actionCreators.getAbout());
+  }
+
+  public componentDidMount() {
+    let tempStore = document.querySelector('#tempStore');
+    if (tempStore) {
+      tempStore.remove();
+    }
   }
 
   public render() {
@@ -58,6 +66,10 @@ class App extends React.Component<IProps, {}> {
             {this.props.children}
           </Wrapper>
           <Footer/>
+          <ShoppingCartBar
+              shoppingCart={this.props.state.market.shoppingCart}
+              routing={this.props.state.routing}
+          />
         </div>
     );
   }

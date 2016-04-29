@@ -15,7 +15,7 @@ type ButtonListProps = {
 
 export let ButtonList = (props) => {
   return (
-    <div className={styles.ButtonList}
+    <div className={styles.buttonList}
           style={{textAlign: props.align || 'left'}}
           >
             {props.children}

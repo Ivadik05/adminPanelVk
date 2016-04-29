@@ -3,9 +3,9 @@ import startMarketService from './services/market';
 import startAboutService from './services/about';
 import { WebSender } from './sender';
 
-export default function startServices() {
+export default function startServices(store) {
   let sender = new WebSender();
-  startApplicationService(sender);
-  startMarketService(sender);
-  startAboutService(sender);
+  startApplicationService(sender, store);
+  startMarketService(sender, store);
+  startAboutService(sender, store);
 }

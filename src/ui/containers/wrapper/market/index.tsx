@@ -21,6 +21,8 @@ export interface IProps {
 class Market extends React.Component<IProps , {}> {
   constructor(props) {
     super(props);
+    this.onAddProduct = this.onAddProduct.bind(this);
+    this.onRemoveProduct = this.onRemoveProduct.bind(this);
   }
 
   public getProduct(productId: string): marketType {
@@ -28,6 +30,12 @@ class Market extends React.Component<IProps , {}> {
       return String(item.id) === String(productId);
     })[0];
   }
+
+  // public getProductShoppingCart(productId: string): marketType {
+  //   return this.props.market.shoppingCart['products'].filter(item => {
+  //     return String(item.id) === String(productId);
+  //   })[0];
+  // }
 
   public freezeWindow() {
     let productDetail = this.getProduct(this.props.params['marketId']);
@@ -40,7 +48,6 @@ class Market extends React.Component<IProps , {}> {
 
   public openProduct(productId) {
     return () => {
-      console.error(routeConstants.MARKET + '/' + productId);
       browserHistory.push(routeConstants.MARKET + '/' + productId);
     };
   }
@@ -53,11 +60,21 @@ class Market extends React.Component<IProps , {}> {
     this.freezeWindow();
   }
 
+  public onRemoveProduct(productDetail: marketType) {
+    let { dispatch } = this.props;
+    dispatch(actionCreators.removeProductInCart(productDetail));
+  }
+
+  public onAddProduct(productDetail: marketType) {
+    let { dispatch } = this.props;
+    dispatch(actionCreators.addProductInCart(productDetail));
+  }
+
   public render() {
     let markets = this.props.market.data.map((market, i) => {
       return (
           <div className={styles.marketItem} key={i}>
-            <div className={styles.inner} onClick={this.openProduct(market.id)}>
+            <button className={styles.inner} onClick={this.openProduct(market.id)}>
               <div className={styles.marketPhoto}>
                 <img src={market.photo} alt={market.title}/>
               </div>
@@ -67,26 +84,27 @@ class Market extends React.Component<IProps , {}> {
                 </span>
               </div>
               <div className={styles.price}>{market.price}</div>
-            </div>
+            </button>
           </div>
       );
     });
+    let productDetail = this.getProduct(this.props.params['marketId']);
     // example
     // <div>
     //   <button onClick={() => browserHistory.push('/foo')}>Go to /foo</button>
     // </div>
     // <button onClick={() => {this.props.dispatch(actionCreators.getMarket());}}>Запрос</button>
-
-    let productDetail = this.getProduct(this.props.params['marketId']);
+    let { dispatch, market } = this.props;
     return (
-        <div className={styles.market} onClick={() => {this.props.dispatch(actionCreators.getMarket());}}>
+        <div className={styles.market}>
           <Helmet
               title='Магазин'
           />
-          <ProductDetail {...{productDetail}}/>
+          <ProductDetail {...{productDetail}} onRemoveProduct={this.onRemoveProduct} onAddProduct={this.onAddProduct}/>
           <Container>
             <Markup
-                str={this.props.market.contentText} />
+                str={market.contentText} />
+            <div>Корзина {this.props.market.shoppingCart.sum}</div>
             <div className={styles.marketList}>
               {markets}
             </div>

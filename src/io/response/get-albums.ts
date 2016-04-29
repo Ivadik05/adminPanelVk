@@ -26,6 +26,7 @@ export function prepareAlbums(payload: Array<Object>): marketAlbumsType {
       title: prod['title'],
       description: prod['description'],
       price: prod['price']['text'],
+      priceNum: parseFloat(prod['price']['text']),
       category: prod['category'],
       date: new Date(prod['date']),
       preview_photo: prod['photos'] ? prod['photos'][0]['photo_604'] : '',

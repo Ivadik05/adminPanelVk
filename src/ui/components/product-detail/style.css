@@ -12,7 +12,7 @@
 .productDetail {
     margin: auto;
     width: 60%;
-    height: 90%;
+    height: 65%;
     background-color: #FCFCFC;
     position: relative;
     border-radius: 3px;
@@ -35,16 +35,46 @@
 
 .productImg {
     display: flex;
-    width: 60%;
+    width: 50%;
     height: 100%;
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.productDescription {
+    width: 50%;
+    height: 100%;
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .productImg img {
     object-fit: cover;
     height: 100%;
+}
+
+.title {
+    color: #585858;
+    font-size: 16px;
+}
+
+.description {
+    white-space: pre-line;
+    margin: 13px 0;
+}
+
+.price {
+    font-size: 14px;
+    line-height: 23px;
+    color: #6D6D6D;
+}
+
+.detailText {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 @media all and (max-width: 600px) {

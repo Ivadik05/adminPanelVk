@@ -1,9 +1,10 @@
 import { Io  } from '../../io';
-import { Storage, storageMarks } from '../../storage';
+import { WebStorage, storageKeys } from '../../storage';
 import { IAbstractRequest } from '../../io/interfaces';
 import { settings } from '../../settings';
 import { WebTransmitter } from '../../io/transmitter';
 import { ITransmitter } from '../../io/interfaces';
+import { IStorage } from '../../io/interfaces';
 import { ISender } from './index';
 
 // import { GetAbout } from '../../io/request';
@@ -11,7 +12,7 @@ import { GetMarket } from '../../io/request';
 
 export class WebSender implements ISender {
   private io: Io = null;
-  private storage: Storage = null;
+  private storage: IStorage = null;
 
   constructor() {
     let requestSettings = {
@@ -20,7 +21,6 @@ export class WebSender implements ISender {
     };
     let transmitter: ITransmitter = new WebTransmitter(requestSettings);
     this.io = new Io(requestSettings, transmitter);
-    this.storage = new Storage();
 
     // let requests = [new GetMarket('-61279456', '', true), new GetAbout('61279456', '33502073')];
     // this.io.promiseAll(requests, (response: Array<string>) => {

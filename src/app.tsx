@@ -41,5 +41,5 @@ match(utils.tsReturnTypeFix({ routes, location }), () => {
   );
 });
 
-startServices();
+startServices(store);
 

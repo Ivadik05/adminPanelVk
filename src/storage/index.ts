@@ -1,60 +1,58 @@
-export { storageMarks } from './storage-marks';
+import { IStorage } from '../io/interfaces';
+export { storageKeys } from './storage-keys';
 
-export class Storage {
+export class WebStorage implements IStorage {
+  private storageKey: string;
+  private storage: Storage;
+  private permanentDays: number;
 
-
-  constructor() {
-
+  constructor(storageKey, permanent: boolean = true, permanentDays: number = 2) {
+    this.storageKey = storageKey;
+    this.storage = permanent ? localStorage : sessionStorage;
+    this.permanentDays = permanentDays;
   }
-}
 
-// /**
-//  * @constructor
-//  */
-// appStorage = function(storageKey) {
-//
-//   /**
-//    * @type {string}
-//    */
-//   this.__storageKey = storageKey;
-// };
-//
-//
-// /**
-//  * @param {!Object} payload
-//  */
-// appStorage.prototype.saveStorage = function(payload) {
-//   localStorage.setItem(this.__storageKey, JSON.stringify(payload));
-// };
-//
-//
-// /**
-//  * @return {Array}
-//  */
-// appStorage.prototype.restoreData = function() {
-//   var data = localStorage.getItem(this.__storageKey);
-//   if (data) {
-//     return JSON.parse(data)
-//   }
-//   return [];
-// };
-//
-//
-// /**
-//  */
-// appStorage.prototype.removeData = function() {
-//   localStorage.removeItem(this.__storageKey);
-// };
-//
-//
-// /**
-//  */
-// appStorage.prototype.listenerStorage = function(callback) {
-//   var self = this;
-//   window.addEventListener('storage', handleStorage, false);
-//   function handleStorage(event) {
-//     if (event.key === self.__storageKey) {
-//       callback(event);
-//     }
-//   }
-// };
+  public getPayloadData(data) {
+    data = JSON.parse(data);
+    let nowDate = new Date();
+    function getDateAgo(date, days) {
+      let dateCopy = new Date(date);
+      dateCopy.setDate(date.getDate() - days);
+      return dateCopy;
+    }
+    if (getDateAgo(nowDate, this.permanentDays) > new Date(data['time'])) {
+      this.removeData(name);
+    } else {
+      return data.payload;
+    }
+    return null;
+  }
+
+  public saveData(name: string, payload: any) {
+    let data = {
+      time: new Date,
+      payload: payload
+    };
+    this.storage.setItem(`${this.storageKey}:${name}`, JSON.stringify(data));
+  }
+
+  public restoreData(name: string) {
+    let data = this.storage.getItem(`${this.storageKey}:${name}`);
+    if (data) {
+      return this.getPayloadData(data);
+    }
+    return null;
+  }
+
+  public removeData(name: string) {
+    this.storage.removeItem(`${this.storageKey}:${name}`);
+  };
+
+  public listenStorage(name: string, callback: Function) {
+    window.addEventListener('storage', (event) => {
+      if (event.key === `${this.storageKey}-${name}`) {
+        callback(event);
+      }
+    }, false);
+  };
+}

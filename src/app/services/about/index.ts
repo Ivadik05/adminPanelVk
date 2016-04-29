@@ -10,7 +10,7 @@ import { connector } from '../../../constants';
 
 class About extends Service {
   private sender: WebSender = null;
-  constructor(sender) {
+  constructor(sender, store) {
     super(names.services.ABOUT);
     this.sender = sender;
     this.initListeners();
@@ -29,6 +29,6 @@ class About extends Service {
   }
 }
 
-export default function startAboutService(sender) {
-  return new About(sender);
+export default function startAboutService(sender, store) {
+  return new About(sender, store);
 }

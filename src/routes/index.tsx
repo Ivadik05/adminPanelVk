@@ -9,6 +9,7 @@ import Market from '../ui/containers/wrapper/market';
 import Contacts from '../ui/containers/wrapper/contacts';
 import Delivery from '../ui/containers/wrapper/delivery';
 import NoFound from '../ui/containers/noFound';
+import ShoppingCart from '../ui/containers/wrapper/shopping-cart';
 
 export const routeConstants = {
   INDEX: '/',
@@ -16,6 +17,7 @@ export const routeConstants = {
   MARKET: '/market',
   CONTACTS: '/contacts',
   DELIVERY: '/delivery',
+  SHOPPING_CART: '/cart',
   NO_FOUND: '/404'
 };
 
@@ -32,6 +34,8 @@ export default (
           <Redirect from={`${routeConstants.CONTACTS}.*`} to={routeConstants.CONTACTS} />
           <Route path={routeConstants.DELIVERY} component={Delivery} />
           <Redirect from={`${routeConstants.DELIVERY}.*`} to={routeConstants.DELIVERY} />
+          <Route path={routeConstants.SHOPPING_CART} component={ShoppingCart} />
+          <Redirect from={`${routeConstants.SHOPPING_CART}.*`} to={routeConstants.SHOPPING_CART} />
           <Route path={routeConstants.NO_FOUND} component={NoFound} />
         </Route>
         <Redirect from={`*`} to={routeConstants.NO_FOUND} />

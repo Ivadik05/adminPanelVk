@@ -58,9 +58,6 @@ export default class Mobile extends React.Component<IProps, IState> {
   public render() {
     let isVisible = this.props.visible === false ? false : true;
     let { isMobile } = this.state;
-    console.error(isVisible);
-    console.error(isMobile);
-    console.error(this.props.children);
     return (
         ((isVisible && isMobile) ||
         (!isVisible && !isMobile)) ? this.props.children : null
