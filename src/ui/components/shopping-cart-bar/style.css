@@ -2,8 +2,9 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    background:  rgba(0, 0, 0, 0.5);;
+    background:  rgba(0, 0, 0, 0.6);
     height: 43px;
+    z-index: 21;
 }
 
 .wrap {
@@ -38,4 +39,30 @@
     display: inline-block;
     line-height: 17px;
     margin-right: 20px;
+}
+
+.titleIcon {
+    height: 31px;
+    width: 33px;
+    display: inline-block;
+    vertical-align: middle;
+    color: rgba(255, 255, 255, 0.93);
+}
+
+.cartSocial {
+    /*margin: auto;*/
+    padding: 10px 0;
+}
+
+.cartLink {
+    margin-left: 10px;
+    display: inline-block;
+    vertical-align: top;
+    width: 28px;
+    height: 23px;
+    color: rgba(255, 255, 255, 0.93);
+}
+
+.cartLink:first-child {
+    margin-left: 0;
 }

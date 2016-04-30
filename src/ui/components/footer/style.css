@@ -6,14 +6,21 @@
   display: flex;
 }
 
-.linkInsta {
-  display: block;
+.footerSocial {
   margin: auto;
-  width: 48px;
-  height: 48px;
-  background: url('http://cs630620.vk.me/v630620541/271f0/c2lDFM68NUU.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
+}
+
+.footerLink {
+  margin-left: 10px;
+  display: inline-block;
+  vertical-align: top;
+  width: 42px;
+  height: 33px;
+  color: #959595;
+}
+
+.footerLink:first-child {
+  margin-left: 0;
 }
 
 @media all and (max-width: 600px) {

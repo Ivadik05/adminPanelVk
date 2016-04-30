@@ -104,7 +104,6 @@ class Market extends React.Component<IProps , {}> {
           <Container>
             <Markup
                 str={market.contentText} />
-            <div>Корзина {this.props.market.shoppingCart.sum}</div>
             <div className={styles.marketList}>
               {markets}
             </div>

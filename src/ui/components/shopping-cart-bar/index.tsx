@@ -3,7 +3,8 @@ import { browserHistory } from 'react-router';
 import {marketType, shoppingCart } from '../../../io/types';
 import { routeConstants } from '../../../routes';
 import { Container } from '../container';
-import { Button, ButtonList } from '../button';
+import { Button } from '../button';
+import { Icon, iconList } from '../icon';
 let styles = require('./style.css');
 
 export interface IProps {
@@ -34,13 +35,23 @@ class ShoppingCartBar extends React.Component<IProps , {}> {
                 <div className={styles.wrap}>
                   <div className={styles.cart}>
                     <div className={styles.title}>
-                      i Корзина
+                      <div className={styles.titleIcon}>
+                        <Icon params={iconList.iconCart}></Icon>
+                      </div>
                     </div>
                     <div className={styles.count}>{shoppingCart.count}</div>
                     <div className={styles.sum}>
                       {shoppingCart.sum} руб.
                     </div>
                     <Button handler={this.transferShoppingCart}>Перейти в корзину</Button>
+                  </div>
+                  <div className={styles.cartSocial}>
+                    <a href='https://www.instagram.com/vse_vzaimo_svyazano/' target='_blank' className={styles.cartLink}>
+                      <Icon params={iconList.iconInsta}></Icon>
+                    </a>
+                    <a href='http://vk.com/vse_vzaimo_svyazano' target='_blank' className={styles.cartLink}>
+                      <Icon params={iconList.iconVK}></Icon>
+                    </a>
                   </div>
                 </div>
               </Container>
