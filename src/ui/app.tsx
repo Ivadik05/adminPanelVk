@@ -6,12 +6,14 @@ import { uiState } from '../constants';
 import { utils } from '../utils';
 import { actionCreators } from './action-creators';
 import * as Helmet from 'react-helmet';
+import { routeConstants } from '../routes/index';
 
 import Header from './components/header';
 import Nav from './components/nav';
 import Wrapper from './containers/wrapper';
 import Footer from './components/footer';
 import ShoppingCartBar from './components/shopping-cart-bar';
+
 let styles = require('./style.css');
 
 interface IProps extends React.Props<App> {
@@ -45,6 +47,10 @@ class App extends React.Component<IProps, {}> {
     // let appStyles = {
     //   backgroundImage: `url(${bgImage[utils.getRandomInt(0, 2)]})`
     // };
+    let { routing, market } = this.props.state;
+    let isShopCart = market.shoppingCart.productsSelected.length &&
+        (routing['locationBeforeTransitions'] &&
+          routing['locationBeforeTransitions'].pathname !== routeConstants.SHOPPING_CART);
     return (
         <div className={styles.app}>
           <Helmet
@@ -59,15 +65,15 @@ class App extends React.Component<IProps, {}> {
           />
           <Header/>
           <Nav
-            routing={this.props.state.routing}
+            routing={routing}
             getAbout={this.getAbout}
           />
           <Wrapper>
             {this.props.children}
           </Wrapper>
-          <Footer/>
+          <Footer isShopCart={isShopCart}/>
           <ShoppingCartBar
-              shoppingCart={this.props.state.market.shoppingCart}
+              shoppingCart={market.shoppingCart}
               routing={this.props.state.routing}
           />
         </div>

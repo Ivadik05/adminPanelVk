@@ -1,5 +1,6 @@
 .footer {
-  padding: 15px 0;
+  padding: 9px 0;
+  height: 43px;
   border-top: 1px solid #d9d9d9;
   text-align: center;
   background: #fff;
@@ -14,8 +15,8 @@
   margin-left: 10px;
   display: inline-block;
   vertical-align: top;
-  width: 42px;
-  height: 33px;
+  width: 31px;
+  height: 24px;
   color: #959595;
 }
 
@@ -25,6 +26,6 @@
 
 @media all and (max-width: 600px) {
   .footer {
-    padding: 10px 0;
+    padding: 9px 0;
   }
 }
