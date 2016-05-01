@@ -1,11 +1,13 @@
 import * as React from 'react';
 let styles = require('./style.css');
+let classNames = require('classnames');
 
 type Props = {
   children?: any;
   handler: Function;
   type?: 'error' | 'white';
   disabled?: boolean;
+  hint?: string;
 }
 
 type ButtonListProps = {
@@ -34,12 +36,13 @@ export let Button = (props: Props) => {
     }
   }
   return (
-    <button className={getClass(props.type)}
-              type='button'
-              onClick={props.handler}
-              disabled={props.disabled}
-              >
+    <button className={classNames(getClass(props.type), {[styles.hint]: props.hint})}
+            data-title={props.hint ? props.hint : null}
+            type='button'
+            onClick={props.handler}
+            disabled={props.disabled}
+          >
                 {props.children}
-  </button>
+    </button>
   );
 };

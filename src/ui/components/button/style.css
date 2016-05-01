@@ -22,7 +22,6 @@
   position: relative;
   cursor: pointer;
   display: inline-block;
-  overflow: hidden;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -37,6 +36,28 @@
 .btn:hover {
   background: rgba(75, 147, 177, 0.88);
   box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18),0 4px 15px 0 rgba(0,0,0,0.15);
+}
+
+.btn.hint::after {
+  transition: all .3s ease-out;
+  content: attr(data-title);
+  position: absolute;
+  right: 0;
+  bottom: 100%;
+  margin-bottom: 3px;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  text-align: center;
+  font-size: 11px;
+  padding: 0 7px;
+  border: 1px solid #000;
+  border-radius: 2px;
+  opacity: 0;
+}
+
+.btn.hint:hover::after {
+  opacity: 1;
 }
 
 .btn[disabled] {

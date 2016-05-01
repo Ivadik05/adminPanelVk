@@ -21,6 +21,13 @@ export module actionCreators {
     };
   }
 
+  export function removeProductItemInCart<ActionCreator>(productDetail: marketType) {
+    return {
+      type: events.market.REMOVE_PRODUCT_ITEM,
+      payload: productDetail
+    };
+  }
+
   export function addProductInCart<ActionCreator>(productDetail: marketType) {
     return {
       type: events.market.ADD_PRODUCT,

@@ -22,13 +22,23 @@ class Market extends React.Component<IProps , {}> {
   constructor(props) {
     super(props);
     this.onAddProduct = this.onAddProduct.bind(this);
-    this.onRemoveProduct = this.onRemoveProduct.bind(this);
   }
 
   public getProduct(productId: string): marketType {
     return this.props.market.data.filter(item => {
       return String(item.id) === String(productId);
     })[0];
+  }
+
+  public getProductQuantity(productId: string): marketType {
+    let { productsSelected } = this.props.market.shoppingCart;
+    let product = productsSelected.filter(item => {
+      return String(item.id) === String(productId);
+    })[0];
+    if (product) {
+      return product.quantity;
+    }
+    return null;
   }
 
   // public getProductShoppingCart(productId: string): marketType {
@@ -60,11 +70,6 @@ class Market extends React.Component<IProps , {}> {
     this.freezeWindow();
   }
 
-  public onRemoveProduct(productDetail: marketType) {
-    let { dispatch } = this.props;
-    dispatch(actionCreators.removeProductInCart(productDetail));
-  }
-
   public onAddProduct(productDetail: marketType) {
     let { dispatch } = this.props;
     dispatch(actionCreators.addProductInCart(productDetail));
@@ -94,13 +99,18 @@ class Market extends React.Component<IProps , {}> {
     //   <button onClick={() => browserHistory.push('/foo')}>Go to /foo</button>
     // </div>
     // <button onClick={() => {this.props.dispatch(actionCreators.getMarket());}}>Запрос</button>
-    let { dispatch, market } = this.props;
+    let productQuantity = this.getProductQuantity(this.props.params['marketId']);
+    let { market } = this.props;
     return (
         <div className={styles.market}>
           <Helmet
               title='Магазин'
           />
-          <ProductDetail {...{productDetail}} onRemoveProduct={this.onRemoveProduct} onAddProduct={this.onAddProduct}/>
+          <ProductDetail
+              {...{productDetail}}
+              onAddProduct={this.onAddProduct}
+              cartCount={productQuantity}
+          />
           <Container>
             <Markup
                 str={market.contentText} />

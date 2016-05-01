@@ -49,8 +49,8 @@ class App extends React.Component<IProps, {}> {
     // };
     let { routing, market } = this.props.state;
     let isShopCart = market.shoppingCart.productsSelected.length &&
-        (routing['locationBeforeTransitions'] &&
-          routing['locationBeforeTransitions'].pathname !== routeConstants.SHOPPING_CART);
+        (this.props['location'].pathname &&
+          this.props['location'].pathname.indexOf(routeConstants.SHOPPING_CART) === -1);  
     return (
         <div className={styles.app}>
           <Helmet
@@ -74,7 +74,7 @@ class App extends React.Component<IProps, {}> {
           <Footer isShopCart={isShopCart}/>
           <ShoppingCartBar
               shoppingCart={market.shoppingCart}
-              routing={this.props.state.routing}
+              isShopCart={isShopCart}
           />
         </div>
     );

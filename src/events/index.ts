@@ -11,6 +11,7 @@ export module events {
     'GET_MARKET': 'get-market',
     'ADD_PRODUCT': 'add-product',
     'REMOVE_PRODUCT': 'remove-product',
+    'REMOVE_PRODUCT_ITEM': 'remove-product-item',
     'DRAW_SHOPPING_CART': 'draw-shopping-cart'
   };
 

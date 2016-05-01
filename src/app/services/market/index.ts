@@ -30,17 +30,25 @@ class Market extends Service {
     }
   };
 
+  private updateCartState() {
+    this.storage.saveData(storageKeys.market.SHOPPING_CART, this.shoppingCart.getCart());
+    this.publishEvent(events.market.DRAW_SHOPPING_CART, this.shoppingCart.getCart());
+  }
+
   private initListeners() {
     this.listenEvent(events.market.ADD_PRODUCT, (productDetail: marketType) => {
       this.shoppingCart.add(productDetail);
-      this.storage.saveData(storageKeys.market.SHOPPING_CART, this.shoppingCart.getCart());
-      this.publishEvent(events.market.DRAW_SHOPPING_CART, this.shoppingCart.getCart());
+      this.updateCartState();
+    });
+
+    this.listenEvent(events.market.REMOVE_PRODUCT_ITEM, (productDetail: marketType) => {
+      this.shoppingCart.removeItem(productDetail);
+      this.updateCartState();
     });
 
     this.listenEvent(events.market.REMOVE_PRODUCT, (productDetail: marketType) => {
       this.shoppingCart.remove(productDetail);
-      this.storage.saveData(storageKeys.market.SHOPPING_CART, this.shoppingCart.getCart());
-      this.publishEvent(events.market.DRAW_SHOPPING_CART, this.shoppingCart.getCart());
+      this.updateCartState();
     });
   }
 }

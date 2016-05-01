@@ -9,7 +9,7 @@ let styles = require('./style.css');
 
 export interface IProps {
   shoppingCart: shoppingCart;
-  routing: Object;
+  isShopCart: boolean;
 }
 
 class ShoppingCartBar extends React.Component<IProps , {}> {
@@ -25,11 +25,8 @@ class ShoppingCartBar extends React.Component<IProps , {}> {
 
   public render() {
     let shoppingCart: shoppingCart = this.props.shoppingCart;
-    let isShowShoppingCartBar =
-        shoppingCart.productsSelected.length &&
-        this.props.routing['locationBeforeTransitions'].pathname !== routeConstants.SHOPPING_CART;
     return (
-        isShowShoppingCartBar ? (
+        this.props.isShopCart ? (
             <div className={styles.shoppingCartBar}>
               <Container verticalPadding={false}>
                 <div className={styles.wrap}>

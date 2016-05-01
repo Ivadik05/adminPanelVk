@@ -3,7 +3,7 @@
 }
 
 .up, .down {
-    border: 2px solid #4E4E4E;
+    border: 1px solid #4E4E4E;
     padding: 1px 8px;
     display: inline-block;
     vertical-align: middle;
@@ -29,7 +29,7 @@
 }
 
 .count {
-    border: 2px solid #4E4E4E;
+    border: 1px solid #4E4E4E;
     padding: 1px 8px;
     vertical-align: middle;
 }

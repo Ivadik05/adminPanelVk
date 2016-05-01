@@ -18,12 +18,6 @@ class ShoppingCart extends Service {
     });
   }
 
-  private deleteProductCart(productDetail: marketType) {
-    this.productsSelected = this.productsSelected.filter((item: shoppingCartItem) => {
-      return (item.id !== productDetail.id);
-    });
-  }
-
   private getProductCart(productDetailId): any {
     return this.productsSelected.filter((item: shoppingCartItem) => item.id === productDetailId)[0];
   }
@@ -59,16 +53,22 @@ class ShoppingCart extends Service {
     } else {
       this.createProductCart(productDetail);
     }
-  };
+  }
 
-  public remove(productDetail: marketType) {
+  public removeItem(productDetail: marketType) {
     let productCart = this.getProductCart(productDetail.id);
     if (productCart) {
       if (productCart.quantity > 1) {
         productCart.quantity =  --productCart.quantity;
       }
     }
-  };
+  }
+
+  public remove(productDetail: marketType) {
+    this.productsSelected = this.productsSelected.filter((item: shoppingCartItem) => {
+      return (item.id !== productDetail.id);
+    });
+  }
 }
 
 export default ShoppingCart;
