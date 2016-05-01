@@ -1,0 +1,35 @@
+.incDec {
+    display: inline-block;
+}
+
+.up, .down {
+    border: 2px solid #4E4E4E;
+    padding: 1px 8px;
+    display: inline-block;
+    vertical-align: middle;
+    user-select: none;
+    transition: background-color .2s, border-color .2s;
+    cursor: pointer;
+}
+
+.up:hover, .down:hover {
+    background-color: #4B93B1;
+    border-color: #4B93B1;
+    color: #fff;
+}
+
+.up {
+    border-left: 0;
+    border-radius: 0 2px 2px 0;
+}
+
+.down {
+    border-right: 0;
+    border-radius: 2px 0 0 2px;
+}
+
+.count {
+    border: 2px solid #4E4E4E;
+    padding: 1px 8px;
+    vertical-align: middle;
+}

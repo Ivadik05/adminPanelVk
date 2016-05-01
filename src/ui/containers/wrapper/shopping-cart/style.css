@@ -2,3 +2,84 @@
     width: 100%;
     background: rgba(255, 255, 255, .8);
 }
+
+.productsList {
+
+}
+
+.product {
+    width: 100%;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background: #fff;
+    position: relative;
+    text-decoration: none;
+    vertical-align: top;
+    overflow: hidden;
+    padding: 10px;
+    margin-top: 10px;
+    display: flex;
+    height: 95px;
+}
+
+.product:first-child {
+    margin-top: 0;
+}
+
+.productPhoto {
+    width: 80px;
+    min-width: 80px;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.productInfo {
+    display: flex;
+    flex: 1;
+    height: 100%;
+}
+
+.productDescriptionWrap {
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+}
+
+.productTitle {
+    color: #585858;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.productTitle a {
+    color: inherit;
+}
+
+.productDescription {
+    padding: 5px 0;
+}
+
+.productPrice {
+    width: 90px;
+}
+
+.productQuantity {
+    width: 100px;
+}
+
+.price {
+    font-size: 15px;
+}
+
+.productButtons {
+    width: 70px;
+    text-align: center;
+}
+
+.listHeader {
+    padding: 0 10px 5px;
+    display: flex;
+    font-size: 11px;
+}

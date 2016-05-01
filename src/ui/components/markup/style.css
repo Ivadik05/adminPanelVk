@@ -30,7 +30,7 @@
     -webkit-margin-after: 0.83em;
     /*-webkit-margin-start: 0px;*/
     /*-webkit-margin-end: 0px;*/
-    font-weight: bold;
+    font-weight: 400;
 }
 
 .markdown :global .wk_sub_sub_header {
@@ -41,5 +41,5 @@
     -webkit-margin-after: 1em;
     /*-webkit-margin-start: 0px;*/
     /*-webkit-margin-end: 0px;*/
-    font-weight: bold;
+    font-weight: 400;
 }

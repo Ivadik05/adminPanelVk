@@ -18,6 +18,12 @@ class ShoppingCart extends Service {
     });
   }
 
+  private deleteProductCart(productDetail: marketType) {
+    this.productsSelected = this.productsSelected.filter((item: shoppingCartItem) => {
+      return (item.id !== productDetail.id);
+    });
+  }
+
   private getProductCart(productDetailId): any {
     return this.productsSelected.filter((item: shoppingCartItem) => item.id === productDetailId)[0];
   }
@@ -58,11 +64,8 @@ class ShoppingCart extends Service {
   public remove(productDetail: marketType) {
     let productCart = this.getProductCart(productDetail.id);
     if (productCart) {
-      productCart.quantity =  --productCart.quantity;
-      if (productCart.quantity < 1) {
-        this.productsSelected = this.productsSelected.filter((item: shoppingCartItem) => {
-          return (item.id !== productDetail.id);
-        });
+      if (productCart.quantity > 1) {
+        productCart.quantity =  --productCart.quantity;
       }
     }
   };
