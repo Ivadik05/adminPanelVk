@@ -52,8 +52,10 @@ export class WebTransmitter implements ITransmitter {
             sendOptions.async
         );
     request.onreadystatechange = () => {
-      if (request.readyState != 4) return;
-      if (request.status != 200) {
+      if (request.readyState !== 4) {
+        return;
+      }
+      if (request.status !== 200) {
         complete(request.responseText);
         request.abort();
       } else {
