@@ -25,7 +25,8 @@ export class NodeSender implements ISender {
   constructor(store: any) {
     let requestSettings = {
       host: settings.HOST,
-      path: settings.PATH
+      path: settings.PATH,
+      port: settings.PORT
     };
     this.store = store;
     let transmitter: ITransmitter = new NodeTransmitter(requestSettings);
