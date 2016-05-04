@@ -13,7 +13,7 @@ export class WebStorage implements IStorage {
   }
 
   public getPayloadData(data) {
-    data = JSON.parse(data);
+    data = JSON.parse(decodeURIComponent(atob(data)));
     let nowDate = new Date();
     function getDateAgo(date, days) {
       let dateCopy = new Date(date);
@@ -33,7 +33,8 @@ export class WebStorage implements IStorage {
       time: new Date,
       payload: payload
     };
-    this.storage.setItem(`${this.storageKey}:${name}`, JSON.stringify(data));
+
+    this.storage.setItem(`${this.storageKey}:${name}`, btoa(encodeURIComponent(JSON.stringify(data))));
   }
 
   public restoreData(name: string) {
