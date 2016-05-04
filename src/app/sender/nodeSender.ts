@@ -19,7 +19,8 @@ export class NodeSender implements ISender {
     new GetPage(connector.GROUP_ID, connector.PAGE_ABOUT),
     new GetPage(connector.GROUP_ID, connector.PAGE_CONTACTS),
     new GetPage(connector.GROUP_ID, connector.PAGE_DELIVERY),
-    new GetPage(connector.GROUP_ID, connector.PAGE_MARKET)
+    new GetPage(connector.GROUP_ID, connector.PAGE_MARKET),
+    new GetMarket(connector.GROUP_ID)
   ];
 
   constructor(store: any) {
@@ -75,7 +76,7 @@ export class NodeSender implements ISender {
           },
           ${code}
         ];`;
-    this.io.send(new Execute(customCode), (response: BaseResponse<executeType>) => {
+    this.io.send(new Execute(`return[${code}];`), (response: BaseResponse<executeType>) => {
       response.getData().map((res: BaseResponse<any>) => {
         this.store.dispatch({
           type: res.getSaverEvent(),
