@@ -104,8 +104,6 @@ class ChoppingCart extends React.Component<IProps, {}> {
 
   public render() {
     let { children } = this.props;
-    console.error('this.props', this.props);
-
     // <div className={styles.listHeader}>
     //   <div className={styles.productInfo}>Товар</div>
     //   <div className={styles.productQuantity}>Количество</div>

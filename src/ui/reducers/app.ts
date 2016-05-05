@@ -1,6 +1,7 @@
 import { events } from '../../events';
 let objectAssign = require('object-assign');
 import { uiState } from '../../constants';
+import { utils } from '../../utils';
 
 let initialState = {
   started: false,
@@ -17,7 +18,7 @@ export default function app<Reducer>(state = initialState, action) {
       });
     case events.saver.PHOTOS:
       return objectAssign({}, state, {
-        bgPhoto: action.payload[3]
+        bgPhoto: action.payload[utils.getRandomInt(0, action.payload.length)].photo
       });
     // case events.router.LOCATION_CHANGE:
     //   return objectAssign({}, state, {

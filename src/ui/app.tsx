@@ -44,15 +44,15 @@ class App extends React.Component<IProps, {}> {
     //   'http://cs631728.vk.me/v631728541/23f33/5w96LpKezSI.jpg',
     //   'http://cs631728.vk.me/v631728541/23f05/5ItfeDv7Lt4.jpg'
     // ];
-    // let appStyles = {
-    //   backgroundImage: `url(${bgImage[utils.getRandomInt(0, 2)]})`
-    // };
+    let appStyles = {
+      backgroundImage: `url(${this.props.state.app.bgPhoto})`
+    };
     let { routing, market } = this.props.state;
     let isShopCart = market.shoppingCart.productsSelected.length &&
         (this.props['location'].pathname &&
-          this.props['location'].pathname.indexOf(routeConstants.SHOPPING_CART) === -1);  
+          this.props['location'].pathname.indexOf(routeConstants.SHOPPING_CART) === -1);
     return (
-        <div className={styles.app}>
+        <div className={styles.app} style={appStyles}>
           <Helmet
               htmlAttributes={{'lang': 'ru'}}
               titleTemplate={'Всё Взаимоcвязано - %s'}
