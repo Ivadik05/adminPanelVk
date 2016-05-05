@@ -30,13 +30,13 @@ class Market extends React.Component<IProps , {}> {
     })[0];
   }
 
-  public getProductQuantity(productId: string): marketType {
+  public getProductQuantity(productId: string): number {
     let { productsSelected } = this.props.market.shoppingCart;
     let product = productsSelected.filter(item => {
       return String(item.id) === String(productId);
     })[0];
     if (product) {
-      return product.quantity;
+      return Number(product.quantity);
     }
     return null;
   }

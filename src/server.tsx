@@ -70,10 +70,9 @@ http.createServer((req, res) => {
       } else if (renderProps) {
         let store = createStore(reducers, {});
         let sender: ISender = new NodeSender(store);
-        // sender.fetchAllData(() => {
-        //   renderApp(renderProps, res, store);
-        // });
-        renderApp(renderProps, res, store);
+        sender.fetchAllData(() => {
+          renderApp(renderProps, res, store);
+        });
       } else {
         match(utils.tsReturnTypeFix({ routes, location: '/404' }), (error, redirectLocation, renderProps) => {
           if (renderProps) {
