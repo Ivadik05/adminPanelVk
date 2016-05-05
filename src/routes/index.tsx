@@ -10,7 +10,7 @@ import Contacts from '../ui/containers/wrapper/contacts';
 import Delivery from '../ui/containers/wrapper/delivery';
 import NoFound from '../ui/containers/noFound';
 import ShoppingCart from '../ui/containers/wrapper/shopping-cart';
-import ShoppingOrder from '../ui/components/shopping-order';
+import ShoppingOrder from '../ui/containers/wrapper/shopping-cart/shopping-order';
 
 export const routeConstants = {
   INDEX: '/',

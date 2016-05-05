@@ -48,4 +48,18 @@ export type photosType = {
   photo: string;
 }
 
+export type orderType = {
+  name: string;
+  phone: string;
+  email: string;
+  delivery: {
+    method: 'current' | 'courier';
+    address?: {
+      city: string;
+      street: string;
+    }
+  }
+  payment?: string;
+}
+
 export type executeType = Array<BaseResponse<any>>

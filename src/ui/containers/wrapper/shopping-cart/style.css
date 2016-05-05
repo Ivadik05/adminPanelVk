@@ -96,3 +96,13 @@
     display: flex;
     font-size: 11px;
 }
+
+.sum {
+    font-size: 16px;
+    margin: 18px 0;
+    text-align: right;
+}
+
+.sum span {
+    font-weight: bold;
+}

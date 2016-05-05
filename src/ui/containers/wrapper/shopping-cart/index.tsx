@@ -8,6 +8,7 @@ import { IncDec } from '../../../components/incDec';
 import { actionCreators } from '../../../action-creators';
 import { routeConstants } from '../../../../routes/index';
 import { marketType } from '../../../../io/types';
+import { Button, ButtonList } from '../../../components/button';
 let styles = require('./style.css');
 
 export interface IProps extends React.Props<ChoppingCart> {
@@ -85,6 +86,16 @@ class ChoppingCart extends React.Component<IProps, {}> {
                 <div className={styles.productsList}>
                   {this.getProducts()}
                 </div>
+                <div className={styles.sum}>
+                  К оплате: <span>{shoppingCart.sum} руб.</span>
+                </div>
+                <ButtonList align='right'>
+                  <Button
+                      handler={() => {browserHistory.push(`${routeConstants.SHOPPING_CART}/${routeConstants.SHOPPING_CART_ORDER}`);}}
+                  >
+                    Оформить заказ
+                  </Button>
+                </ButtonList>
               </div>
               :
               <div>В корзине ничего нет. Сначала нужно выбрать <Link to={routeConstants.MARKET} >товары</Link></div>}
@@ -92,15 +103,24 @@ class ChoppingCart extends React.Component<IProps, {}> {
     );
   }
 
-  public componentDidUpdate() {
-    let { shoppingCart } = this.props;
+  public checkPath(pathname: string, isCart: boolean) {
     // TODO refuck
-    if (this.props['location'].pathname.indexOf(routeConstants.SHOPPING_CART_ORDER) !== -1) {
-      if (!shoppingCart.count) {
+    if (pathname.indexOf(routeConstants.SHOPPING_CART_ORDER) !== -1) {
+      if (!isCart) {
         browserHistory.replace(routeConstants.SHOPPING_CART);
       }
     }
   }
+
+  public componentDidUpdate() {
+    let { shoppingCart } = this.props;
+    this.checkPath(this.props['location'].pathname, Boolean(shoppingCart.count));
+  }
+
+  // public componentDidMount() {
+  //   let { shoppingCart } = this.props;
+  //   this.checkPath(this.props['location'].pathname, Boolean(shoppingCart.count));
+  // }
 
   public render() {
     let { children } = this.props;

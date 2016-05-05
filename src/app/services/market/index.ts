@@ -2,7 +2,7 @@ import Service from '../service';
 import { WebSender } from '../../sender';
 import {names} from '../names';
 import { events } from '../../../events';
-import { marketType } from '../../../io/types';
+import {marketType, orderType} from '../../../io/types';
 import { WebStorage, storageKeys } from '../../../storage';
 import { IStorage } from '../../../io/interfaces/IStorage';
 import ShoppingCart from './shopping-cart';
@@ -49,6 +49,10 @@ class Market extends Service {
     this.listenEvent(events.market.REMOVE_PRODUCT, (productDetail: marketType) => {
       this.shoppingCart.remove(productDetail);
       this.updateCartState();
+    });
+
+    this.listenEvent(events.market.ACCEPT_ORDER, (order: orderType) => {
+      console.error('order', order);
     });
   }
 }
