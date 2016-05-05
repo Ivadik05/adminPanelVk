@@ -52,7 +52,9 @@ export class GetPage extends request.VK {
       'method': this.getName(),
       'owner_id': '-' + this.getOwnerId(),
       'page_id': this.getPageId(),
-      'need_html': 1
+      'need_source': 1,
+      'need_html': 1,
+      'v': '5.50'
     };
     return data;
   }

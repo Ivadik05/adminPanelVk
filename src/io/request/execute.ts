@@ -51,7 +51,8 @@ export class Execute extends request.VK {
   public getData(): executeData {
     let data = {
       'method': this.getName(),
-      'code': this.getCode()
+      'code': this.getCode(),
+      'v': '5.50'
     };
     return data;
   }
