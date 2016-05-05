@@ -103,7 +103,7 @@ export class Io {
         break;
       case queries.GET_ALBUMS_MARKET:
         result = new BaseResponse<marketAlbumsType>(nameResponse, saverEvent);
-          
+
         result.setData(prepareAlbums(response));
         break;
       case queries.GET_PAGE:

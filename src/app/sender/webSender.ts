@@ -17,7 +17,8 @@ export class WebSender implements ISender {
   constructor() {
     let requestSettings = {
       host: settings.HOST,
-      path: settings.PATH
+      path: settings.PATH,
+      port: settings.PORT
     };
     let transmitter: ITransmitter = new WebTransmitter(requestSettings);
     this.io = new Io(requestSettings, transmitter);
