@@ -24,7 +24,8 @@ export module events {
     'EXECUTE': 'execute',
     'MARKET': 'market',
     'MARKET_ALBUMS': 'market-albums',
-    'PAGES': 'pages'
+    'PAGES': 'pages',
+    'PHOTOS': 'photos'
   };
 
   export const router = {

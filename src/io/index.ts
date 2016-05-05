@@ -4,7 +4,8 @@ import { ITransmitter } from './interfaces';
 import { queries } from './queries/index';
 import { prepareMarket, preparePages, prepareAlbums } from './response';
 import { BaseResponse } from './response';
-import { marketType, pagesType, marketAlbumsType } from './types';
+import {marketType, pagesType, marketAlbumsType, photosType} from './types';
+import {preparePhotos} from "./response/get-photos";
 export * from './request';
 
 export class Io {
@@ -110,6 +111,10 @@ export class Io {
         // response = response['topics'];
         result = new BaseResponse<pagesType>(nameResponse, saverEvent);
         result.setData(preparePages(response));
+        break;
+      case queries.GET_PHOTOS:
+        result = new BaseResponse<photosType>(nameResponse, saverEvent);
+        result.setData(preparePhotos(response));
         break;
       case queries.EXECUTE:
         result = new BaseResponse<Array<BaseResponse<any>>>(nameResponse, saverEvent);

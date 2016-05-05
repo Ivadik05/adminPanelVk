@@ -4,7 +4,8 @@ import { uiState } from '../../constants';
 
 let initialState = {
   started: false,
-  uiState: null
+  uiState: null,
+  bgPhoto: ''
 };
 
 export default function app<Reducer>(state = initialState, action) {
@@ -13,6 +14,10 @@ export default function app<Reducer>(state = initialState, action) {
       return objectAssign({}, state, {
         started: true,
         uiState: uiState.MAIN
+      });
+    case events.saver.PHOTOS:
+      return objectAssign({}, state, {
+        bgPhoto: action.payload[3]
       });
     // case events.router.LOCATION_CHANGE:
     //   return objectAssign({}, state, {

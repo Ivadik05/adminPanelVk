@@ -7,6 +7,8 @@ export const uiState = {
 
 export const connector = {
   GROUP_ID: '61279456',
+  OWNER_PHOTO_ID: '12484061',
+  PHOTO_ALBUM_ID: '231533094',
   PAGE_ABOUT: '52376141',
   PAGE_CONTACTS: '52376121',
   PAGE_MARKET: '52376988',

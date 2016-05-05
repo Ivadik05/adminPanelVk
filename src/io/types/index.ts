@@ -44,4 +44,8 @@ export type shoppingCart = {
   productsSelected: Array<shoppingCartItem>;
 }
 
+export type photosType = {
+  photo: string;
+}
+
 export type executeType = Array<BaseResponse<any>>

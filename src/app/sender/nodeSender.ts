@@ -11,6 +11,7 @@ import { connector } from '../../constants';
 import { executeType } from '../../io/types';
 import { queries } from '../../io/queries';
 import { events } from '../../events';
+import {GetPhotos} from "../../io/request/get-photos";
 
 export class NodeSender implements ISender {
   private io: Io = null;
@@ -19,7 +20,8 @@ export class NodeSender implements ISender {
     new GetPage(connector.GROUP_ID, connector.PAGE_ABOUT),
     new GetPage(connector.GROUP_ID, connector.PAGE_CONTACTS),
     new GetPage(connector.GROUP_ID, connector.PAGE_DELIVERY),
-    new GetPage(connector.GROUP_ID, connector.PAGE_MARKET)
+    new GetPage(connector.GROUP_ID, connector.PAGE_MARKET),
+    new GetPhotos(connector.OWNER_PHOTO_ID, connector.PHOTO_ALBUM_ID)
   ];
 
   constructor(store: any) {
