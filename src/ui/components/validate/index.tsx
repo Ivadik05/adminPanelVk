@@ -22,8 +22,10 @@ type FormProps = {
 function checkValidPattern(inputs, name, pattern, value) {
   if (pattern.test(value)) {
     inputs[name] = true;
+    console.error('error hint hide'); 
   } else {
     inputs[name] = false;
+    console.error('error hint');
   }
 }
 
@@ -54,8 +56,6 @@ function checkValid(elem, value, type, inputs, name) {
 
 function checkValidAll(inputs): boolean {
   let validates = Object.keys(inputs).map(item => inputs[item]);
-  console.error('inputs', inputs);
-  console.error('validates', validates);
   return validates.every(item => item);
 }
 
@@ -92,9 +92,9 @@ export let Validate = (() => {
       props.onChange(value, elem);
     };
     return (
-        <div className={classNames(styles.input, {[styles.required]: props.required})}>
+        <div className={classNames(styles.input, {[styles.required]: props.required}, {[styles.error]: !inputs[props.name]})}>
           {props.type && props.type === 'phone' ?
-              (<InputElement {...props} mask='+7 (999) 999-99-99' placeholder={props.placeholder} type='tel' onChange={onChange} maskChar={null}/>) :
+              (<InputElement {...props} mask='+7 (999) 999-99-99' placeholder={props.placeholder} onChange={onChange} maskChar={null}/>) :
               (<input type='text' placeholder={props.placeholder} onInput={onChange} required={props.required && props.required}/>)}
         </div>
     );
