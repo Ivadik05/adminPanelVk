@@ -59,9 +59,6 @@ class Market extends Service {
     });
 
     this.listenEvent(events.market.ACCEPT_ORDER, (order: orderType) => {
-      console.error('order.visitorInfo', order.visitorInfo);
-      console.error('order.delivery', order.delivery);
-      console.error('order.payment', order.payment);
       this.transmitter.send({
         method: 'POST',
         query: {

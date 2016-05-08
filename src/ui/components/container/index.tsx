@@ -9,8 +9,8 @@ type Props = {
 export let Container = (props: Props) => {
   let vertPadding = props.verticalPadding === false ? false : true;
   let vertStyles = {
-    paddingTop: '0',
-    paddingBottom: '0'
+    paddingTop: '0px',
+    paddingBottom: '0px'
   };
   return (
     <div className={styles.container} style={!vertPadding ? vertStyles : null}>

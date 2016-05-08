@@ -42,14 +42,16 @@ class Detail extends React.Component<IProps , {}> {
                 {productDetail.description}
               </div>
             </div>
-            <ButtonList align='right'>
-              <Button
-                  handler={() => this.props.onAddProduct(productDetail)}
-                  hint={this.props.cartCount ? 'Товар добавлен в корзину' : null}
-              >
-                Добавить {this.props.cartCount ? `(${this.props.cartCount})` : null}
-              </Button>
-            </ButtonList>
+            <div className={styles.buttonList}>
+              <ButtonList align='right'>
+                <Button
+                    handler={() => this.props.onAddProduct(productDetail)}
+                    hint={this.props.cartCount ? 'Товар добавлен в корзину' : null}
+                >
+                  Добавить {this.props.cartCount ? `(${this.props.cartCount})` : null}
+                </Button>
+              </ButtonList>
+            </div>
           </div>
         </div>
     );

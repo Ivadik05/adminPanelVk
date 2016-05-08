@@ -66,3 +66,32 @@
 .cartLink:first-child {
     margin-left: 0;
 }
+
+.btnText {
+    display: block;
+}
+
+.btnIcon {
+    display: none;
+}
+
+@media all and (max-width: 600px) {
+    .titleIcon {
+        display: none;
+    }
+
+    .cartSocial {
+        display: none;
+    }
+
+    .btnText {
+        display: none;
+    }
+
+    .btnIcon {
+        composes: titleIcon;
+        height: 26px;
+        display: block;
+        margin: 0 -18px;
+    }
+}
