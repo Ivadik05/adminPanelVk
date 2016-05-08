@@ -1,5 +1,13 @@
 .input {
     margin-top: 10px;
+    position: relative;
+}
+.required:before {
+    content: '*';
+    position: absolute;
+    left: -9px;
+    color: tomato;
+    top: 6px;
 }
 
 .input:first-child {

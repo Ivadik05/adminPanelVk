@@ -39,7 +39,7 @@ export let Button = (props: Props) => {
     <button className={classNames(getClass(props.type), {[styles.hint]: props.hint})}
             data-title={props.hint ? props.hint : null}
             type='button'
-            onClick={props.handler}
+            onClick={!props.disabled ? props.handler : null}
             disabled={props.disabled}
           >
                 {props.children}

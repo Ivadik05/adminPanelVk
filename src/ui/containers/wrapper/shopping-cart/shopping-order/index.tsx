@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Dispatch as IDispatch } from 'redux';
 import { connect } from 'react-redux';
 import { Button, ButtonList } from '../../../../components/button';
-import { Input } from '../../../../components/input';
+import { Validate } from '../../../../components/validate';
 import { CardType, CardSelect } from '../../../../components/card';
 import { Container } from '../../../../components/container';
 import { actionCreators } from '../../../../action-creators';
@@ -22,6 +22,7 @@ interface IState {
   deliveryMethodText?: string;
   paymentMethod?: 'cash' | 'nocash' | 'post';
   paymentMethodText?: string;
+  valid?: boolean;
 }
 
 class ShoppingOrder extends React.Component<IProps, IState> {
@@ -30,6 +31,7 @@ class ShoppingOrder extends React.Component<IProps, IState> {
     this.onAcceptOrder = this.onAcceptOrder.bind(this);
     this.onChangeDelivery = this.onChangeDelivery.bind(this);
     this.onChangePayment = this.onChangePayment.bind(this);
+    this.onChangeForm = this.onChangeForm.bind(this);
     this.state = {
       name: '',
       phone: '',
@@ -37,7 +39,8 @@ class ShoppingOrder extends React.Component<IProps, IState> {
       deliveryMethod: 'current',
       deliveryMethodText: 'Самовывоз',
       paymentMethod: 'nocash',
-      paymentMethodText: 'Предоплата'
+      paymentMethodText: 'Предоплата',
+      valid: false
     };
   }
 
@@ -79,6 +82,10 @@ class ShoppingOrder extends React.Component<IProps, IState> {
   public onChangePayment(id, text) {
     this.updateState('paymentMethod', id);
     this.updateState('paymentMethodText', text);
+  }
+
+  public onChangeForm(valid) {
+    this.updateState('valid', valid);
   }
 
   public render() {
@@ -186,7 +193,6 @@ class ShoppingOrder extends React.Component<IProps, IState> {
         )
       }
     ];
-
     return (
         <div className={styles.order}>
           <Container>
@@ -194,14 +200,29 @@ class ShoppingOrder extends React.Component<IProps, IState> {
             <div className={styles.orderContacts}>
               <h3>Контактная информация</h3>
               <div className={styles.inputsWrap}>
-                <Input
-                    type='text'
-                    required={true}
-                    placeholder='Имя'
-                    onChange={(value) => {this.updateState('name', value);}}
-                />
-                <Input type='phone' placeholder='Телефон' onChange={(value) => {this.updateState('phone', value);}}/>
-                <Input placeholder='E-mail' type='email' onChange={(value) => {this.updateState('email', value);}}/>
+                <Validate.Form onChange={this.onChangeForm}>
+                  <Validate.Input
+                      name='name'
+                      type='text'
+                      firstUpper={true}
+                      required={true}
+                      placeholder='Имя'
+                      onChange={(value) => {this.updateState('name', value);}}
+                  />
+                  <Validate.Input
+                      name='phone'
+                      type='phone'
+                      required={true}
+                      placeholder='Телефон'
+                      onChange={(value) => {this.updateState('phone', value);}}
+                  />
+                  <Validate.Input
+                      name='email'
+                      placeholder='E-mail'
+                      type='email'
+                      onChange={(value) => {this.updateState('email', value);}}
+                  />
+                </Validate.Form>
               </div>
             </div>
             <div className={styles.orderDelivery}>
@@ -224,6 +245,7 @@ class ShoppingOrder extends React.Component<IProps, IState> {
             </div>
             <ButtonList align='right'>
               <Button
+                  disabled={!this.state.valid}
                   handler={this.onAcceptOrder}
               >
                 Подтвердить заказ
