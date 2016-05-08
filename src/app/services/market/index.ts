@@ -24,8 +24,8 @@ class Market extends Service {
 
     this.transmitter = new WebTransmitter({
       host: 'localhost',
-      path: '/send',
-      port: '8282'
+      path: '/emailtransfer',
+      port: ''
     });
   }
 
