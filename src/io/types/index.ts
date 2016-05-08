@@ -49,17 +49,23 @@ export type photosType = {
 }
 
 export type orderType = {
-  name: string;
-  phone: string;
-  email: string;
+  visitorInfo: {
+    name: string;
+    phone: string;
+    email: string;
+  };
   delivery: {
-    method: 'current' | 'courier';
+    method: 'current' | 'courier' | 'post';
+    methodText: string;
     address?: {
       city: string;
       street: string;
     }
-  }
-  payment?: string;
+  };
+  payment: {
+    method: 'cash' | 'nocash' | 'post'
+    methodText: string;
+  };
 }
 
 export type executeType = Array<BaseResponse<any>>

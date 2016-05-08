@@ -33,8 +33,11 @@ export class WebTransmitter implements ITransmitter {
     return this.port;
   }
 
-  private createUrl(query: Object) {
-    let queryParams = queryString.stringify(query);
+  private createUrl() {
+    return 'http://' + this.getHost() + (this.getPort() ? `:${this.getPort()}` : '') + this.getPath();
+  }
+
+  private createFullUrl(queryParams) {
     return 'http://' + this.getHost() + (this.getPort() ? `:${this.getPort()}` : '') + this.getPath() + '?' + queryParams;
   }
 
@@ -51,10 +54,11 @@ export class WebTransmitter implements ITransmitter {
       async: (options.async === false) ? false : true,
       query: options.query || {}
     };
+    let queryParams = queryString.stringify(sendOptions.query);
     let request =
         this.createRequest(
             sendOptions.method,
-            this.createUrl(sendOptions.query),
+            (sendOptions.method !== 'GET') ? this.createUrl() : this.createFullUrl(queryParams),
             sendOptions.async
         );
     request.onreadystatechange = () => {
@@ -76,6 +80,6 @@ export class WebTransmitter implements ITransmitter {
           'Content-Type', 'application/x-www-form-urlencoded'
       );
     }
-    request.send();
+    request.send(queryParams);
   }
 }

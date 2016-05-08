@@ -19,19 +19,25 @@ interface IState {
   phone?: string;
   email?: string;
   deliveryMethod?: 'current' | 'courier';
-  paymentMethod?: string;
+  deliveryMethodText?: string;
+  paymentMethod?: 'cash' | 'nocash' | 'post';
+  paymentMethodText?: string;
 }
 
 class ShoppingOrder extends React.Component<IProps, IState> {
   constructor(props) {
     super(props);
     this.onAcceptOrder = this.onAcceptOrder.bind(this);
+    this.onChangeDelivery = this.onChangeDelivery.bind(this);
+    this.onChangePayment = this.onChangePayment.bind(this);
     this.state = {
       name: '',
       phone: '',
       email: '',
       deliveryMethod: 'current',
-      paymentMethod: 'cash'
+      deliveryMethodText: 'Самовывоз',
+      paymentMethod: 'nocash',
+      paymentMethodText: 'Предоплата'
     };
   }
 
@@ -42,11 +48,18 @@ class ShoppingOrder extends React.Component<IProps, IState> {
   public onAcceptOrder() {
     let { dispatch } = this.props;
     let order: orderType = {
-      name: this.state.name,
-      phone: this.state.phone,
-      email: this.state.email,
+      visitorInfo: {
+        name: this.state.name,
+        phone: this.state.phone,
+        email: this.state.email
+      },
       delivery: {
-        method: 'current'
+        method: this.state.deliveryMethod,
+        methodText: this.state.deliveryMethodText
+      },
+      payment: {
+        method: this.state.paymentMethod,
+        methodText: this.state.paymentMethodText
       }
     };
     dispatch(actionCreators.acceptOrder(order));
@@ -58,30 +71,119 @@ class ShoppingOrder extends React.Component<IProps, IState> {
     });
   }
 
+  public onChangeDelivery(id, text) {
+    this.updateState('deliveryMethod', id);
+    this.updateState('deliveryMethodText', text);
+  }
+
+  public onChangePayment(id, text) {
+    this.updateState('paymentMethod', id);
+    this.updateState('paymentMethodText', text);
+  }
+
   public render() {
     let deliveryCards: Array<CardType> = [
       {
         id: 'current',
-        content: (<div>Самовывоз от метро звёздная</div>)
+        text: 'Самовывоз',
+        content: (
+            <div>
+              <div className={styles.cardTitle}>
+                <strong>Самовывоз</strong>
+              </div>
+              <div className={styles.cardText}>
+                от станции метро Звёздная (<strong>бесплатно</strong>)
+              </div>
+            </div>
+        )
       },
       {
         id: 'courier',
-        content: (<div>Доставка до станции метро</div>)
+        text: 'Доставка',
+        content: (
+            <div>
+              <div className={styles.cardTitle}>
+                <strong>Доставка</strong>
+              </div>
+              <div className={styles.cardText}>
+                до станции метро (<strong>150 рублей</strong>)
+              </div>
+            </div>
+        )
+      },
+      {
+        id: 'post',
+        text: 'Доставка почтой РФ',
+        content: (
+            <div>
+              <div className={styles.cardTitle}>
+                <strong>Доставка почтой РФ</strong>
+              </div>
+              <div className={styles.cardText}>
+                по предоплате или наложенным платежом - (<strong>250 рублей</strong> по Европейской части РФ, в дальние регионы рассчитывается индивидуально + комиссия Почты РФ за наложенный платеж)
+              </div>
+            </div>
+        )
+      },
+      {
+        id: 'transport',
+        text: 'Доставка транспортной компанией',
+        content: (
+            <div>
+              <div className={styles.cardTitle}>
+                <strong>Доставка транспортной компанией</strong>
+              </div>
+              <div className={styles.cardText}>
+                (рассчитывается индивидуально)
+              </div>
+            </div>
+        )
       }
     ];
 
     let paymentCards: Array<CardType> = [
       {
         id: 'cash',
-        content: (<div>Наличными при доставке (СПб)</div>)
+        text: 'Наличными',
+        content: (
+          <div>
+            <div className={styles.cardTitle}>
+              <strong>Наличными</strong>
+            </div>
+            <div className={styles.cardText}>
+              при доставке (СПб)
+            </div>
+          </div>
+        ),
+        visible: (this.state.deliveryMethod === 'current' || this.state.deliveryMethod === 'courier')
       },
       {
         id: 'nocash',
-        content: (<div>Предоплата переводом на карту Сбербанка, Альфа-Банка, Райффайзен, ВТБ, ЯндексДеньги</div>)
+        text: 'Предоплата',
+        content: (
+          <div>
+            <div className={styles.cardTitle}>
+              <strong>Предоплата</strong>
+            </div>
+            <div className={styles.cardText}>
+              переводом на карту Сбербанка, Альфа-Банка, Райффайзен, ВТБ, ЯндексДеньги
+            </div>
+          </div>
+        )
       },
       {
         id: 'post',
-        content: (<div>Оплата на почте (при посылке с наложенным платежом)</div>)
+        text: 'Оплата на почте',
+        content: (
+          <div>
+            <div className={styles.cardTitle}>
+              <strong>Оплата на почте</strong>
+            </div>
+            <div className={styles.cardText}>
+              при посылке с наложенным платежом
+            </div>
+          </div>
+        )
       }
     ];
 
@@ -103,7 +205,7 @@ class ShoppingOrder extends React.Component<IProps, IState> {
                 <CardSelect
                     cards={deliveryCards}
                     active={this.state.deliveryMethod}
-                    onChange={(id) => {this.updateState('deliveryMethod', id);}}/>
+                    onChange={this.onChangeDelivery}/>
               </div>
             </div>
             <div className={styles.orderPayment}>
@@ -112,7 +214,7 @@ class ShoppingOrder extends React.Component<IProps, IState> {
                 <CardSelect
                     cards={paymentCards}
                     active={this.state.paymentMethod}
-                    onChange={(id) => {this.updateState('paymentMethod', id);}}/>
+                    onChange={this.onChangePayment}/>
               </div>
             </div>
             <ButtonList align='right'>

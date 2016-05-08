@@ -4,7 +4,9 @@ let classNames = require('classnames');
 
 export type CardType = {
   id: string;
+  text: string;
   content: any;
+  visible?: boolean;
 }
 
 type Props = {
@@ -14,9 +16,11 @@ type Props = {
 }
 
 export let CardSelect = (props: Props) => {
-  let cards = props.cards.map(card => (
+  let cards = props.cards
+      .filter(card => card.visible !== false)
+      .map(card => (
       <div className={classNames(styles.card, {[styles.active]: props.active === card.id})}
-           onClick={() => {props.onChange(card.id);}}>
+           onClick={() => {props.onChange(card.id, card.text);}}>
         {card.content}
       </div>
   ));
