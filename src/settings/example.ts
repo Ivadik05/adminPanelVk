@@ -1,3 +1,12 @@
 export const settings = {
-  'SERVER': 'http://ecoprint43.ru/connector.php'
+  connector: {
+    'HOST': 'vsevzaimosvyazano.ru',
+    'PATH': '',
+    'PORT': ''
+  },
+  emailSender: {
+    'HOST': 'vsevzaimosvyazano.ru',
+    'PATH': '',
+    'PORT': ''
+  }
 };

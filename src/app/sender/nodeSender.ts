@@ -1,17 +1,16 @@
-import { Io  } from '../../io';
-import { ITransmitter, IRequest, IAbstractRequest } from '../../io/interfaces';
+import { Io } from '../../io';
+import { ITransport, IRequest } from '../../io/interfaces';
 import { settings } from '../../settings';
-import { NodeTransmitter } from '../../io/transmitter';
+import { NodeTransport } from '../../io/transport';
 import { ISender } from './index';
 import { Store } from 'redux';
 
-import { GetMarket, GetPage, Execute } from '../../io/request';
+import { GetMarket, GetPage, Execute, GetPhotos } from '../../io/request';
 import { BaseResponse } from '../../io/response/response';
 import { connector } from '../../constants';
 import { executeType } from '../../io/types';
 import { queries } from '../../io/queries';
 import { events } from '../../events';
-import {GetPhotos} from "../../io/request/get-photos";
 
 export class NodeSender implements ISender {
   private io: Io = null;
@@ -25,14 +24,15 @@ export class NodeSender implements ISender {
   ];
 
   constructor(store: any) {
+    let connectorSettings = settings.connector;
     let requestSettings = {
-      host: settings.HOST,
-      path: settings.PATH,
-      port: settings.PORT
+      host: connectorSettings.HOST,
+      path: connectorSettings.PATH,
+      port: connectorSettings.PORT
     };
     this.store = store;
-    let transmitter: ITransmitter = new NodeTransmitter(requestSettings);
-    this.io = new Io(requestSettings, transmitter);
+    let transmitter: ITransport = new NodeTransport(requestSettings);
+    this.io = new Io(transmitter);
   }
 
   // private updateStore(response: BaseResponse) {

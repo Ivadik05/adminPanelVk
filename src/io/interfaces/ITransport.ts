@@ -1,15 +1,15 @@
 
 
-export interface ITransmitter {
+export interface ITransport {
   getType(): string;
   send(
-      options: ITransmitterOptions,
+      options: ITransportOptions,
       complete?: Function,
       errorResponse?: Function
   );
 }
 
-export interface ITransmitterOptions {
+export interface ITransportOptions {
   method?: string;
   async?: boolean;
   query?: Object;

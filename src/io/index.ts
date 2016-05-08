@@ -1,20 +1,17 @@
 import { IRequest, IAbstractRequest, types, IConfig } from './interfaces';
 import { utils } from '../utils';
-import { ITransmitter } from './interfaces';
+import { ITransport } from './interfaces';
 import { queries } from './queries/index';
-import { prepareMarket, preparePages, prepareAlbums } from './response';
+import { prepareMarket, preparePages, prepareAlbums, preparePhotos } from './response';
 import { BaseResponse } from './response';
 import {marketType, pagesType, marketAlbumsType, photosType} from './types';
-import {preparePhotos} from "./response/get-photos";
 export * from './request';
 
 export class Io {
-  private transmitter: ITransmitter = null;
-  private config: IConfig = null;
+  private transport: ITransport = null;
 
-  constructor(config: IConfig, transmitter: ITransmitter) {
-    this.config = config;
-    this.transmitter = transmitter;
+  constructor(transport: ITransport) {
+    this.transport = transport;
   }
 
   /**
@@ -31,7 +28,7 @@ export class Io {
         )
     );
     console.info(
-        `IO: ${this.transmitter.getType()}: send request method: ${request.getName()}`,
+        `IO: ${this.transport.getType()}: send request method: ${request.getName()}`,
         'request data: ', request.getData());
   }
 
@@ -47,7 +44,7 @@ export class Io {
       async: true,
       query: request.getData()
     };
-    this.transmitter.send(options, response, errorResponse);
+    this.transport.send(options, response, errorResponse);
   }
 
   private createPromise(request) {
@@ -71,7 +68,7 @@ export class Io {
     Promise.all(promises).then(callback).catch((e) => {
       console.error('e', e);
     });
-    console.info(`IO: ${this.transmitter.getType()}:
+    console.info(`IO: ${this.transport.getType()}:
      send request methods: ${requests.map(request => request.getName())}`);
   }
 
