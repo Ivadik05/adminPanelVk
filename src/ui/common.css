@@ -51,11 +51,13 @@ textarea {
 ::-webkit-scrollbar,
 ::-webkit-scrollbar,
 ::-webkit-scrollbar {
-  width: 10px; /* 1px wider than Lion. */
+  width: 8px; /* 1px wider than Lion. */
+  height: 8px; /* 1px wider than Lion. */
   /* This is more usable for users trying to click it. */
   background-color: transparent;
 
 }
+
 /* hover effect for both scrollbar area, and scrollbar 'thumb' */
 ::-webkit-scrollbar:hover,
 ::-webkit-scrollbar:hover {
@@ -65,6 +67,19 @@ textarea {
 /* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
 ::-webkit-scrollbar-thumb:vertical,
 ::-webkit-scrollbar-thumb:vertical {
+  /* This is the EXACT color of Mac OS scrollbars.
+     Yes, I pulled out digital color meter */
+  background: rgba(0,0,0,0.2);
+  border-radius: 100px;
+  background-clip: padding-box;
+  min-height: 10px; /*Prevent it from getting too small */
+  border: 2px solid rgba(0, 0, 0, 0);
+  transition: background .2 ease-in-out;
+}
+
+/* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
+::-webkit-scrollbar-thumb:horizontal,
+::-webkit-scrollbar-thumb:horizontal {
   /* This is the EXACT color of Mac OS scrollbars.
      Yes, I pulled out digital color meter */
   background: rgba(0,0,0,0.2);

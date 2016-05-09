@@ -128,7 +128,7 @@ class ShoppingOrder extends React.Component<IProps, IState> {
       },
       {
         id: 'courier',
-        text: 'Доставка',
+        text: 'Доставка до станции метро',
         content: (
             <div>
               <div className={styles.cardTitle}>
@@ -136,6 +136,20 @@ class ShoppingOrder extends React.Component<IProps, IState> {
               </div>
               <div className={styles.cardText}>
                 до станции метро (<strong>150 рублей</strong>)
+              </div>
+            </div>
+        )
+      },
+      {
+        id: 'courierCity',
+        text: 'Доставка до квартиры',
+        content: (
+            <div>
+              <div className={styles.cardTitle}>
+                <strong>Доставка</strong>
+              </div>
+              <div className={styles.cardText}>
+                по СПб в пределах КАД (<strong>300 рублей</strong>)
               </div>
             </div>
         )

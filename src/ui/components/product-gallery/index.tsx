@@ -32,8 +32,8 @@ class ProductGallery extends React.Component<IProps , IState> {
 
   public render() {
     let { photos } = this.props;
-    let photosList = photos.map(photo => (
-        <div className={classNames(styles.miniPhoto, {[styles.active]: photo === this.state.active})}
+    let photosList = photos.map((photo, i) => (
+        <div key={i} className={classNames(styles.miniPhoto, {[styles.active]: photo === this.state.active})}
              style={{backgroundImage: `url(${photo})`}} onClick={() => this.miniPhotoHandler(photo)}></div>
     ));
     return (
