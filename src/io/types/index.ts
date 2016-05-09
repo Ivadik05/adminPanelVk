@@ -66,6 +66,7 @@ export type orderType = {
     method: 'cash' | 'nocash' | 'post'
     methodText: string;
   };
+  cart: shoppingCart;
 }
 
 export type executeType = Array<BaseResponse<any>>

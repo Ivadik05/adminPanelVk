@@ -7,6 +7,7 @@ let initialState = {
   albums: [],
   data: [],
   contentText: '',
+  successOrder: false,
   shoppingCart: {
     sum: 0,
     count: 0,
@@ -17,6 +18,7 @@ let initialState = {
 type market = {
   albums: Array<albumsType>;
   data: Array<marketType>;
+  successOrder: boolean;
   contentText: string;
   shoppingCart: shoppingCart;
 };
@@ -30,6 +32,16 @@ export default function market<Reducer>(state: market = initialState, action) {
     case events.market.DRAW_SHOPPING_CART:
       return objectAssign({}, state, {
         shoppingCart: action.payload
+      });
+    case events.market.CLEAR_SHOPPING_CART:
+      return objectAssign({}, state, {
+        shoppingCart: initialState.shoppingCart,
+        successOrder: false
+      });
+    case events.market.SUCCESS_ORDER:
+      return objectAssign({}, state, {
+        successOrder: true,
+        shoppingCart: initialState.shoppingCart
       });
     case events.saver.MARKET_ALBUMS:
       return objectAssign({}, state, {

@@ -41,4 +41,10 @@ export module actionCreators {
       payload: order
     };
   }
+
+  export function clearCart<ActionCreator>() {
+    return {
+      type: events.market.CLEAR_SHOPPING_CART
+    };
+  }
 }

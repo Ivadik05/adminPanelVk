@@ -69,6 +69,10 @@ class ShoppingCart extends Service {
       return (item.id !== productDetail.id);
     });
   }
+  
+  public clear() {
+    this.productsSelected = [];
+  }
 }
 
 export default ShoppingCart;

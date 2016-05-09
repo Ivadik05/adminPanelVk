@@ -30,7 +30,8 @@ export function prepareAlbums(payload: Array<Object>): marketAlbumsType {
       category: prod['category'],
       date: new Date(prod['date']),
       preview_photo: prod['photos'] ? prod['photos'][0]['photo_604'] : '',
-      photo: prod['photos'] ? prod['photos'][0]['photo_807'] : ''
+      photo: prod['photos'] ? prod['photos'][0]['photo_807'] : '',
+      photos: prod['photos'] ? prod['photos'].map(item => item['photo_807']) : ''
     };
   });
   return {

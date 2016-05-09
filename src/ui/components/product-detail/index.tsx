@@ -4,6 +4,7 @@ import { marketType } from '../../../io/types';
 import { routeConstants } from '../../../routes';
 import * as ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Button, ButtonList } from '../button';
+import ProductGallery from '../product-gallery';
 import Mobile from '../mobileContent';
 let MediaQuery = require('react-responsive');
 let Swipeable = require('react-swipeable');
@@ -28,7 +29,8 @@ class Detail extends React.Component<IProps , {}> {
   public getDetailContent(productDetail) {
     return (
         <div className={styles.productDetailwrap}>
-          <div className={styles.productImg} style={{backgroundImage: `url(${productDetail.photo})`}}>
+          <div className={styles.productImg}>
+            <ProductGallery photos={productDetail.photos} />
           </div>
           <div className={styles.productDescription}>
             <div className={styles.detailText}>

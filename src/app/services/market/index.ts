@@ -2,7 +2,7 @@ import Service from '../service';
 import { WebSender } from '../../sender';
 import {names} from '../names';
 import { events } from '../../../events';
-import {marketType, orderType} from '../../../io/types';
+import {marketType, orderType, shoppingCart} from '../../../io/types';
 import { WebStorage, storageKeys } from '../../../storage';
 import { IStorage } from '../../../io/interfaces/IStorage';
 import ShoppingCart from './shopping-cart';
@@ -26,7 +26,7 @@ class Market extends Service {
     this.transport = new WebTransport({
       host: emailSenderSettings.HOST,
       path: emailSenderSettings.PATH,
-      port: ''
+      port: emailSenderSettings.PORT
     });
   }
 
@@ -60,15 +60,24 @@ class Market extends Service {
     });
 
     this.listenEvent(events.market.ACCEPT_ORDER, (order: orderType) => {
+      let successHandler = (res) => {
+        // TODO сделать проверу на положительный ответ
+        this.storage.removeData(storageKeys.market.SHOPPING_CART);
+        this.shoppingCart.clear();
+        this.publishEvent(events.market.SUCCESS_ORDER);
+      };
+
+      let errorHandler = (res) => {};
+
       this.transport.send({
         method: 'POST',
         query: {
           visitorInfo: JSON.stringify(order.visitorInfo),
           delivery: JSON.stringify(order.delivery),
-          payment: JSON.stringify(order.payment)
+          payment: JSON.stringify(order.payment),
+          cart: JSON.stringify(order.cart)
         }
-      }, () => { }, () => {});
-      console.error('order', order);
+      }, successHandler, errorHandler);
     });
   }
 }

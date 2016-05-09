@@ -13,7 +13,9 @@ export module events {
     'REMOVE_PRODUCT': 'remove-product',
     'REMOVE_PRODUCT_ITEM': 'remove-product-item',
     'DRAW_SHOPPING_CART': 'draw-shopping-cart',
-    'ACCEPT_ORDER': 'accept-order'
+    'CLEAR_SHOPPING_CART': 'clear-shopping-cart',
+    'ACCEPT_ORDER': 'accept-order',
+    'SUCCESS_ORDER': 'success-order'
   };
 
   export const about = {
