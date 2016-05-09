@@ -1,6 +1,7 @@
 import * as React from 'react';
 let styles = require('./style.css');
 let InputElement = require('react-input-mask');
+import Mobile from '../mobileContent';
 let classNames = require('classnames');
 
 type Props = {
@@ -22,7 +23,7 @@ type FormProps = {
 function checkValidPattern(inputs, name, pattern, value) {
   if (pattern.test(value)) {
     inputs[name] = true;
-    console.error('error hint hide'); 
+    console.error('error hint hide');
   } else {
     inputs[name] = false;
     console.error('error hint');
@@ -83,19 +84,39 @@ export let Validate = (() => {
     let onChange = (event) => {
       let elem = event.currentTarget;
       let value = elem.value;
-      if (props.firstUpper && value[0]) {
-        value = value[0].toUpperCase() + value.slice(1);
-        elem.value = value;
-      }
       checkValid(elem, value, props.type, inputs, props.name);
       onChangeAll(checkValidAll(inputs));
       props.onChange(value, elem);
+    };
+
+    const keyCodes = {
+      KEY_ENTER: 13,
+      KEY_SPACE: 32,
+      KEY_ESC: 27,
+      KEY_TAB: 9,
+      KEY_INSERT: 45,
+      KEY_UP:  38,
+      KEY_DOWN: 40,
+      KEY_LEFT: 37,
+      KEY_RIGHT: 39
+    };
+
+    let onKeyDown = (event) => {
+      // let isAvailKeys = event.keyCode < keyCodes.KEY_TAB || event.keyCode > keyCodes.KEY_INSERT;
+      // let elem = event.currentTarget;
+      // let value = elem.value;
+      // if (isAvailKeys || event.keyCode === keyCodes.KEY_SPACE) {
+      //   if (props.firstUpper && value[0]) {
+      //     value = value[0].toUpperCase() + value.slice(1);
+      //     elem.value = value;
+      //   }
+      // }
     };
     return (
         <div className={classNames(styles.input, {[styles.required]: props.required}, {[styles.error]: !inputs[props.name]})}>
           {props.type && props.type === 'phone' ?
               (<InputElement {...props} mask='+7 (999) 999-99-99' placeholder={props.placeholder} onChange={onChange} maskChar={null}/>) :
-              (<input type='text' placeholder={props.placeholder} onInput={onChange} required={props.required && props.required}/>)}
+              (<input type='text' placeholder={props.placeholder} onInput={onChange} required={props.required && props.required} onKeyDown={onKeyDown}/>)}
         </div>
     );
   };
