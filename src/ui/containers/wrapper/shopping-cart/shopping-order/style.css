@@ -1,0 +1,27 @@
+.order {
+    width: 100%;
+}
+
+.orderContacts, .orderDelivery, .orderPayment {
+}
+
+.orderContacts h3, .orderDelivery h3, .orderPayment h3  {
+    text-align: center;
+}
+
+.orderCards {
+    margin-bottom: 20px;
+}
+
+.inputsWrap {
+    margin-bottom: 20px;
+}
+
+.cardTitle {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.cardText {
+
+}

@@ -12,7 +12,8 @@ export module events {
     'ADD_PRODUCT': 'add-product',
     'REMOVE_PRODUCT': 'remove-product',
     'REMOVE_PRODUCT_ITEM': 'remove-product-item',
-    'DRAW_SHOPPING_CART': 'draw-shopping-cart'
+    'DRAW_SHOPPING_CART': 'draw-shopping-cart',
+    'ACCEPT_ORDER': 'accept-order'
   };
 
   export const about = {

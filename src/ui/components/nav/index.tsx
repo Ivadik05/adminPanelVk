@@ -58,7 +58,7 @@ export default class Nav extends React.Component<IProps, IState> {
             </li>
             <li>
               <div className={styles.navItem}>
-                <Link to={routeConstants.ABOUT} activeClassName={styles.active}>О нас</Link>
+                <Link to={routeConstants.ABOUT} activeClassName={styles.active}>Обо мне</Link>
               </div>
             </li>
             <li>

@@ -1,6 +1,6 @@
 import { ActionCreator } from 'redux';
 import { events } from '../../events';
-import { marketType } from '../../io/types';
+import {marketType, orderType} from '../../io/types';
 
 export module actionCreators {
   export function getMarket<ActionCreator>() {
@@ -32,6 +32,13 @@ export module actionCreators {
     return {
       type: events.market.ADD_PRODUCT,
       payload: productDetail
+    };
+  }
+
+  export function acceptOrder<ActionCreator>(order: orderType) {
+    return {
+      type: events.market.ACCEPT_ORDER,
+      payload: order
     };
   }
 }
