@@ -194,7 +194,12 @@ class ShoppingOrder extends React.Component<IProps, IState> {
             <div className={styles.orderContacts}>
               <h3>Контактная информация</h3>
               <div className={styles.inputsWrap}>
-                <Input placeholder='Имя' onChange={(value) => {this.updateState('name', value);}}/>
+                <Input
+                    type='text'
+                    required={true}
+                    placeholder='Имя'
+                    onChange={(value) => {this.updateState('name', value);}}
+                />
                 <Input type='phone' placeholder='Телефон' onChange={(value) => {this.updateState('phone', value);}}/>
                 <Input placeholder='E-mail' onChange={(value) => {this.updateState('email', value);}}/>
               </div>

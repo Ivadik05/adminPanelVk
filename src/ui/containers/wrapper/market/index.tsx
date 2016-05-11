@@ -70,6 +70,10 @@ class Market extends React.Component<IProps , {}> {
     this.freezeWindow();
   }
 
+  public componentWillUnmount() {
+    document.body.style.overflow = 'auto';
+  }
+
   public onAddProduct(productDetail: marketType) {
     let { dispatch } = this.props;
     dispatch(actionCreators.addProductInCart(productDetail));
