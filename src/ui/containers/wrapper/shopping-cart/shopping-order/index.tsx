@@ -201,7 +201,7 @@ class ShoppingOrder extends React.Component<IProps, IState> {
                     onChange={(value) => {this.updateState('name', value);}}
                 />
                 <Input type='phone' placeholder='Телефон' onChange={(value) => {this.updateState('phone', value);}}/>
-                <Input placeholder='E-mail' onChange={(value) => {this.updateState('email', value);}}/>
+                <Input placeholder='E-mail' type='email' onChange={(value) => {this.updateState('email', value);}}/>
               </div>
             </div>
             <div className={styles.orderDelivery}>
