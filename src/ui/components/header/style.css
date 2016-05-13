@@ -1,7 +1,7 @@
 .header {
   display: flex;
   background: #fff;
-  padding: 2.6% 0 1.1%;
+  padding: 50px 0 21px;
 }
 
 @media all and (max-width: 600px) {

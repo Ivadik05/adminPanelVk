@@ -198,7 +198,7 @@ class ShoppingOrder extends React.Component<IProps, IState> {
           <Container>
             <h1>Оформление заказа</h1>
             <div className={styles.orderContacts}>
-              <h3>Контактная информация</h3>
+              <h2>Контактная информация</h2>
               <div className={styles.inputsWrap}>
                 <Validate.Form onChange={this.onChangeForm}>
                   <Validate.Input
@@ -226,7 +226,7 @@ class ShoppingOrder extends React.Component<IProps, IState> {
               </div>
             </div>
             <div className={styles.orderDelivery}>
-              <h3>Способ доставки</h3>
+              <h2>Способ доставки</h2>
               <div className={styles.orderCards}>
                 <CardSelect
                     cards={deliveryCards}
@@ -235,7 +235,7 @@ class ShoppingOrder extends React.Component<IProps, IState> {
               </div>
             </div>
             <div className={styles.orderPayment}>
-              <h3>Способ оплаты</h3>
+              <h2>Способ оплаты</h2>
               <div className={styles.orderCards}>
                 <CardSelect
                     cards={paymentCards}

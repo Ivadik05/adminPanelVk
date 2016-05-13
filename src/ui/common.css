@@ -88,13 +88,9 @@ h1, h2, h3 {
 
 h1 {
   font-family: 'Open Sans', sans-serif;
-  /*composes: h1;*/
   display: block;
   font-size: 1.5em;
-  /*-webkit-margin-before: 0.67em;*/
-  -webkit-margin-after: 0.67em;
-  /*-webkit-margin-start: 0px;*/
-  /*-webkit-margin-end: 0px;*/
+  margin-bottom: 0.67em;
   font-weight: 400;
 }
 
@@ -102,10 +98,7 @@ h2 {
   font-family: 'Open Sans', sans-serif;
   display: block;
   font-size: 1.25em;
-  /*-webkit-margin-before: 0.83em;*/
-  -webkit-margin-after: 0.83em;
-  /*-webkit-margin-start: 0px;*/
-  /*-webkit-margin-end: 0px;*/
+  margin-bottom: 0.83em;
   font-weight: 400;
 }
 
@@ -113,10 +106,7 @@ h3 {
   font-family: 'Open Sans', sans-serif;
   display: block;
   font-size: 1.10em;
-  /*-webkit-margin-before: 1em;*/
-  -webkit-margin-after: 1em;
-  /*-webkit-margin-start: 0px;*/
-  /*-webkit-margin-end: 0px;*/
+  margin-bottom: 1em;
   font-weight: 400;
 }
 

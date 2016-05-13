@@ -5,9 +5,10 @@
 .required:before {
     content: '*';
     position: absolute;
-    left: -9px;
+    left: -11px;
     color: tomato;
     top: 6px;
+    font-size: 20px;
 }
 
 .input:first-child {

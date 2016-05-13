@@ -40,13 +40,18 @@ class ShoppingCartBar extends React.Component<IProps , {}> {
                     <div className={styles.sum}>
                       {shoppingCart.sum} руб.
                     </div>
-                    <Button handler={this.transferShoppingCart}>Перейти в корзину</Button>
+                    <Button handler={this.transferShoppingCart}>
+                      <div className={styles.btnText}>Перейти в корзину</div>
+                      <div className={styles.btnIcon}>
+                        <Icon params={iconList.iconCart}></Icon>
+                      </div>
+                    </Button>
                   </div>
                   <div className={styles.cartSocial}>
-                    <a href='https://www.instagram.com/vse_vzaimo_svyazano/' target='_blank' className={styles.cartLink}>
+                    <a href='https://www.instagram.com/vse_vzaimosvyazano/' target='_blank' className={styles.cartLink}>
                       <Icon params={iconList.iconInsta}></Icon>
                     </a>
-                    <a href='http://vk.com/vse_vzaimo_svyazano' target='_blank' className={styles.cartLink}>
+                    <a href='http://vk.com/vse_vzaimosvyazano' target='_blank' className={styles.cartLink}>
                       <Icon params={iconList.iconVK}></Icon>
                     </a>
                   </div>
