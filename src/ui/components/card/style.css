@@ -27,3 +27,18 @@
 .active {
   border-color: #4B93B1;
 }
+
+@media all and (max-width: 600px) {
+  .cardList {
+    flex-direction: column;
+     margin: 0;
+  }
+
+  .card:first-child {
+    margin-top: 0;
+  }
+
+  .card {
+    margin: 6px 0;
+  }
+}

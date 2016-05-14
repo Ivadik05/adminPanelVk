@@ -18,8 +18,8 @@ type Props = {
 export let CardSelect = (props: Props) => {
   let cards = props.cards
       .filter(card => card.visible !== false)
-      .map(card => (
-      <div className={classNames(styles.card, {[styles.active]: props.active === card.id})}
+      .map((card, i) => (
+      <div key={i} className={classNames(styles.card, {[styles.active]: props.active === card.id})}
            onClick={() => {props.onChange(card.id, card.text);}}>
         {card.content}
       </div>

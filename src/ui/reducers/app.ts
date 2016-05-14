@@ -18,7 +18,7 @@ export default function app<Reducer>(state = initialState, action) {
       });
     case events.saver.PHOTOS:
       return objectAssign({}, state, {
-        bgPhoto: action.payload[utils.getRandomInt(0, action.payload.length)].photo
+        bgPhoto: action.payload[utils.getRandomInt(0, action.payload.length - 1)].photo
       });
     // case events.router.LOCATION_CHANGE:
     //   return objectAssign({}, state, {

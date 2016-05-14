@@ -43,12 +43,12 @@ class App extends React.Component<IProps, {}> {
       backgroundImage: `url(${this.props.state.app.bgPhoto})`
     };
     let { routing, market } = this.props.state;
-    // let isShopCart = market.shoppingCart.productsSelected.length &&
-    //     (this.props['location'].pathname &&
-    //       this.props['location'].pathname.indexOf(routeConstants.SHOPPING_CART) === -1);
     let isShopCart = market.shoppingCart.productsSelected.length &&
         (this.props['location'].pathname &&
-          this.props['location'].pathname !== routeConstants.SHOPPING_CART);
+          this.props['location'].pathname.indexOf(routeConstants.SHOPPING_CART) === -1);
+    // let isShopCart = market.shoppingCart.productsSelected.length &&
+    //     (this.props['location'].pathname &&
+    //       this.props['location'].pathname !== routeConstants.SHOPPING_CART);
     return (
         <div className={styles.app} style={appStyles}>
           <Helmet

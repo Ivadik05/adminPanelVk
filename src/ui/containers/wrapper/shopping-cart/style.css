@@ -106,3 +106,36 @@
 .sum span {
     font-weight: bold;
 }
+
+@media all and (max-width: 600px) {
+    .product {
+        height: auto;
+        flex-wrap: wrap;
+    }
+
+    .productInfo {
+        width: 100%;
+        flex: auto;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .productPhoto {
+        height: 80px;
+        float: left;
+        margin-right: 10px;
+    }
+
+    .productDescriptionWrap {
+        display: block;
+    }
+
+    .productPrice {
+        flex: 1;
+        text-align: center;
+    }
+
+    .price {
+        margin: auto;
+    }
+}
