@@ -6,11 +6,12 @@ import {marketType, orderType} from '../../../io/types';
 import { WebStorage, storageKeys } from '../../../storage';
 import { IStorage } from '../../../io/interfaces/IStorage';
 import ShoppingCart from './shopping-cart';
-import {ITransmitter} from '../../../io/interfaces/ITransmitter';
-import {WebTransmitter} from '../../../io/transmitter/web-transmitter';
+import { ITransport } from '../../../io/interfaces';
+import { WebTransport } from '../../../io/transport';
+import { settings } from '../../../settings';
 
 class Market extends Service {
-  private transmitter: ITransmitter = null;
+  private transport: ITransport = null;
   private storage: IStorage = null;
   private shoppingCart: ShoppingCart = null;
 
@@ -21,10 +22,10 @@ class Market extends Service {
     this.storage = new WebStorage(names.services.MARKET);
     this.shoppingCart = new ShoppingCart(products);
     this.checkStorage();
-
-    this.transmitter = new WebTransmitter({
-      host: 'localhost',
-      path: '/emailtransfer',
+    let emailSenderSettings = settings.emailSender;
+    this.transport = new WebTransport({
+      host: emailSenderSettings.HOST,
+      path: emailSenderSettings.PATH,
       port: ''
     });
   }
@@ -59,7 +60,7 @@ class Market extends Service {
     });
 
     this.listenEvent(events.market.ACCEPT_ORDER, (order: orderType) => {
-      this.transmitter.send({
+      this.transport.send({
         method: 'POST',
         query: {
           visitorInfo: JSON.stringify(order.visitorInfo),

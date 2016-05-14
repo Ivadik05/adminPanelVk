@@ -1,10 +1,9 @@
-import { ITransmitter } from '../interfaces';
+import { ITransport, ITransportOptions } from '../interfaces';
 import * as queryString from 'query-string';
-import { ITransmitterOptions } from '../interfaces';
 import { IConfig } from '../interfaces';
 
 
-export class WebTransmitter implements ITransmitter {
+export class WebTransport implements ITransport {
   private host: string;
   private path: string;
   private port: string;
@@ -45,7 +44,7 @@ export class WebTransmitter implements ITransmitter {
     return 'WebTransmitter';
   }
 
-  public send(options: ITransmitterOptions, complete: Function, errorResponse?: Function) {
+  public send(options: ITransportOptions, complete: Function, errorResponse?: Function) {
     // let request = util.isIe() ?
     //    new ActiveXObject('Microsoft.XMLHTTP') :
     //    new XMLHttpRequest();

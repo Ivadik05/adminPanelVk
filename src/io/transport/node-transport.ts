@@ -1,10 +1,10 @@
-import { ITransmitter } from '../interfaces';
+import { ITransport } from '../interfaces';
 import * as queryString from 'query-string';
-import { ITransmitterOptions } from '../interfaces';
+import { ITransportOptions } from '../interfaces';
 import { IConfig } from '../interfaces';
 import * as http from 'http';
 
-export class NodeTransmitter implements ITransmitter {
+export class NodeTransport implements ITransport {
   private host: string;
   private path: string;
   private port: string;
@@ -36,7 +36,7 @@ export class NodeTransmitter implements ITransmitter {
     return this.getPath() + '?' + queryParams;
   }
 
-  public send(options: ITransmitterOptions, complete: Function, errorResponse?: Function) {
+  public send(options: ITransportOptions, complete: Function, errorResponse?: Function) {
     let sendOptions = {
       host: this.getHost(),
       hostname: this.getHost(),
