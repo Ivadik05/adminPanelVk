@@ -1,0 +1,42 @@
+.productGallery {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.productImg {
+    background-color: #F7F7F7;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex: 1;
+}
+
+.productImgList {
+    height: 90px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: center;
+}
+
+.miniPhoto {
+    height: 100%;
+    width: 90px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: inline-block;
+    border:  2px solid #fff;
+    cursor: pointer;
+}
+
+.active {
+    border-color: #4B93B1;
+}
+
+@media all and (max-width: 600px) {
+    .productGallery {
+        height: auto;
+    }
+}

@@ -7,10 +7,13 @@ import { CardType, CardSelect } from '../../../../components/card';
 import { Container } from '../../../../components/container';
 import { actionCreators } from '../../../../action-creators';
 import {orderType} from '../../../../../io/types/index';
+import { routeConstants } from '../../../../../routes';
+import { browserHistory } from 'react-router';
 let styles = require('./style.css');
 
 interface IProps extends React.Props<ShoppingOrder> {
   shoppingCart: any;
+  successOrder: boolean;
   dispatch: IDispatch;
 }
 
@@ -26,6 +29,8 @@ interface IState {
 }
 
 class ShoppingOrder extends React.Component<IProps, IState> {
+  private timer: number;
+
   constructor(props) {
     super(props);
     this.onAcceptOrder = this.onAcceptOrder.bind(this);
@@ -49,7 +54,7 @@ class ShoppingOrder extends React.Component<IProps, IState> {
   };
 
   public onAcceptOrder() {
-    let { dispatch } = this.props;
+    let { dispatch, shoppingCart } = this.props;
     let order: orderType = {
       visitorInfo: {
         name: this.state.name,
@@ -63,7 +68,8 @@ class ShoppingOrder extends React.Component<IProps, IState> {
       payment: {
         method: this.state.paymentMethod,
         methodText: this.state.paymentMethodText
-      }
+      },
+      cart: shoppingCart
     };
     dispatch(actionCreators.acceptOrder(order));
   }
@@ -86,6 +92,22 @@ class ShoppingOrder extends React.Component<IProps, IState> {
 
   public onChangeForm(valid) {
     this.updateState('valid', valid);
+  }
+
+  public componentDidUpdate() {
+    let { successOrder, dispatch } = this.props;
+    if (successOrder) {
+      this.timer = setTimeout(function () {
+        browserHistory.push(`${routeConstants.MARKET}`);
+        dispatch(actionCreators.clearCart());
+      }, 10000);
+    }
+  }
+
+  public componentWillUnmount() {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
   }
 
   public render() {
@@ -195,7 +217,12 @@ class ShoppingOrder extends React.Component<IProps, IState> {
     ];
     return (
         <div className={styles.order}>
+          {this.props.successOrder &&
           <Container>
+            <h1>Готово!</h1>
+            Спасибо за заказ. На Вашу почту отправлено письмо с информацией о заказе.
+          </Container>}
+          {!this.props.successOrder && <Container>
             <h1>Оформление заказа</h1>
             <div className={styles.orderContacts}>
               <h2>Контактная информация</h2>
@@ -251,14 +278,15 @@ class ShoppingOrder extends React.Component<IProps, IState> {
                 Подтвердить заказ
               </Button>
             </ButtonList>
-          </Container>
+          </Container>}
         </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  shoppingCart: state.market.shoppingCart
+  shoppingCart: state.market.shoppingCart,
+  successOrder: state.market.successOrder
 });
 
 export default connect(mapStateToProps)(ShoppingOrder);

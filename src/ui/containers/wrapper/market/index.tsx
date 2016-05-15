@@ -85,7 +85,7 @@ class Market extends React.Component<IProps , {}> {
           <div className={styles.marketItem} key={i}>
             <button className={styles.inner} onClick={this.openProduct(market.id)}>
               <div className={styles.marketPhoto}>
-                <img src={market.photo} alt={market.title}/>
+                <img src={market.preview_photo} alt={market.title}/>
               </div>
               <div className={styles.name}>
                 <span>

@@ -14,6 +14,7 @@ let styles = require('./style.css');
 export interface IProps extends React.Props<ChoppingCart> {
   params: Object;
   shoppingCart: any;
+  successOrder: boolean;
   dispatch: IDispatch;
 }
 
@@ -103,23 +104,23 @@ class ChoppingCart extends React.Component<IProps, {}> {
     );
   }
 
-  public checkPath(pathname: string, isCart: boolean) {
+  public checkPath(pathname: string, isCart: boolean, successOrder: boolean) {
     // TODO refuck
     if (pathname.indexOf(routeConstants.SHOPPING_CART_ORDER) !== -1) {
-      if (!isCart) {
+      if (!isCart && !successOrder) {
         browserHistory.replace(routeConstants.SHOPPING_CART);
       }
     }
   }
 
   public componentDidUpdate() {
-    let { shoppingCart } = this.props;
-    this.checkPath(this.props['location'].pathname, Boolean(shoppingCart.count));
+    let { shoppingCart, successOrder } = this.props;
+    this.checkPath(this.props['location'].pathname, Boolean(shoppingCart.count), successOrder);
   }
-
-  // public componentDidMount() {
-  //   let { shoppingCart } = this.props;
-  //   this.checkPath(this.props['location'].pathname, Boolean(shoppingCart.count));
+  
+  // public componentWillUpdate() {
+  //   let { shoppingCart, successOrder } = this.props;
+  //   this.checkPath(this.props['location'].pathname, Boolean(shoppingCart.count), successOrder);
   // }
 
   public render() {
@@ -139,7 +140,8 @@ class ChoppingCart extends React.Component<IProps, {}> {
 }
 
 const mapStateToProps = state => ({
-  shoppingCart: state.market.shoppingCart
+  shoppingCart: state.market.shoppingCart,
+  successOrder: state.market.successOrder
 });
 
 export default connect(mapStateToProps)(ChoppingCart);
