@@ -28,8 +28,7 @@ export class Io {
         )
     );
     console.info(
-        `IO: ${this.transport.getType()}: send request method: ${request.getName()}`,
-        'request data: ', request.getData());
+        `IO: ${this.transport.getType()}: send request method: ${request.getName()}`);
   }
 
 
@@ -75,10 +74,6 @@ export class Io {
   private handleResponse(nameResponse: string, saverEvent: string, callback: Function, errorCallback) {
     return (data: string) => {
       let response = utils.decodeJsonData(data);
-      // if (response === null) {
-      //   errorCallback();
-      // }
-      // callback(response, 0, data);
       if (response) {
         if (response['response']) {
           let resultResponse = this.prepareResponse(nameResponse, saverEvent, response['response']);
@@ -87,7 +82,7 @@ export class Io {
           console.error(`response ${nameResponse} error: ${data}`);
         }
       } else {
-        console.error(`response ${nameResponse} is no data`);
+        console.error(`response ${nameResponse} is no data: '${data}'`);
       }
     };
   }

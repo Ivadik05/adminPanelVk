@@ -31,8 +31,8 @@ export class NodeSender implements ISender {
       port: connectorSettings.PORT
     };
     this.store = store;
-    let transmitter: ITransport = new NodeTransport(requestSettings);
-    this.io = new Io(transmitter);
+    let transport: ITransport = new NodeTransport(requestSettings);
+    this.io = new Io(transport);
   }
 
   // private updateStore(response: BaseResponse) {

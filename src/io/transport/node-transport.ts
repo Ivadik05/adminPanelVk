@@ -46,6 +46,8 @@ export class NodeTransport implements ITransport {
       async: options.async,
       query: options.query || {}
     };
+    console.info(
+        `send request query: ${sendOptions.path}`);
     let request = http.get(sendOptions, (res) => {
       let bodyChunks = [];
       res.on('data', function(chunk) {
