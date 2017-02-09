@@ -30,6 +30,7 @@ let commonConfigs = {
   resolve: {
     extensions: ['.webpack.js', '.web.js', '.tsx', '.js', '.ts', '.css']
   },
+  devtool: 'source-map',
   module: {
     loaders: [
       {
@@ -53,7 +54,7 @@ let commonConfigs = {
         })
       },
       {
-        test: /\.ts(x)?$/,
+        test: /\.tsx?$/,
         exclude: /(node_modules|__tests__)/,
         loaders: ['ts-loader']
       },
@@ -105,12 +106,6 @@ module.exports = [
       path: path.resolve(__dirname, 'public', 'dist'),
       filename: '[name].js',
       publicPath: '/public'
-    },
-    node: {
-      // workaround for webpack-dev-server issue
-      // https://github.com/webpack/webpack-dev-server/issues/60#issuecomment-103411179
-      fs: 'empty',
-      net: 'empty'
     }
   }),
   objectAssign({}, commonConfigs, {
