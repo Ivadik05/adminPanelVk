@@ -8,7 +8,7 @@ let styles = require('./style.css');
 
 export interface IProps extends React.Props<Delivery> {
   delivery: any;
-  dispatch: IDispatch;
+  dispatch: IDispatch<{}>;
 }
 
 class Delivery extends React.Component<IProps, {}> {

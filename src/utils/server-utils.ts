@@ -39,9 +39,8 @@ export function getFileExtension(link: string) {
 
 export function createPage(html, initialState, head) {
   //noinspection TsLint
-  return `
-  <!doctype html>
-  <html ${head.htmlAttributes.toString()}>
+  return ` 
+  <!DOCTYPE html ${head.htmlAttributes.toString()}>
     <head>
       <meta charset="utf-8"/>
       <meta name="google-site-verification" content="Y6Z6xpAQ0jRjRQWaf8N11oPxF0Yj4xKkMIM6cFSg5e0" />

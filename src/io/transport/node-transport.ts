@@ -37,6 +37,7 @@ export class NodeTransport implements ITransport {
   }
 
   public send(options: ITransportOptions, complete: Function, errorResponse?: Function) {
+    const errResponse = errorResponse || function () {};
     let sendOptions = {
       host: this.getHost(),
       hostname: this.getHost(),
@@ -59,7 +60,7 @@ export class NodeTransport implements ITransport {
     });
 
     request.on('error', function(e) {
-      errorResponse(e);
+      errResponse(e);
       console.log('ERROR: ' + e.message);
     });
 

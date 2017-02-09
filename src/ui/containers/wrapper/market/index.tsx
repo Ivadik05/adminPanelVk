@@ -15,7 +15,7 @@ let styles = require('./style.css');
 export interface IProps {
   params: Object;
   market: any;
-  dispatch: IDispatch;
+  dispatch: IDispatch<{}>;
 }
 
 class Market extends React.Component<IProps , {}> {

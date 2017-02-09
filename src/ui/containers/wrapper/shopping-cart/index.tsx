@@ -15,7 +15,7 @@ export interface IProps extends React.Props<ChoppingCart> {
   params: Object;
   shoppingCart: any;
   successOrder: boolean;
-  dispatch: IDispatch;
+  dispatch: IDispatch<{}>;
 }
 
 class ChoppingCart extends React.Component<IProps, {}> {
@@ -117,7 +117,7 @@ class ChoppingCart extends React.Component<IProps, {}> {
     let { shoppingCart, successOrder } = this.props;
     this.checkPath(this.props['location'].pathname, Boolean(shoppingCart.count), successOrder);
   }
-  
+
   // public componentWillUpdate() {
   //   let { shoppingCart, successOrder } = this.props;
   //   this.checkPath(this.props['location'].pathname, Boolean(shoppingCart.count), successOrder);

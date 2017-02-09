@@ -1,0 +1,25 @@
+{
+  "name": "VVS",
+  "version": false,
+  "dependencies": {
+    "react": "registry:npm/react#15.0.1+20170104200836",
+    "react-dom": "registry:dt/react-dom#0.14.0+20170207010524",
+    "react-helmet": "registry:dt/react-helmet#0.0.0+20170123203653",
+    "react-redux": "registry:dt/react-redux#4.4.0+20170123203653",
+    "react-router": "registry:dt/react-router#3.0.0+20170130032908",
+    "react-router-redux": "registry:dt/react-router-redux#4.0.0+20170127024219"
+  },
+  "globalDependencies": {
+    "classnames": "github:DefinitelyTyped/DefinitelyTyped/classnames/classnames.d.ts#e937b3e64af586d19f2ea29fdf771e9dc4feecc8",
+    "es6-promise": "github:DefinitelyTyped/DefinitelyTyped/es6-promise/es6-promise.d.ts#e937b3e64af586d19f2ea29fdf771e9dc4feecc8",
+    "jest": "github:DefinitelyTyped/DefinitelyTyped/jest/jest.d.ts#e937b3e64af586d19f2ea29fdf771e9dc4feecc8",
+    "marked": "registry:dt/marked#0.0.0+20160510002910",
+    "moment": "github:DefinitelyTyped/DefinitelyTyped/moment/moment.d.ts#e937b3e64af586d19f2ea29fdf771e9dc4feecc8",
+    "moment-node": "github:DefinitelyTyped/DefinitelyTyped/moment/moment-node.d.ts#e937b3e64af586d19f2ea29fdf771e9dc4feecc8",
+    "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#e937b3e64af586d19f2ea29fdf771e9dc4feecc8",
+    "object-assign": "github:DefinitelyTyped/DefinitelyTyped/object-assign/object-assign.d.ts#e937b3e64af586d19f2ea29fdf771e9dc4feecc8",
+    "query-string": "github:DefinitelyTyped/DefinitelyTyped/query-string/query-string.d.ts#076815de3926839258ef23742e5efc7714b8fb89",
+    "redux": "github:DefinitelyTyped/DefinitelyTyped/redux/redux.d.ts#e937b3e64af586d19f2ea29fdf771e9dc4feecc8",
+    "redux-logger": "github:DefinitelyTyped/DefinitelyTyped/redux-logger/redux-logger.d.ts#e937b3e64af586d19f2ea29fdf771e9dc4feecc8"
+  }
+}

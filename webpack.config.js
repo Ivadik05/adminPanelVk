@@ -1,23 +1,23 @@
-var path = require('path');
-var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var objectAssign = require('object-assign');
-var precss       = require('precss');
-var autoprefixer = require('autoprefixer');
+let path = require('path');
+let webpack = require('webpack');
+let ExtractTextPlugin = require('extract-text-webpack-plugin');
+let objectAssign = require('object-assign');
+let precss       = require('precss');
+let autoprefixer = require('autoprefixer');
 // require promise polyfill for old node environment
 if(typeof Promise === 'undefined') {
   require('es6-promise').polyfill();
 }
-var NODE_ENV = JSON.stringify(process.env.NODE_ENV || 'development');
-var GA_TRACKING_ID = JSON.stringify(process.env.GA_TRACKING_ID || '');
-var DEV = Boolean(NODE_ENV === '"development"');
-var developFlag = new webpack.DefinePlugin({
+let NODE_ENV = JSON.stringify(process.env.NODE_ENV || 'development');
+let GA_TRACKING_ID = JSON.stringify(process.env.GA_TRACKING_ID || '');
+let DEV = Boolean(NODE_ENV === '"development"');
+let developFlag = new webpack.DefinePlugin({
   'process.env.NODE_ENV': NODE_ENV,
   'process.env.GA_TRACKING_ID': GA_TRACKING_ID
 });
-var listOfPlugins = [];
+let listOfPlugins = [];
 //uglify js if production build
-var uglifierOptions = {
+let uglifierOptions = {
   minimize: true, mangle: {
     except: ['exports', 'require']
   }
@@ -26,15 +26,31 @@ if (!DEV) {
   listOfPlugins.push(new webpack.optimize.UglifyJsPlugin(uglifierOptions));
 }
 
-var commonConfigs = {
+let commonConfigs = {
   resolve: {
-    extensions: ['', '.webpack.js', '.web.js', '.tsx', '.js', '.ts', '.css']
+    extensions: ['.webpack.js', '.web.js', '.tsx', '.js', '.ts', '.css']
   },
   module: {
     loaders: [
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!!postcss-loader')
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: [
+            {
+              loader: 'css-loader',
+              query: {
+                modules: true,
+                sourceMap: !DEV,
+                importLoaders: 1,
+                localIdentName: '[local]__[hash:base64:5]'
+              }
+            },
+            {
+              loader: 'postcss-loader'
+            }
+          ]
+        })
       },
       {
         test: /\.ts(x)?$/,
@@ -46,38 +62,39 @@ var commonConfigs = {
         loader: 'url-loader?mimetype=image/limit=10000'
       }
     ]
-  },
-  postcss: function () {
-    return [autoprefixer];
-  },
-  imagemin: {
-    gifsicle: { interlaced: false },
-    jpegtran: {
-      progressive: true,
-      arithmetic: false
-    },
-    optipng: { optimizationLevel: 5 },
-    pngquant: {
-      floyd: 0.5,
-      speed: 2
-    },
-    svgo: {
-      plugins: [
-        { removeTitle: true },
-        { convertPathData: false }
-      ]
-    }
-  },
-  tslint: {
-    emitErrors: false
   }
+  // postcss: function () {
+  //   return [autoprefixer];
+  // },
+  // imagemin: {
+  //   gifsicle: { interlaced: false },
+  //   jpegtran: {
+  //     progressive: true,
+  //     arithmetic: false
+  //   },
+  //   optipng: { optimizationLevel: 5 },
+  //   pngquant: {
+  //     floyd: 0.5,
+  //     speed: 2
+  //   },
+  //   svgo: {
+  //     plugins: [
+  //       { removeTitle: true },
+  //       { convertPathData: false }
+  //     ]
+  //   }
+  // },
+  // tslint: {
+  //   emitErrors: false
+  // }
 };
 
 module.exports = [
   objectAssign({}, commonConfigs, {
     plugins: listOfPlugins.concat([
       developFlag,
-      new ExtractTextPlugin('app.css', {
+      new ExtractTextPlugin({
+        filename: 'app.css',
         allChunks: true
       })
     ]),
@@ -88,13 +105,20 @@ module.exports = [
       path: path.resolve(__dirname, 'public', 'dist'),
       filename: '[name].js',
       publicPath: '/public'
+    },
+    node: {
+      // workaround for webpack-dev-server issue
+      // https://github.com/webpack/webpack-dev-server/issues/60#issuecomment-103411179
+      fs: 'empty',
+      net: 'empty'
     }
   }),
   objectAssign({}, commonConfigs, {
     target: 'node',
     plugins: listOfPlugins.concat([
       developFlag,
-      new ExtractTextPlugin('../public/dist/app.css', {
+      new ExtractTextPlugin({
+        filename: '../public/dist/app.css',
         allChunks: true
       })
     ]),

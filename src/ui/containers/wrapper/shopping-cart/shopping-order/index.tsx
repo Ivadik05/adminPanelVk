@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Dispatch as IDispatch } from 'redux';
+import { Dispatch, Store } from 'redux';
 import { connect } from 'react-redux';
 import { Button, ButtonList } from '../../../../components/button';
 import { Validate } from '../../../../components/validate';
@@ -11,10 +11,10 @@ import { routeConstants } from '../../../../../routes';
 import { browserHistory } from 'react-router';
 let styles = require('./style.css');
 
-interface IProps extends React.Props<ShoppingOrder> {
+interface IProps {
   shoppingCart: any;
   successOrder: boolean;
-  dispatch: IDispatch;
+  dispatch: Dispatch<IState>;
 }
 
 interface IState {
@@ -29,7 +29,7 @@ interface IState {
 }
 
 class ShoppingOrder extends React.Component<IProps, IState> {
-  private timer: number;
+  private timer: any;
 
   constructor(props) {
     super(props);

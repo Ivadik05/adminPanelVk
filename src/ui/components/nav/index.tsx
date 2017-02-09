@@ -5,7 +5,7 @@ let classNames = require('classnames');
 import * as Helmet from 'react-helmet';
 let styles = require('./style.css');
 
-export interface IProps extends React.Props<Nav> {
+export interface IProps {
   routing: Object;
   getAbout: Function;
 }
