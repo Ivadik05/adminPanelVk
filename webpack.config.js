@@ -1,22 +1,18 @@
-let path = require('path');
-let webpack = require('webpack');
-let ExtractTextPlugin = require('extract-text-webpack-plugin');
-let objectAssign = require('object-assign');
-let precss       = require('precss');
-// require promise polyfill for old node environment
-if(typeof Promise === 'undefined') {
-  require('es6-promise').polyfill();
-}
-let NODE_ENV = JSON.stringify(process.env.NODE_ENV || 'development');
-let GA_TRACKING_ID = JSON.stringify(process.env.GA_TRACKING_ID || '');
-let DEV = Boolean(NODE_ENV === '"development"');
-let developFlag = new webpack.DefinePlugin({
+var path = require('path');
+var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var objectAssign = require('object-assign');
+var autoprefixer = require('autoprefixer');
+var NODE_ENV = JSON.stringify(process.env.NODE_ENV || 'development');
+var GA_TRACKING_ID = JSON.stringify(process.env.GA_TRACKING_ID || '');
+var DEV = Boolean(NODE_ENV === '"development"');
+var developFlag = new webpack.DefinePlugin({
   'process.env.NODE_ENV': NODE_ENV,
   'process.env.GA_TRACKING_ID': GA_TRACKING_ID
 });
-let listOfPlugins = [];
+var listOfPlugins = [];
 //uglify js if production build
-let uglifierOptions = {
+var uglifierOptions = {
   minimize: true, mangle: {
     except: ['exports', 'require']
   }
@@ -25,11 +21,11 @@ if (!DEV) {
   listOfPlugins.push(new webpack.optimize.UglifyJsPlugin(uglifierOptions));
 }
 
-let commonConfigs = {
+var commonConfigs = {
   resolve: {
     extensions: ['.webpack.js', '.web.js', '.tsx', '.js', '.ts', '.css']
   },
-  devtool: 'source-map'
+  devtool: DEV && 'source-map'
 };
 
 module.exports = [
@@ -44,19 +40,6 @@ module.exports = [
         },
         {
           test: /\.css$/,
-          // use: [
-          //   'style-loader',
-          //   {
-          //     loader: 'css-loader',
-          //     options: {
-          //       importLoaders: 1,
-          //       modules: true,
-          //       camelCase: true,
-          //       localIdentName: '[local]__[hash:base64:5]'
-          //     }
-          //   }
-          //   // 'postcss-loader'
-          // ]
           use: ExtractTextPlugin.extract({
             fallback: 'style-loader',
             use: [
@@ -65,10 +48,13 @@ module.exports = [
                 query: {
                   modules: true,
                   camelCase: true,
-                  importLoaders: 1,
-                  autoprefixer: false,
+                  minimize: true,
                   localIdentName: '[local]__[hash:base64:5]'
                 }
+              },
+              {
+                loader: 'postcss-loader',
+                options: { plugins: function() { return [ autoprefixer() ]} }
               }
             ]
           })
@@ -116,7 +102,6 @@ module.exports = [
                 localIdentName: '[local]__[hash:base64:5]'
               }
             }
-            // 'postcss-loader'
           ]
         },
         {

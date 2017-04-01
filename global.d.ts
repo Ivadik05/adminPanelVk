@@ -48,3 +48,7 @@ declare module 'react-ga' {
 //
 //   export = Helmet;
 // }
+
+interface ObjectConstructor {
+  assign(target: any, ...sources: any[]): any;
+}

@@ -1,4 +1,4 @@
-let objectAssign = require('object-assign');
+
 
 let initialState = null;
 

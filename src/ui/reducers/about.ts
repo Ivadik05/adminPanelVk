@@ -1,7 +1,7 @@
 import { events } from '../../events';
 import { pagesType } from '../../io/types';
 import { connector } from '../../constants';
-let objectAssign = require('object-assign');
+
 
 let initialState = {
   contentText: ''
@@ -15,7 +15,7 @@ export default function about<Reducer>(state: aboutType = initialState, action) 
   switch (action.type) {
     case events.saver.PAGES:
     case events.about.DRAW_ABOUT_CONTENT:
-      return objectAssign({}, state, {
+      return Object.assign({}, state, {
         contentText: (action.payload.id === connector.PAGE_ABOUT) ?
             action.payload.text :
             state.contentText
