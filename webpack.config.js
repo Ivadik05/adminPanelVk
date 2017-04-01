@@ -23,7 +23,8 @@ if (!DEV) {
 
 var commonConfigs = {
   resolve: {
-    extensions: ['.webpack.js', '.web.js', '.tsx', '.js', '.ts', '.css']
+    extensions: ['.webpack.js', '.web.js', '.tsx', '.js', '.ts', '.css'],
+    modules: ['./src', './node_modules']
   },
   devtool: DEV && 'source-map'
 };

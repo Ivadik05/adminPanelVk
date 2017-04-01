@@ -1,6 +1,6 @@
-import { Io } from '../../io';
+import { Io } from 'io';
 import { ITransport, IRequest } from '../../io/interfaces';
-import { settings } from '../../settings';
+import { settings } from 'settings';
 import { NodeTransport } from '../../io/transport';
 import { ISender } from './index';
 import { Store } from 'redux';
