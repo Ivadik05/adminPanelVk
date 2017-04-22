@@ -5,10 +5,10 @@
         "noImplicitAny": false,
         "rootDir": "./src",
         "sourceMap": true,
+        "outDir": "./tmpBuild/",
         "moduleResolution": "node",
         "jsx": "react",
-        "experimentalDecorators": true,
-        "baseUrl": "./src"
+        "experimentalDecorators": true
      },
     "lib": [
         "es6",
