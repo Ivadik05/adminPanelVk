@@ -3,8 +3,8 @@ let styles = require('./style.css');
 
 type Props = {
   count: number;
-  incHandler: Function;
-  decHandler: Function;
+  incHandler: React.EventHandler<React.MouseEvent<HTMLElement>>;
+  decHandler: React.EventHandler<React.MouseEvent<HTMLElement>>;
 }
 
 export let IncDec = (props: Props) => {

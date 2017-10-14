@@ -18,7 +18,7 @@ let styles = require('./style.css');
 
 interface IProps extends React.Props<App> {
   state: any;
-  dispatch: IDispatch;
+  dispatch: IDispatch<{}>;
 }
 
 class App extends React.Component<IProps, {}> {

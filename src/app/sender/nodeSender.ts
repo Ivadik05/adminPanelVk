@@ -1,6 +1,6 @@
-import { Io } from '../../io';
+import { Io } from 'io';
 import { ITransport, IRequest } from '../../io/interfaces';
-import { settings } from '../../settings';
+import { settings } from 'settings';
 import { NodeTransport } from '../../io/transport';
 import { ISender } from './index';
 import { Store } from 'redux';
@@ -14,7 +14,7 @@ import { events } from '../../events';
 
 export class NodeSender implements ISender {
   private io: Io = null;
-  private store: Store;
+  private store: Store<{}>;
   private requestList: Array<IRequest> = [
     new GetPage(connector.GROUP_ID, connector.PAGE_ABOUT),
     new GetPage(connector.GROUP_ID, connector.PAGE_CONTACTS),

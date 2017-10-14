@@ -2,12 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var objectAssign = require('object-assign');
-var precss       = require('precss');
 var autoprefixer = require('autoprefixer');
-// require promise polyfill for old node environment
-if(typeof Promise === 'undefined') {
-  require('es6-promise').polyfill();
-}
 var NODE_ENV = JSON.stringify(process.env.NODE_ENV || 'development');
 var GA_TRACKING_ID = JSON.stringify(process.env.GA_TRACKING_ID || '');
 var DEV = Boolean(NODE_ENV === '"development"');
@@ -28,56 +23,53 @@ if (!DEV) {
 
 var commonConfigs = {
   resolve: {
-    extensions: ['', '.webpack.js', '.web.js', '.tsx', '.js', '.ts', '.css']
+    extensions: ['.webpack.js', '.web.js', '.tsx', '.js', '.ts', '.css'],
+    modules: ['./src', './node_modules']
   },
-  module: {
-    loaders: [
-      {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!!postcss-loader')
-      },
-      {
-        test: /\.ts(x)?$/,
-        exclude: /(node_modules|__tests__)/,
-        loaders: ['ts-loader']
-      },
-      {
-        test: /\.(jpe?g|png|gif|svg)$/i,
-        loader: 'url-loader?mimetype=image/limit=10000'
-      }
-    ]
-  },
-  postcss: function () {
-    return [autoprefixer];
-  },
-  imagemin: {
-    gifsicle: { interlaced: false },
-    jpegtran: {
-      progressive: true,
-      arithmetic: false
-    },
-    optipng: { optimizationLevel: 5 },
-    pngquant: {
-      floyd: 0.5,
-      speed: 2
-    },
-    svgo: {
-      plugins: [
-        { removeTitle: true },
-        { convertPathData: false }
-      ]
-    }
-  },
-  tslint: {
-    emitErrors: false
-  }
+  devtool: DEV && 'source-map'
 };
 
 module.exports = [
   objectAssign({}, commonConfigs, {
+    target: 'web',
+    module: {
+      rules: [
+        {
+          test: /\.tsx?$/,
+          exclude: /(node_modules|__tests__)/,
+          use: ['ts-loader']
+        },
+        {
+          test: /\.css$/,
+          use: ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: [
+              {
+                loader: 'css-loader',
+                query: {
+                  modules: true,
+                  camelCase: true,
+                  minimize: true,
+                  localIdentName: '[local]__[hash:base64:5]'
+                }
+              },
+              {
+                loader: 'postcss-loader',
+                options: { plugins: function() { return [ autoprefixer() ]} }
+              }
+            ]
+          })
+        },
+        {
+          test: /\.(jpe?g|png|gif|svg)$/i,
+          loader: 'url-loader?mimetype=image/limit=10000'
+        }
+      ]
+    },
     plugins: listOfPlugins.concat([
       developFlag,
-      new ExtractTextPlugin('app.css', {
+      new ExtractTextPlugin({
+        filename: 'app.css',
         allChunks: true
       })
     ]),
@@ -92,11 +84,35 @@ module.exports = [
   }),
   objectAssign({}, commonConfigs, {
     target: 'node',
+    module: {
+      rules: [
+        {
+          test: /\.tsx?$/,
+          exclude: /(node_modules|__tests__)/,
+          use: ['ts-loader']
+        },
+        {
+          test: /\.css$/,
+          use: [
+            {
+              loader: 'css-loader/locals?modules', // чтобы для server side собирались правильные стили https://github.com/gajus/react-css-modules/issues/83#issuecomment-271265288
+              options: {
+                importLoaders: 1,
+                modules: true,
+                camelCase: true,
+                localIdentName: '[local]__[hash:base64:5]'
+              }
+            }
+          ]
+        },
+        {
+          test: /\.(jpe?g|png|gif|svg)$/i,
+          loader: 'url-loader?mimetype=image/limit=10000'
+        }
+      ]
+    },
     plugins: listOfPlugins.concat([
-      developFlag,
-      new ExtractTextPlugin('../public/dist/app.css', {
-        allChunks: true
-      })
+      developFlag
     ]),
     entry: {
       vvs: path.resolve('src', 'server.tsx')

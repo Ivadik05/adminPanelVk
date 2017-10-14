@@ -20,7 +20,7 @@ export class NodeTransport implements ITransport {
   }
 
   private getPath() {
-    return this.path;
+    return this.path || '/';
   }
 
   private getPort() {
@@ -37,6 +37,7 @@ export class NodeTransport implements ITransport {
   }
 
   public send(options: ITransportOptions, complete: Function, errorResponse?: Function) {
+    const errResponse = errorResponse || function () {};
     let sendOptions = {
       host: this.getHost(),
       hostname: this.getHost(),
@@ -47,7 +48,8 @@ export class NodeTransport implements ITransport {
       query: options.query || {}
     };
     console.info(
-        `send request query: ${sendOptions.path}`);
+        `send ${sendOptions.host}${sendOptions.port} 
+        request query: ${sendOptions.path}`);
     let request = http.get(sendOptions, (res) => {
       let bodyChunks = [];
       res.on('data', function(chunk) {
@@ -59,7 +61,7 @@ export class NodeTransport implements ITransport {
     });
 
     request.on('error', function(e) {
-      errorResponse(e);
+      errResponse(e);
       console.log('ERROR: ' + e.message);
     });
 

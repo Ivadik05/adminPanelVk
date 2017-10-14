@@ -5,7 +5,7 @@ let styles = require('./style.css');
 
 export interface IProps extends React.Props<Main> {
   main: any;
-  dispatch: IDispatch;
+  dispatch: IDispatch<{}>;
 }
 
 class Main extends React.Component<IProps, {}> {

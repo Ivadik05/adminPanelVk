@@ -9,7 +9,7 @@ let styles = require('./style.css');
 
 export interface IProps extends React.Props<Contacts> {
   contacts: any;
-  dispatch: IDispatch;
+  dispatch: IDispatch<{}>;
 }
 
 class Contacts extends React.Component<IProps, {}> {

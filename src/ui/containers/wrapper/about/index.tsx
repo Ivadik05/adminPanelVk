@@ -10,7 +10,7 @@ let styles = require('./style.css');
 
 export interface IProps extends React.Props<About> {
   about: aboutType;
-  dispatch: IDispatch;
+  dispatch: IDispatch<{}>;
 }
 
 class About extends React.Component<IProps, {}> {

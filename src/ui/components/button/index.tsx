@@ -4,7 +4,7 @@ let classNames = require('classnames');
 
 type Props = {
   children?: any;
-  handler: Function;
+  handler: React.EventHandler<React.MouseEvent<HTMLButtonElement>>;
   type?: 'error' | 'white';
   disabled?: boolean;
   hint?: string;

@@ -1,7 +1,7 @@
 import { events } from '../../events';
 import { marketType, albumsType, shoppingCart  } from '../../io/types';
 import { connector } from '../../constants';
-let objectAssign = require('object-assign');
+
 
 let initialState = {
   albums: [],
@@ -26,30 +26,30 @@ type market = {
 export default function market<Reducer>(state: market = initialState, action) {
   switch (action.type) {
     case events.market.DRAW_MARKETS:
-      return objectAssign({}, state, {
+      return Object.assign({}, state, {
         data: action.payload
       });
     case events.market.DRAW_SHOPPING_CART:
-      return objectAssign({}, state, {
+      return Object.assign({}, state, {
         shoppingCart: action.payload
       });
     case events.market.CLEAR_SHOPPING_CART:
-      return objectAssign({}, state, {
+      return Object.assign({}, state, {
         shoppingCart: initialState.shoppingCart,
         successOrder: false
       });
     case events.market.SUCCESS_ORDER:
-      return objectAssign({}, state, {
+      return Object.assign({}, state, {
         successOrder: true,
         shoppingCart: initialState.shoppingCart
       });
     case events.saver.MARKET_ALBUMS:
-      return objectAssign({}, state, {
+      return Object.assign({}, state, {
         albums: action.payload['albums'],
         data: action.payload['products']
       });
     case events.saver.PAGES:
-      return objectAssign({}, state, {
+      return Object.assign({}, state, {
         contentText: (action.payload.id === connector.PAGE_MARKET) ?
             action.payload.text :
             state.contentText
