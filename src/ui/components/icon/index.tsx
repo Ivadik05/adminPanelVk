@@ -4,7 +4,7 @@ let styles = require('./style.css');
 
 export { iconList };
 
-interface IProps extends React.Props<Icon> {
+interface IProps {
   params: IIcon;
   fill?: string;
   className?: string;
@@ -17,10 +17,12 @@ export interface IIcon {
   iconContent?: any;
 }
 
-export class Icon extends React.Component<IProps, void> {
+export default class Icon extends React.PureComponent<IProps, {}> {
+  constructor(props: IProps) {
+    super(props);
+  }
 
   public displayName: string = 'Icon';
-
   public refs: {
     [key: string]: (Element);
     iconPath: (HTMLInputElement);

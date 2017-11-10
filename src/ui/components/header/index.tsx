@@ -3,17 +3,12 @@ import { Logo } from '../logo';
 let styles = require('./style.css');
 let logoImg = require('./logo.jpg');
 
-export interface IProps extends React.Props<Header> {
-}
-
-export default class Header extends React.Component<IProps, void> {
-  public render() {
-    return (
-        <header className={styles.header}>
-          <Logo
-            src={logoImg}
-          />
-        </header>
-    );
-  }
+export const Header = () => {
+  return (
+      <header className={styles.header}>
+        <Logo
+          src={logoImg}
+        />
+      </header>
+  );
 };

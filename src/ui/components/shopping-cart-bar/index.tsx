@@ -4,7 +4,7 @@ import {marketType, shoppingCart } from '../../../io/types';
 import { routeConstants } from '../../../routes';
 import { Container } from '../container';
 import { Button } from '../button';
-import { Icon, iconList } from '../icon';
+import Icon, { iconList } from '../icon';
 let styles = require('./style.css');
 
 export interface IProps {
@@ -33,7 +33,7 @@ class ShoppingCartBar extends React.Component<IProps , {}> {
                   <div className={styles.cart}>
                     <div className={styles.title}>
                       <div className={styles.titleIcon}>
-                        <Icon params={iconList.iconCart}></Icon>
+                        <Icon params={iconList.iconCart}/>
                       </div>
                     </div>
                     <div className={styles.count}>{shoppingCart.count}</div>
@@ -43,7 +43,7 @@ class ShoppingCartBar extends React.Component<IProps , {}> {
                     <Button handler={this.transferShoppingCart}>
                       <div className={styles.btnText}>Перейти в корзину</div>
                       <div className={styles.btnIcon}>
-                        <Icon params={iconList.iconCart}></Icon>
+                        <Icon params={iconList.iconCart}/>
                       </div>
                     </Button>
                   </div>

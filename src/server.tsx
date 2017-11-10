@@ -12,7 +12,8 @@ import routes from './routes';
 import { utils } from '../src/utils';
 import * as url from 'url';
 
-import { NodeSender, ISender } from './app/sender';
+import { Sender, ISender } from './app/sender';
+import { nodeTransport } from './io/transport/node-transport';
 
 let HOST = process.env.HOST || '127.0.0.1';
 let PORT = process.env.PORT || 5000;
@@ -69,7 +70,7 @@ http.createServer((req, res) => {
         redirect(redirectLocation, res);
       } else if (renderProps) {
         let store = createStore(reducers, {});
-        let sender: ISender = new NodeSender(store);
+        let sender: ISender = new Sender(store, nodeTransport);
         sender.fetchAllData(() => {
           renderApp(renderProps, res, store);
         });
