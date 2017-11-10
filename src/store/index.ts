@@ -4,7 +4,7 @@ let createLogger = require('redux-logger');
 
 let createStoreWithMiddleware =
     (process.env.NODE_ENV === 'development') ? applyMiddleware(createLogger()) : applyMiddleware();
-let initialState = window['__INITIAL_STATE__'];
+let initialState = window['__INITIAL_STATE__'] ? window['__INITIAL_STATE__'] : createStore(reducers, {});
 
 let store = createStore(
     reducers,

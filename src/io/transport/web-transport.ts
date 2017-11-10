@@ -1,6 +1,7 @@
 import { ITransport, ITransportOptions } from '../interfaces';
 import * as queryString from 'query-string';
 import { IConfig } from '../interfaces';
+import { settings } from '../../settings';
 
 
 export class WebTransport implements ITransport {
@@ -82,3 +83,12 @@ export class WebTransport implements ITransport {
     request.send(queryParams);
   }
 }
+
+let connectorSettings = settings.connector;
+let requestSettings = {
+  host: connectorSettings.HOST,
+  path: connectorSettings.PATH,
+  port: connectorSettings.PORT
+};
+
+export const webTransport = new WebTransport(requestSettings);

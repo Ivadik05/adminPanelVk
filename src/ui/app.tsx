@@ -8,10 +8,10 @@ import { actionCreators } from './action-creators';
 import * as Helmet from 'react-helmet';
 import { routeConstants } from '../routes/index';
 
-import Header from './components/header';
+import {Header} from './components/header';
 import Nav from './components/nav';
-import Wrapper from './containers/wrapper';
-import Footer from './components/footer';
+import {Wrapper} from './containers/wrapper';
+import {Footer} from './components/footer';
 import ShoppingCartBar from './components/shopping-cart-bar';
 
 let styles = require('./style.css');

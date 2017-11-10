@@ -1,6 +1,5 @@
-import { Io } from 'io';
+import { Io } from '../../io';
 import { ITransport, IRequest } from '../../io/interfaces';
-import { settings } from 'settings';
 import { NodeTransport } from '../../io/transport';
 import { ISender } from './index';
 import { Store } from 'redux';
@@ -12,7 +11,7 @@ import { executeType } from '../../io/types';
 import { queries } from '../../io/queries';
 import { events } from '../../events';
 
-export class NodeSender implements ISender {
+export class Sender implements ISender {
   private io: Io = null;
   private store: Store<{}>;
   private requestList: Array<IRequest> = [
@@ -23,15 +22,9 @@ export class NodeSender implements ISender {
     new GetPhotos(connector.OWNER_PHOTO_ID, connector.PHOTO_ALBUM_ID)
   ];
 
-  constructor(store: any) {
-    let connectorSettings = settings.connector;
-    let requestSettings = {
-      host: connectorSettings.HOST,
-      path: connectorSettings.PATH,
-      port: connectorSettings.PORT
-    };
+  constructor(store: any, transport: ITransport) {
+
     this.store = store;
-    let transport: ITransport = new NodeTransport(requestSettings);
     this.io = new Io(transport);
   }
 

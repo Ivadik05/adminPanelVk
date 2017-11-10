@@ -3,6 +3,7 @@ import * as queryString from 'query-string';
 import { ITransportOptions } from '../interfaces';
 import { IConfig } from '../interfaces';
 import * as http from 'http';
+import { settings } from '../../settings';
 
 export class NodeTransport implements ITransport {
   private host: string;
@@ -68,3 +69,12 @@ export class NodeTransport implements ITransport {
     request.end();
   }
 }
+
+let connectorSettings = settings.connector;
+let requestSettings = {
+  host: connectorSettings.HOST,
+  path: connectorSettings.PATH,
+  port: connectorSettings.PORT
+};
+
+export const nodeTransport = new NodeTransport(requestSettings);
