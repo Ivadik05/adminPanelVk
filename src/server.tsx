@@ -18,10 +18,7 @@ let HOST = process.env.HOST || '127.0.0.1';
 let PORT = process.env.PORT || 5000;
 
 function renderApp(props, res, store) {
-  let markup = renderToString(
-      <Provider store={store}>
-        <RoutingContext {...props}/>
-      </Provider>
+  let markup = renderToString(<Provider store={store}><RoutingContext {...props}/></Provider>
   );
   let head = Helmet.rewind();
   let html = createPage(markup, store.getState(), head);
@@ -40,22 +37,6 @@ http.createServer((req, res) => {
   if (req.url === '/favicon.ico') {
     write('haha', 'text/plain', res);
   }
-  // else if (/dist/.test(req.url)) {
-  //   let extension = getFileExtension(req.url);
-  //   switch (extension) {
-  //     case 'js':
-  //       fs.readFile(`.${req.url}`, (err, data) => {
-  //         write(data, 'text/javascript', res);
-  //       });
-  //     break;
-  //     case 'css':
-  //       fs.readFile(`.${req.url}`, (err, data) => {
-  //         write(data, 'text/css', res);
-  //       });
-  //     break;
-  //     default: break;
-  //   }
-  // }
   else if (parseUrl(req.url)['pathname'] === '/away.php') {
     res.writeHead(302, {
       'Location': parseUrl(req.url)['query']['to']
@@ -87,10 +68,3 @@ http.createServer((req, res) => {
 
 }).listen(PORT, HOST);
 console.log(`listening on host ${HOST}:${PORT}`);
-
-
-// "query-string": "registry:dt/query-string#3.0.0+20160331065456",
-// "react-redux": "registry:dt/react-redux#4.4.0+20160406115600",
-//     "react-router": "registry:dt/react-router#2.0.0+20160330124659",
-//     "react-router-redux": "registry:dt/react-router-redux#4.0.0+20160316155526",
-//     "react-router/history": "registry:dt/react-router/history#2.0.0+20160316155526",

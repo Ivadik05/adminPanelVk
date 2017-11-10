@@ -38,7 +38,6 @@ export function getFileExtension(link: string) {
 }
 
 export function createPage(html, initialState, head) {
-  //noinspection TsLint
   return ` 
   <!DOCTYPE html ${head.htmlAttributes.toString()}>
     <head>
