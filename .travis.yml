@@ -12,7 +12,7 @@ install:
 before_script:
   - cp ./src/settings/example.ts ./src/settings/index.ts
 script:
-  - npm run build
+  - npm run build:prod
 
 deploy:
   provider: pages
